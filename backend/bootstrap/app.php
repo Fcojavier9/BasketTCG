@@ -23,9 +23,11 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+//Activa el uso de facades en Laravel para acceder a clases de manera estática.
+$app->withFacades();
 
-// $app->withEloquent();
+//Activa Eloquent ORM en Laravel para interactuar con la base de datos usando objetos PHP.
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
