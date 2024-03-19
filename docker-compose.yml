@@ -4,7 +4,7 @@ services:
   frontend:
     image: node
     working_dir: /app
-    command: "npm start"
+    command: "npm run dev"
     volumes:
       - ./frontend:/app
     ports:
@@ -19,6 +19,7 @@ services:
     volumes:
       - ./backend:/var/www/
       - ./backend/public/:/var/www/html/
+    command: sh -c "composer install && apache2-foreground"
     ports:
       - 8200:80
     depends_on:
