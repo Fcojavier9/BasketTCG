@@ -1,24 +1,16 @@
 version: "3.1"
 
 services:
-  db:
-    image: postgres
-    env_file: .env
-    volumes:
-      - ./data/pg_database:/var/lib/postgresql/data
-    ports:
-      - 5433:5432
-
   frontend:
     image: node
     working_dir: /app
-    command: "npm run dev"
+    command: "npm start"
     volumes:
       - ./frontend:/app
     ports:
       - 3000:3000
     depends_on:
-      - db
+      - backend
 
   backend:
     image: backend
@@ -31,3 +23,11 @@ services:
       - 8200:80
     depends_on:
       - db
+
+  db:
+    image: postgres
+    env_file: .env
+    volumes:
+      - ./data/pg_data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
