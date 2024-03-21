@@ -20,11 +20,11 @@ $router->get('/', function () use ($router) {
 
 // Ejemplo de ruta con parámetros a una tabla, en este caso es un get pero se puede hacer con post, put, delete, etc.
 /**
- * $router->get('/users', ['uses' => 'UsersController@getUsers']); // este seria el primer endpoint
+ * $router->get('/usuarios', ['uses' => 'UsuariosController@getUsuarios']); // este seria el primer endpoint
  * 
  * Para que funcione, se debe crear el controlador, en este caso UsersController.php en la carpeta app/Http/Controllers
  * Copiamos y pegamos el ejemplo que ya viene cambiandole el nombre del controlador y el nombre de la función
  * 
  * Tambien se debe crear el modelo, en este caso User.php en la carpeta app/Models
  */
-$router->get('/users', ['uses' => 'UsersController@getUsers']); // este seria el primer endpoint
+$router->get('/usuarios', ['uses' => 'UsuariosController@getUsuarios']); // este seria el primer endpoint
