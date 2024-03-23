@@ -29,8 +29,10 @@ BEGIN
             username VARCHAR(255),
             name VARCHAR(255),
             password VARCHAR(70),
-            saldo MONEY,
-            img_url VARCHAR(255)
+            saldo INTEGER DEFAULT 500,
+            img_url VARCHAR(255),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 
         CREATE TABLE carta (
@@ -39,27 +41,33 @@ BEGIN
             position VARCHAR(255) CHECK (position IN ('pg', 'sg', 'sf', 'pf', 'c')),
             rarity VARCHAR(255) CHECK (rarity IN ('comun', 'rara', 'heroe')),
             puntuacion SMALLINT,
-            img_url VARCHAR(255)
+            img_url VARCHAR(255),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 
         CREATE TABLE coleccion (
             id SERIAL PRIMARY KEY,
             id_usuario INTEGER REFERENCES usuarios(id),
             id_carta INTEGER REFERENCES carta(id),
-            cantidad INTEGER DEFAULT 0
+            cantidad INTEGER DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 
         CREATE TABLE mercado (
             id SERIAL PRIMARY KEY,
             id_coleccion INT REFERENCES coleccion(id),
-            vendida BOOLEAN DEFAULT FALSE
+            vendida BOOLEAN DEFAULT FALSE,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 
         -- Add example data
         INSERT INTO usuarios (username, name, password, saldo, img_url) VALUES
-            ('fran', 'User One', 'passwordhash1', 100.00, 'url1/usuarios/1.jpg'),
-            ('pablo', 'User Two', 'passwordhash2', 150.00, 'img/usuarios/2.jpg'),
-            ('rafa', 'Rafa el guay', 'passwordhash3', 62.00, 'img/usuarios/3.jpg');
+            ('fran', 'User One', 'passwordhash1', 100, 'url1/usuarios/1.jpg'),
+            ('pablo', 'User Two', 'passwordhash2', 150, 'img/usuarios/2.jpg'),
+            ('rafa', 'Rafa el guay', 'passwordhash3', 62, 'img/usuarios/3.jpg');
 
         INSERT INTO carta (nombre, position, rarity, puntuacion, img_url) VALUES
             ('LeBron James', 'pg', 'heroe', 99, 'img/carta/1.jpg'),
