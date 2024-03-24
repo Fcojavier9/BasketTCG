@@ -27,14 +27,39 @@ $router->get('/', function () use ($router) {
  * 
  * Tambien se debe crear el modelo, en este caso User.php en la carpeta app/Models
  */
-$router->get('/usuarios', ['uses' => 'UsuariosController@getUsuarios']); // este seria el primer endpoint
+
+
+/**
+ *                                          TABLA USUARIOS
+ */
+
+
+ /**
+ * devolver usuarios
+ */
+$router->get('/usuarios', ['uses' => 'UsuariosController@GetUsuarios']); // este seria el primer endpoint
 
 /**
  * devolver usuario por id
  */
-$router->get('/usuarios/{id}', ['uses' => 'UsuariosController@getUsuario']);
+$router->get('/usuario/{id}', ['uses' => 'UsuariosController@GetUsuario']);
 
 /**
  * inserccion de datos
  */
-$router->post('/usuario', ['uses' => 'UsuariosController@insertUsuario']);
+$router->post('/insertUsuario', ['uses' => 'UsuariosController@InsertUsuario']);
+
+/**
+ * actualizar usuario por id
+ */
+$router->put('/updateUsuario/{id}', ['uses' => 'UsuariosController@UpdateUsuario']);
+
+/**
+ * eliminar usuario por id
+ */
+$router->delete('/deleteUsuario/{id}', ['uses' => 'UsuariosController@DeleteUsuario']);
+
+
+/**
+ *                                          TABLA XXXXX
+ */
