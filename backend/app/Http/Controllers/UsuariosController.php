@@ -97,11 +97,11 @@ class UsuariosController extends Controller
 
     // Funcion extra para comprobar que request tenga las claves que necesitamos
     public function hasKeys(Request $request, $keysToCheck) {
-    foreach ($keysToCheck as $key) {
-        if (!$request->has($key)) {
-            return false; // Retorna falso si alguna clave no está presente
+        foreach ($keysToCheck as $key) {
+            if (!$request->has($key)) {
+                return false; // Retorna falso si alguna clave no está presente
+            }
         }
+        return true; // Retorna verdadero si todas las claves están presentes
     }
-    return true; // Retorna verdadero si todas las claves están presentes
-}
 }
