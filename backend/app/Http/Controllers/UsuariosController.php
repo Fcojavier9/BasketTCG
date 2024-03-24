@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuarios;
-use Illuminate\Http\Request; // para poder usar el request en el insertUsuario
+use Illuminate\Http\Request; // para poder usar el request en cualquier inserccion/actualizacion de bbdd
 
 class UsuariosController extends Controller
 {
@@ -12,12 +12,12 @@ class UsuariosController extends Controller
      */
     // devolver todos los usuarios
     public function GetUsuarios(){
-        return Usuarios::all(); // con esto hago un select * from users
+        return Usuarios::all(); // con esto hago un select * from usuarios
     }
 
     // devolver usuario por id
     public function GetUsuario($id){
-        $user = Usuarios::find($id); // con esto hago un select * from users where id = $id
+        $user = Usuarios::find($id); // con esto hago un select * from usuarios where id = $id
         
         if($user){
             return $user;
@@ -59,7 +59,7 @@ class UsuariosController extends Controller
         }
 
         $user = $this->GetUsuario($id);// compruebo que el usuario exista
-        if($user->getStatusCode() == 404){
+        if(!$user){ 
             return response()->json(['error' => 'Usuario no encontrado'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404
         }
 
