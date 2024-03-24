@@ -16,8 +16,9 @@ class Usuarios extends Model{
     
     protected $fillable = [
         'username', 
-        'name', 
-        'password', 
+        'name',
+        'password',
+        'saldo', 
         'img_url'
     ];
 }
