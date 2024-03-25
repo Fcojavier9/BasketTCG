@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory; // esta linea se agrega p
 class Coleccion extends Model{
     use HasFactory;
 
+    protected $table = 'coleccion'; // Nombre de la tabla en la base de datos, obligo a que no la pluralice
+
     /**
      * campos de la tabla usuarios que se pueden rellenar
      * 

@@ -90,7 +90,7 @@ $router->put('/updateCarta/{id}', ['uses' => 'CartasController@UpdateCarta']);
 $router->delete('/deleteCarta/{id}', ['uses' => 'CartasController@DeleteCarta']);
 
 /**
- *                                          TABLA XXXXX
+ *                                          TABLA XXXX
  */
 
 /**
