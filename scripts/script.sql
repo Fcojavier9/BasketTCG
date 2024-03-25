@@ -6,7 +6,7 @@ BEGIN
         WHERE table_name = 'usuarios'
     ) AND EXISTS (
         SELECT 1 FROM information_schema.tables
-        WHERE table_name = 'carta'
+        WHERE table_name = 'cartas'
     ) AND EXISTS (
         SELECT 1 FROM information_schema.tables
         WHERE table_name = 'coleccion'
@@ -18,7 +18,7 @@ BEGIN
         RAISE NOTICE 'Las tablas ya existen';
     ELSEIF EXISTS (
         SELECT 1 FROM information_schema.tables
-        WHERE table_name IN ('usuarios', 'carta', 'coleccion', 'mercado')
+        WHERE table_name IN ('usuarios', 'cartas', 'coleccion', 'mercado')
     ) THEN
         -- If some tables exist but not all, there might be an issue
         RAISE NOTICE 'Algunas de las tablas ya existen, puede que la base de datos este corrupta, o estes usando una versión antigua de este script';
@@ -35,7 +35,7 @@ BEGIN
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 
-        CREATE TABLE carta (
+        CREATE TABLE cartas (
             id SERIAL PRIMARY KEY,
             nombre VARCHAR(255),
             position VARCHAR(255) CHECK (position IN ('pg', 'sg', 'sf', 'pf', 'c')),
@@ -49,7 +49,7 @@ BEGIN
         CREATE TABLE coleccion (
             id SERIAL PRIMARY KEY,
             id_usuario INTEGER REFERENCES usuarios(id),
-            id_carta INTEGER REFERENCES carta(id),
+            id_carta INTEGER REFERENCES cartas(id),
             cantidad INTEGER DEFAULT 0,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -69,7 +69,7 @@ BEGIN
             ('pablo', 'User Two', 'passwordhash2', 150, 'img/usuarios/2.jpg'),
             ('rafa', 'Rafa el guay', 'passwordhash3', 62, 'img/usuarios/3.jpg');
 
-        INSERT INTO carta (nombre, position, rarity, puntuacion, img_url) VALUES
+        INSERT INTO cartas (nombre, position, rarity, puntuacion, img_url) VALUES
             ('LeBron James', 'pg', 'heroe', 99, 'img/carta/1.jpg'),
             ('Michael Jordan', 'sg', 'rara', 100, 'img/carta/2.jpg');
 
