@@ -65,12 +65,12 @@ $router->delete('/deleteUsuario/{id}', ['uses' => 'UsuariosController@DeleteUsua
  */
 
 /**
- * devolver usuarios
+ * devolver cartas
  */
 $router->get('/cartas', ['uses' => 'CartasController@Getcartas']); // este seria el primer endpoint
 
 /**
- * devolver usuario por id
+ * devolver carta por id
  */
 $router->get('/carta/{id}', ['uses' => 'CartasController@Getcarta']);
 
@@ -80,12 +80,12 @@ $router->get('/carta/{id}', ['uses' => 'CartasController@Getcarta']);
 $router->post('/insertCarta', ['uses' => 'CartasController@InsertCarta']);
 
 /**
- * actualizar usuario por id
+ * actualizar carta por id
  */
 $router->put('/updateCarta/{id}', ['uses' => 'CartasController@UpdateCarta']);
 
 /**
- * eliminar usuario por id
+ * eliminar carta por id
  */
 $router->delete('/deleteCarta/{id}', ['uses' => 'CartasController@DeleteCarta']);
 
