@@ -92,3 +92,27 @@ $router->delete('/deleteCarta/{id}', ['uses' => 'CartasController@DeleteCarta'])
 /**
  *                                          TABLA XXXXX
  */
+
+/**
+ * Mortar la coleccion del usuario
+ */
+$router->get('/{usuario}/coleccion', ['uses'=> 'ColeccionController@GetColeccion']);
+
+/**
+ * añardiar a la coleccion del usuario
+ */
+$router->post('/{usuario}/insertcoleccion', ['uses'=> 'ColeccionController@InsertColeccion']);
+
+/**
+ * editar la coleccion del usuario
+ */
+$router->post('/{usuario}/coleccion?id={id}', ['uses'=> 'ColeccionController@UpdateColeccion']);
+
+/**
+ * Eliminar de la coleccion del usuario
+ */
+$router->post('/{usuario}/coleccion?id={id}', ['uses'=> 'ColeccionController@DeleteColeccion']);
+
+/**
+ *                                          TABLA XXXXX
+ */
