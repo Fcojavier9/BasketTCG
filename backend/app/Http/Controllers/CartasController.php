@@ -161,6 +161,3 @@ class CartasController extends Controller
         return true; // Retorna verdadero si todas las claves están presentes
     }
 }
-
-
-///
