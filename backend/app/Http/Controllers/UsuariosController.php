@@ -53,9 +53,13 @@ class UsuariosController extends Controller
      *  FUNCION PUT/PATCH
      */
     public function UpdateUsuario(Request $request, $id){
-        // compruebo que el saldo no sea negativo
-        if($request->saldo < 0){
-            return response()->json(['error' => 'Saldo no puede ser negativo'], 400); // con esto devuelvo un json con un mensaje de error y un codigo 400
+        // Verifica si el parámetro 'saldo' está presente en la solicitud
+        if ($request->has('saldo')) {
+                        
+            // Comprueba que el saldo no sea negativo
+            if ($request->saldo < 0) {
+                return response()->json(['error' => 'El saldo no puede ser negativo'], 400);
+            }
         }
 
         $user = $this->GetUsuario($id);// compruebo que el usuario exista
@@ -81,17 +85,18 @@ class UsuariosController extends Controller
         }
 
         $resultado = Usuarios::where('id',$id)->update( //arreglo asociativo
-            $dataToUpdate // con esto hago un update users set username = $request->username, name = $request->name, password = $request->password, img_url = $request->img_url where id = $id
+            $dataToUpdate // con esto hago un update usuarios set username = $request->username, name = $request->name, password = $request->password, img_url = $request->img_url where id = $id
         );
 
-        return ($resultado = 1) ? "Ok, Usuario actualizado correctamente" : "Error, Usuario no actualizado"; // con esto hago un update users set username = $request->username, name = $request->name, password = $request->password, img_url = $request->img_url where id = $id
+        return ($resultado = 1) ? "Ok, Usuario actualizado correctamente" : "Error, Usuario no actualizado"; 
     }
 
     /** 
      *  FUNCION DELETE
      */
     public function DeleteUsuario($id){
-        return Usuarios::where('id',$id)->delete(); // con esto hago un delete from users where id = $id
+        $resultado = Usuarios::where('id',$id)->delete(); // con esto hago un delete from usuarios where id = $id
+        return ($resultado = 1) ? "Ok, Usuario eliminado correctamente" : "Error, Usuario no eliminado"; 
     }
 
 

@@ -34,7 +34,7 @@ $router->get('/', function () use ($router) {
  */
 
 
- /**
+/**
  * devolver usuarios
  */
 $router->get('/usuarios', ['uses' => 'UsuariosController@GetUsuarios']); // este seria el primer endpoint
@@ -59,6 +59,35 @@ $router->put('/updateUsuario/{id}', ['uses' => 'UsuariosController@UpdateUsuario
  */
 $router->delete('/deleteUsuario/{id}', ['uses' => 'UsuariosController@DeleteUsuario']);
 
+
+/**
+ *                                          TABLA CARTAS
+ */
+
+/**
+ * devolver usuarios
+ */
+$router->get('/cartas', ['uses' => 'CartasController@Getcartas']); // este seria el primer endpoint
+
+/**
+ * devolver usuario por id
+ */
+$router->get('/carta/{id}', ['uses' => 'CartasController@Getcarta']);
+
+/**
+ * inserccion de datos
+ */
+$router->post('/insertCarta', ['uses' => 'CartasController@InsertCarta']);
+
+/**
+ * actualizar usuario por id
+ */
+$router->put('/updateCarta/{id}', ['uses' => 'CartasController@UpdateCarta']);
+
+/**
+ * eliminar usuario por id
+ */
+$router->delete('/deleteCarta/{id}', ['uses' => 'CartasController@DeleteCarta']);
 
 /**
  *                                          TABLA XXXXX
