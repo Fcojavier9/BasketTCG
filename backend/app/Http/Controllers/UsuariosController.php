@@ -53,6 +53,13 @@ class UsuariosController extends Controller
      *  FUNCION PUT/PATCH
      */
     public function UpdateUsuario(Request $request, $id){
+
+        // Comprueba si el usuario existe
+        $user = $this->GetUsuario($id);// compruebo que el usuario exista
+        if(!$user){ 
+            return response()->json(['error' => 'Usuario no encontrado'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404
+        }
+
         // Verifica si el parámetro 'saldo' está presente en la solicitud
         if ($request->has('saldo')) {
                         
@@ -60,11 +67,6 @@ class UsuariosController extends Controller
             if ($request->saldo < 0) {
                 return response()->json(['error' => 'El saldo no puede ser negativo'], 400);
             }
-        }
-
-        $user = $this->GetUsuario($id);// compruebo que el usuario exista
-        if(!$user){ 
-            return response()->json(['error' => 'Usuario no encontrado'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404
         }
 
         // Array para almacenar los campos no nulos

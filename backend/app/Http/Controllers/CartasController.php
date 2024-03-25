@@ -77,6 +77,13 @@ class CartasController extends Controller
      *  FUNCION PUT/PATCH
      */
     public function UpdateCarta(Request $request, $id){
+
+        // Comprueba que la carta exista
+        $carta = $this->GetCarta($id);// compruebo que la carta exista
+        if(!$carta){ 
+            return response()->json(['error' => 'Carta no encontrada'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404
+        }
+
         // Verifica si el parámetro 'puntuacion' está presente en la solicitud
         if ($request->has('puntuacion')) {
                         
@@ -91,23 +98,24 @@ class CartasController extends Controller
             }
         }
 
-        $carta = $this->GetCarta($id);// compruebo que la carta exista
-        if(!$carta){ 
-            return response()->json(['error' => 'Carta no encontrada'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404
-        }
-
         // lista de posiciones permitidas
-        $posiciones = ['pg', 'sg', 'sf', 'pf', 'c'];
+        // Verifica si el parámetro 'position' está presente en la solicitud
+        if ($request->has('position')) {
+            $posiciones = ['pg', 'sg', 'sf', 'pf', 'c'];
 
-        if(!in_array($request->position, $posiciones)){
-            return response()->json(['error' => 'Posicion no puede ser diferente a: pg, sg, sf, pf, c '], 400);
+            if(!in_array($request->position, $posiciones)){
+                return response()->json(['error' => 'Posicion no puede ser diferente a: pg, sg, sf, pf, c '], 400);
+            }
         }
 
         // lista para rareza permitida
-        $rareza = ['comun', 'rara', 'heroe'];
+        // Verifica si el parámetro 'rarity' está presente en la solicitud
+        if ($request->has('rarity')) {
+            $rareza = ['comun', 'rara', 'heroe'];
 
-        if(!in_array($request->rarity, $rareza)){
-            return response()->json(['error' => 'Rareza no puede ser diferente a: comun, rara, heroe'], 400);
+            if(!in_array($request->rarity, $rareza)){
+                return response()->json(['error' => 'Rareza no puede ser diferente a: comun, rara, heroe'], 400);
+            }
         }
 
         // Array para almacenar los campos no nulos
