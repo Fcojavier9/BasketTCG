@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory; // esta linea se agrega para que funcione el modelo
 
-class Usuarios extends Model{
+class Mercado extends Model{
     use HasFactory;
 
     /**
@@ -15,12 +15,9 @@ class Usuarios extends Model{
      *  */ 
     
     protected $fillable = [
-        'username',
-        'email', 
-        'name',
-        'password',
-        'saldo', 
-        'img_url'
+        'id_coleccion', 
+        'vendida',
+        'precio'
     ];
 }
 

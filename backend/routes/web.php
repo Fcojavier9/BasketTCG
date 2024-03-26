@@ -114,5 +114,56 @@ $router->put('/coleccion/{id}', ['uses'=> 'ColeccionController@UpdateColeccion']
 $router->delete('/coleccion/{id}', ['uses'=> 'ColeccionController@DeleteColeccion']);
 
 /**
- *                                          TABLA XXXXX
+ *                                          TABLA MERCADO
  */
+
+/**
+ * Devolver todas las entradas en mercado en venta
+ */
+$router->get('/mercado', ['uses'=> 'MercadoController@GetMercado']);
+
+/**
+ * Devolver entrada en mercado por id
+ */
+$router->get('/mercado/{id}', ['uses'=> 'MercadoController@GetMercadoById']);
+
+/**
+ * Devolver todas las cartas en venta por id de carta, incluyendo si esta vendida
+ */
+$router->get('/carta/{id}/mercado/all', ['uses'=> 'MercadoController@GetAllCartasMercado']);
+
+/**
+ * Devolver todas las cartas en venta por id de carta
+ */
+$router->get('/carta/{id}/mercado', ['uses'=> 'MercadoController@GetCartaMercado']);
+
+/**
+ * Devolver todas las cartas en mercado de un usuario, incluyendo si esta vendida
+ */
+$router->get('/{usuario}/mercado/all', ['uses'=> 'MercadoController@GetAllUsuarioMercado']);
+
+/**
+ * Devolver todas las cartas en venta de un usuario
+ */
+$router->get('/{usuario}/mercado', ['uses'=> 'MercadoController@GetUsuarioMercado']);
+
+/**
+ * Devolver si una carta de una coleccion esta en venta
+ */
+$router->get('/{usuario}/coleccion?id={id}/mercado', ['uses'=> 'MercadoController@GetColeccionMercado']);
+
+/**
+ * Poner una carta de una coleccion en venta
+ */
+$router->post('/{usuario}/coleccion?id={id}/insertmercado', ['uses'=> 'MercadoController@InsertMercado']);
+
+/**
+ * Marcar una entrada del mercado como vendida
+ */
+$router->post('/mercado/{id}/vendida', ['uses'=> 'MercadoController@UpdateVendida']);
+
+/**
+ * Eliminar una entrada del mercado
+ * Normalmente no se deberia usar, la tabla mercado contiene un historico de todas sus entradas
+ */
+$router->delete('/mercado/{id}', ['uses'=> 'MercadoController@DeleteMercado']);

@@ -33,17 +33,34 @@ class UsuariosController extends Controller
     public function InsertUsuario(Request $request){
 
         // Lista de claves que deseas verificar
-        $keysToCheck = ['username', 'name', 'password', 'img_url'];
+        $keysToCheck = ['username', 'email', 'name', 'password', 'img_url'];
 
         // Verificar si todas las claves están presentes en la solicitud
         if (!$this->hasKeys($request, $keysToCheck)) { // funcion hasKeys, abajo del todo
-            return response()->json(['error' => 'Se necesitan todas los campos requeridos'], 404);
+            return response()->json(['error' => 'Se necesitan todas los campos requeridos'], 400);
         }
+
+        // Verificar si el usuario ya existe
+        $userExists = $this->checkIfExists('username', $request->username); // funcion checkIfExists, abajo del todo
+        $emailExists = $this->checkIfExists('email', $request->email);
+        if($userExists || $emailExists){
+            return response()->json(['error' => 'El usuario o email ya existe'], 400);
+        }
+
+        // Comprobacion y cifrado de la contraseña
+        $password = $request->password;
+        $passwordCifrada = hash('sha256', $password);
+
+        $resultadoCheckPassword = $this->checkPassword($password, $passwordCifrada); // funcion checkPassword, abajo del todo
+        if($resultadoCheckPassword !== true){
+            return $resultadoCheckPassword;
+        };
 
         return Usuarios::create([ //arreglo asociativo
             'username' => $request->username,
+            'email' => $request->email,
             'name' => $request->name,
-            'password' => $request->password,
+            'password' => $passwordCifrada,
             'saldo'=> ($request->saldo) ? $request->saldo : 500, // si no se envia saldo, se pone 500
             'img_url' => $request->img_url
         ]); // con esto hago un insert into users (username, name, password, img_url) values ($request->username, $request->name, $request->password, $request->img_url)
@@ -69,15 +86,48 @@ class UsuariosController extends Controller
             }
         }
 
+        // Verificar si el usuario ya existe
+        
+        if ($request->has('username') && $this->checkIfExists('username', $request->username) && $request->username != $user->username) { 
+            // si el usuario existe y el usuario que se quiere actualizar no es el mismo    
+            return response()->json(['error' => 'El usuario ya existe'], 400);
+        }
+
+        // Verificar si el email ya existe 
+        if ($request->has('email') && $this->checkIfExists('email', $request->email) && $request->email != $user->email) {
+            // si el email existe y el email que se quiere actualizar no es el mismo
+            return response()->json(['error' => 'El email ya existe'], 400);
+        }
+
+        //verificar la contraseña
+        if ($request->has('password')) {
+
+            $password = $request->password;
+            $passwordBBDD = $user->password;
+            $passwordCifrada = hash('sha256', $password);
+
+            // funcion checkPassword, abajo del todo
+            $resultadoCheckPassword = $this->checkPassword($password, $passwordCifrada, $passwordBBDD); 
+            if($resultadoCheckPassword !== true){
+                return $resultadoCheckPassword;
+            }; 
+            
+        }
+
         // Array para almacenar los campos no nulos
         $dataToUpdate = []; 
 
         // Recorremos los campos del objeto $request
         foreach ($request->all() as $key => $value) {
             // Verificamos si el valor no es nulo y el campo no es '_token'
-            if ($value !== null && $key !== '_token') {
+            if ($value !== null && $key !== '_token' && $key !== 'password') {
                 // Añadimos el campo y su valor al array de datos a actualizar
                 $dataToUpdate[$key] = $value;
+            }
+
+            // si esta password, la actualizo con la password cifrada
+            if($key == 'password'){
+                $dataToUpdate['password'] = $passwordCifrada;
             }
         }
         
@@ -86,6 +136,7 @@ class UsuariosController extends Controller
             return response()->json(['error' => 'No se han recibido campos para actualizar'], 400); // con esto devuelvo un json con un mensaje de error y un codigo 400
         }
 
+        // Actualizamos los campos en la base de datos
         $resultado = Usuarios::where('id',$id)->update( //arreglo asociativo
             $dataToUpdate // con esto hago un update usuarios set username = $request->username, name = $request->name, password = $request->password, img_url = $request->img_url where id = $id
         );
@@ -103,12 +154,49 @@ class UsuariosController extends Controller
 
 
     // Funcion extra para comprobar que request tenga las claves que necesitamos
-    public function hasKeys(Request $request, $keysToCheck) {
+    private function hasKeys(Request $request, $keysToCheck) {
         foreach ($keysToCheck as $key) {
             if (!$request->has($key)) {
                 return false; // Retorna falso si alguna clave no está presente
             }
         }
         return true; // Retorna verdadero si todas las claves están presentes
+    }
+
+    // Funcion declarativa
+    // Funcion extra para comprobar si un parametro ya existe en la bbdd
+    private function checkIfExists($key, $value) {
+        $user = Usuarios::where($key, $value)->first(); // con esto hago un select * from usuarios where $key = $value
+        return $user ? true : false; // si existe el usuario, devuelvo true, si no, devuelvo false
+    }
+
+    //
+    private function checkPassword($password, $passwordCifrada, $passwordBBDD = ""){
+        // Comprueba que la contraseña tenga al menos 8 caracteres
+        if(strlen($password) < 8){
+            return response()->json(['error' => 'La contraseña debe tener al menos 8 caracteres'], 400);
+        }
+
+        // Comprueba que la contraseña tenga al menos un número
+        if (!preg_match('/[0-9]/', $password)) {
+            return response()->json(['error' => 'La contraseña debe tener al menos un número'], 400);
+        }
+
+        // Comprueba que la contraseña tenga al menos una letra
+        if (!preg_match('/[a-zA-Z]/', $password)) {
+            return response()->json(['error' => 'La contraseña debe tener al menos una letra'], 400);
+        }
+
+        // Comprueba que la contraseña tenga al menos un caracter especial
+        if (!preg_match('/[^a-zA-Z0-9]/', $password)) {
+            return response()->json(['error' => 'La contraseña debe tener al menos un caracter especial'], 400);
+        }
+
+        // compruebo que la contraseña no sea la misma que la anterior
+        if($passwordCifrada == $passwordBBDD){
+            return response()->json(['error' => 'La contraseña no puede ser la misma que la anterior'], 400);
+        }
+
+        return true;
     }
 }
