@@ -58,6 +58,7 @@ BEGIN
         CREATE TABLE mercado (
             id SERIAL PRIMARY KEY,
             id_coleccion INT REFERENCES coleccion(id),
+            precio INTEGER,
             vendida BOOLEAN DEFAULT FALSE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -78,9 +79,9 @@ BEGIN
             (1, 2, 1),
             (2, 2, 2);
 
-        INSERT INTO mercado (id_coleccion, vendida) VALUES
-            (1, FALSE),
-            (2, TRUE);
+        INSERT INTO mercado (id_coleccion, precio, vendida) VALUES
+            (1, 10, FALSE),
+            (2, 15, TRUE);
 
         RAISE NOTICE 'Tablas creadas exitosamente';
     END IF;
