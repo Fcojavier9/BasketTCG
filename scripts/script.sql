@@ -27,6 +27,7 @@ BEGIN
         CREATE TABLE usuarios (
             id SERIAL PRIMARY KEY,
             username VARCHAR(255),
+            email VARCHAR(255),
             name VARCHAR(255),
             password VARCHAR(70),
             saldo INTEGER DEFAULT 500,
@@ -64,10 +65,10 @@ BEGIN
         );
 
         -- Add example data
-        INSERT INTO usuarios (username, name, password, saldo, img_url) VALUES
-            ('fran', 'User One', 'passwordhash1', 100, 'url1/usuarios/1.jpg'),
-            ('pablo', 'User Two', 'passwordhash2', 150, 'img/usuarios/2.jpg'),
-            ('rafa', 'Rafa el guay', 'passwordhash3', 62, 'img/usuarios/3.jpg');
+        INSERT INTO usuarios (username, email,name, password, saldo, img_url) VALUES
+            ('fran', 'fran@email.es', 'User One', 'passwordhash1', 100, 'url1/usuarios/1.jpg'),
+            ('pablo', 'pablo@email.es', 'User Two', 'passwordhash2', 150, 'img/usuarios/2.jpg'),
+            ('rafa', 'rafa@email.es', 'Rafa el guay', 'passwordhash3', 62, 'img/usuarios/3.jpg');
 
         INSERT INTO cartas (nombre, position, rarity, puntuacion, img_url) VALUES
             ('LeBron James', 'pg', 'heroe', 99, 'img/carta/1.jpg'),
