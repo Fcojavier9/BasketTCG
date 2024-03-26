@@ -101,17 +101,17 @@ $router->get('/{usuario}/coleccion', ['uses'=> 'ColeccionController@GetColeccion
 /**
  * añardiar a la coleccion del usuario
  */
-$router->post('/{usuario}/insertcoleccion', ['uses'=> 'ColeccionController@InsertColeccion']);
+$router->post('/coleccion', ['uses'=> 'ColeccionController@InsertColeccion']);
 
 /**
  * editar la coleccion del usuario
  */
-$router->post('/{usuario}/coleccion?id={id}', ['uses'=> 'ColeccionController@UpdateColeccion']);
+$router->put('/coleccion/{id}', ['uses'=> 'ColeccionController@UpdateColeccion']);
 
 /**
  * Eliminar de la coleccion del usuario
  */
-$router->post('/{usuario}/coleccion?id={id}', ['uses'=> 'ColeccionController@DeleteColeccion']);
+$router->delete('/coleccion/{id}', ['uses'=> 'ColeccionController@DeleteColeccion']);
 
 /**
  *                                          TABLA XXXXX
