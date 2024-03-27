@@ -9,6 +9,10 @@ COPY ./ /app
 
 ENV NODE_OPTIONS=--max-old-space-size=8192
 RUN npm install
+
+# Instala Vite de forma global
+RUN npm install -g vite
+
 RUN npm run build
 
 # Instala @rollup/rollup para construcción
