@@ -141,7 +141,7 @@ class UsuariosController extends Controller
             $dataToUpdate // con esto hago un update usuarios set username = $request->username, name = $request->name, password = $request->password, img_url = $request->img_url where id = $id
         );
 
-        return ($resultado = 1) ? "Ok, Usuario actualizado correctamente" : "Error, Usuario no actualizado"; 
+        return ($resultado == 1) ? "Ok, Usuario actualizado correctamente" : "Error, Usuario no actualizado"; 
     }
 
     /** 
