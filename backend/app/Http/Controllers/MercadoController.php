@@ -36,6 +36,7 @@ class MercadoController extends Controller
     public function GetAllCartasMercado($id){
         // SELECT * FROM mercado WHERE id_coleccion IN (SELECT id FROM coleccion WHERE id_carta  = $id);
         $cartas = Mercado::whereIn('id_coleccion', function($query) use ($id) {
+            // (SELECT id FROM coleccion WHERE id_carta  = $id)
             $query->select('id')->from('coleccion')->where('id_carta', $id);
         })->get();
         
