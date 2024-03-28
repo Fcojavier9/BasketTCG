@@ -89,7 +89,7 @@ class ColeccionController extends Controller
      */
     public function DeleteColeccion($id){
         $resultado = Coleccion::where('id',$id)->delete(); 
-        return ($resultado = 1) ? "Ok, coleccion eliminada correctamente" : "Error, coleccion no eliminada"; 
+        return ($resultado == 1) ? "Ok, coleccion eliminada correctamente" : "Error, coleccion no eliminada"; 
     }
 
     /**
