@@ -139,7 +139,7 @@ class CartasController extends Controller
             $dataToUpdate // con esto hago un update users set nombre = $request->nombre, position = $request->position, rarity = $request->rarity, puntuacion = $request->puntuacion, img_url = $request->img_url where id = $id
         );
 
-        return ($resultado = 1) ? "Ok, Carta actualizada correctamente" : "Error, Carta no actualizada"; 
+        return ($resultado == 1) ? "Ok, Carta actualizada correctamente" : "Error, Carta no actualizada"; 
     }
 
     /** 

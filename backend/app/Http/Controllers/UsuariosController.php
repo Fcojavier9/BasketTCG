@@ -146,10 +146,11 @@ class UsuariosController extends Controller
 
     /** 
      *  FUNCION DELETE
+     *  TODO borrado recurrente cuando pablo haga el borrar coleccion de un usuario
      */
     public function DeleteUsuario($id){
         $resultado = Usuarios::where('id',$id)->delete(); // con esto hago un delete from usuarios where id = $id
-        return ($resultado = 1) ? "Ok, Usuario eliminado correctamente" : "Error, Usuario no eliminado"; 
+        return ($resultado == 1) ? "Ok, Usuario eliminado correctamente" : "Error, Usuario no eliminado"; 
     }
 
 
