@@ -2,6 +2,7 @@ version: "3.1"
 
 services:
   frontend:
+    container_name: baskettcg-frontend-1
     image: node:latest
     working_dir: /app
     command: sh -c "npm install && npm run dev"
@@ -13,6 +14,7 @@ services:
       - backend
 
   backend:
+    container_name: baskettcg-backend-1
     image: backend
     build: ./backend
     working_dir: /var/www/
@@ -26,6 +28,7 @@ services:
       - db
 
   db:
+    container_name: baskettcg-db-1
     image: postgres
     env_file: .env
     volumes:
