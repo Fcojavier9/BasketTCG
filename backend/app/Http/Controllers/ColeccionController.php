@@ -80,7 +80,7 @@ class ColeccionController extends Controller
         
         
         $resultado = Coleccion::where('id',$id)->update(['cantidad'=> $request->cantidad]);
-        return ($resultado = 1) ? "Ok, Coleccion actualizada correctamente" : "Error, coleccion no actualizada"; 
+        return ($resultado == 1) ? "Ok, Coleccion actualizada correctamente" : "Error, coleccion no actualizada"; 
     
     }
 

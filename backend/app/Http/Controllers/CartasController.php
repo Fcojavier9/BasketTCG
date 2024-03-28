@@ -147,7 +147,7 @@ class CartasController extends Controller
      */
     public function DeleteCarta($id){
         $resultado = Cartas::where('id',$id)->delete(); // con esto hago un delete from cartas where id = $id
-        return ($resultado = 1) ? "Ok, carta eliminada correctamente" : "Error, Carta no eliminada"; 
+        return ($resultado == 1) ? "Ok, carta eliminada correctamente" : "Error, Carta no eliminada"; 
     }
 
 
