@@ -15,7 +15,7 @@ class Mercado extends Model{
      *  */ 
     
     protected $fillable = [
-        'id_coleccion', 
+        'id_coleccion', // revisar
         'vendida',
         'precio'
     ];
