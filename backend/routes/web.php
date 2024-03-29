@@ -162,10 +162,18 @@ $router->get('/{usuario}/coleccion?id={id}/mercado', ['uses'=> 'MercadoControlle
  */
 $router->post('/{usuario}/coleccion?id={id}/insertmercado', ['uses'=> 'MercadoController@InsertMercado']);
 
+// TODO: PUT para cambiar valores (precio, poner en venta, etc.)
+
 /**
  * Marcar una entrada del mercado como vendida
- */
+ */ // TODO: hacer un PUT/PATCH (Hacer con put)
 $router->post('/mercado/{id}/vendida', ['uses'=> 'MercadoController@UpdateVendida']);
+// 1. Marcar como vendidad
+// 2. Modificar en vendedor cantidad en su coleccion  (restar 1)
+// 3. Modificar en vendedor el sueldo en usuario (sumar precio)
+// 4. Modificar en comprador cantidad en su coleccion (sumar 1)
+// 5. Modificar en comprador el sueldo en usuario (restar precio)
+
 
 /**
  * Eliminar una entrada del mercado
