@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coleccion;
+use App\Http\Controllers\MercadoController; //se llama al controlador de eliminar las colecciones que esten en el mercado
 use Illuminate\Http\Request; // para poder usar el request en cualquier inserccion/actualizacion de bbdd
 
 
@@ -89,7 +90,6 @@ class ColeccionController extends Controller
         // se verifica que se ha eliminado una entrada de la tabla coleccion
         $resultado = Coleccion::where('id',$id)->update(['cantidad'=> $request->cantidad]);
         return ($resultado == 1) ? "Ok, Coleccion actualizada correctamente" : "Error, coleccion no actualizada"; 
-        return ($resultado == 1) ? "Ok, Coleccion actualizada correctamente" : "Error, coleccion no actualizada"; 
     
     }
 
@@ -98,6 +98,9 @@ class ColeccionController extends Controller
      */
     // funcion para eliminnar una coleccion
     public function DeleteColeccion($id){
+       
+         $this->checkMercado(($id));//se llama a la funcion para comprobar y eliminar las colecciones que esten puestas a la venta en el mercado
+
         // se asigna la cantidad de columnas afectadas a una variable
         $resultado = Coleccion::where('id',$id)->delete(); 
         // se comprueba que la cantidad sea igual a uno y se manda el mensaje correspondiente
@@ -115,6 +118,11 @@ class ColeccionController extends Controller
 
         // se cuenta la cantidad de columnas que se deberian ver afectadas 
         $count = Coleccion::where('id_usuario',$usuario)->count(); 
+
+        $sales = Coleccion::where('id_usuario',$usuario)->get();
+        foreach($sales as $sale){
+            $this->checkMercado($sale->id);
+        }
 
         //se eliminan las columnas donde el id del usuario coincida
         $delete = Coleccion::where('id_usuario',$usuario)->delete();
@@ -162,5 +170,19 @@ class ColeccionController extends Controller
         if($request->has('cantidad')) {
             if($request->cantidad < 0) $this->error = 'La cantidad no puede ser negativa';
         } else $this->error = 'no hay datos que actualizar'; //el unico parametro modificable sera cantidad
+    }   
+    
+    /** 
+     * Funcion para comprobar y eliminar las colecciones del mercado en el caso de que el usuario la elimine o elimine su cuenta
+     */
+    private function checkMercado($idColeccion){
+        // se crea un nuevo objeto controlador de mercado
+         $mercado = new MercadoController();
+
+        //  se toman las colecciones del mercado basandose en la id que se le pasa a la funcion
+        $onSlae = $this->checkIfExists("id_coleccion", $idColeccion, "\Mercado");
+        if($onSlae){ // en caso de que haya alguna coleccion en el mercado se usa la funcion de eliminar del MercadoController
+            $mercado->DeleteMercado($onSlae->id);
+        }
     }
 }
