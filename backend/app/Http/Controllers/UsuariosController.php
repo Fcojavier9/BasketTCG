@@ -146,9 +146,19 @@ class UsuariosController extends Controller
 
     /** 
      *  FUNCION DELETE
-     *  TODO borrado recurrente cuando pablo haga el borrar coleccion de un usuario
      */
     public function DeleteUsuario($id){
+        // creo un objeto de la clase ColeccionController
+        $coleccion = new ColeccionController();
+
+        // compruebo si el usuario tiene coleccion
+        $resultadoCol = $coleccion->DeleteColeccionesUsuarios($id);
+
+        // si el resultado es la cadena devuelta NO es la correcta, devuelvo un error
+        if($resultadoCol != "Ok, Colecciones eliminadas correctamente"){
+            return response()->json(['error' => 'Error al eliminar usuario, no se han podido borrar algunas colecciones'], 400);
+        }
+
         $resultado = Usuarios::where('id',$id)->delete(); // con esto hago un delete from usuarios where id = $id
         return ($resultado == 1) ? "Ok, Usuario eliminado correctamente" : "Error, Usuario no eliminado"; 
     }

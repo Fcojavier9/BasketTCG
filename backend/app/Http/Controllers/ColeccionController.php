@@ -116,7 +116,7 @@ class ColeccionController extends Controller
             $usuario = $this->checkIfExists('username',$usuario, '\Usuarios')->id;
         }
 
-        // se cuenta la cantidad de columnas que se deberian ver afectadas 
+        // se cuenta la cantidad de filas que se deberian ver afectadas 
         $count = Coleccion::where('id_usuario',$usuario)->count(); 
 
         $sales = Coleccion::where('id_usuario',$usuario)->get();
@@ -124,10 +124,10 @@ class ColeccionController extends Controller
             $this->checkMercado($sale->id);
         }
 
-        //se eliminan las columnas donde el id del usuario coincida
+        //se eliminan las filas donde el id del usuario coincida
         $delete = Coleccion::where('id_usuario',$usuario)->delete();
         //si las cantidades no coinciden se muestra el mensaje de error
-        return ($delete == $count)? "Ok, Colecciones eliminadas correctametne" : "Error, no se ha podido eliminar alguna coleccion";
+        return ($delete == $count)? "Ok, Colecciones eliminadas correctamente" : "Error, no se ha podido eliminar alguna coleccion";
     }
 
     /**
@@ -177,12 +177,12 @@ class ColeccionController extends Controller
      */
     private function checkMercado($idColeccion){
         // se crea un nuevo objeto controlador de mercado
-         $mercado = new MercadoController();
+        $mercado = new MercadoController();
 
         //  se toman las colecciones del mercado basandose en la id que se le pasa a la funcion
-        $onSlae = $this->checkIfExists("id_coleccion", $idColeccion, "\Mercado");
-        if($onSlae){ // en caso de que haya alguna coleccion en el mercado se usa la funcion de eliminar del MercadoController
-            $mercado->DeleteMercado($onSlae->id);
+        $onSale = $this->checkIfExists("id_coleccion", $idColeccion, "\Mercado");
+        if($onSale){ // en caso de que haya alguna coleccion en el mercado se usa la funcion de eliminar del MercadoController
+            $mercado->DeleteMercado($onSale->id);
         }
     }
 }
