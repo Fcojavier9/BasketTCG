@@ -114,6 +114,11 @@ $router->put('/coleccion/{id}', ['uses'=> 'ColeccionController@UpdateColeccion']
 $router->delete('/coleccion/{id}', ['uses'=> 'ColeccionController@DeleteColeccion']);
 
 /**
+ * Eliminar todas las colecciones del usuario
+ */
+$router->delete('/{usuario}/coleccion', ['uses'=> 'ColeccionController@DeleteColeccionesUsuarios']);
+
+/**
  *                                          TABLA MERCADO
  */
 

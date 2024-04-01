@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coleccion;
-use App\Models\Usuarios;
+use App\Http\Controllers\MercadoController; //se llama al controlador de eliminar las colecciones que esten en el mercado
 use Illuminate\Http\Request; // para poder usar el request en cualquier inserccion/actualizacion de bbdd
 
 
@@ -16,6 +16,7 @@ class ColeccionController extends Controller
 
     // devolver carta por id
     public function GetColeccion($usuario){
+        // MOSTRAR DATOS DE CARTA (imagen carta, nombre carta, id carta ) y id usuario;
 
         if(!intval($usuario)){ //se comprobara si el usuario se ha introducido por id o por su nombre de usuario y en el segundo caso se buscara su id
             $usuario = $this->checkIfExists('username',$usuario, '\Usuarios')->id;
@@ -27,19 +28,25 @@ class ColeccionController extends Controller
             return response()->json(['error' => 'El usuario no tiene coleccion disponible'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404 si el usuario no tinene ninguna coleccion
         }
 
-     
+       
           //se asigna el controlador a una variable y se usa el metodo get por id para mostrar el nombre de usuario en lugar del id y lo mismo para el nombre de la carta
         foreach($colecciones as $coleccion){
-            $coleccion->id_usuario = $this->checkIfExists('id',$usuario, '\Usuarios')->username;
-            $coleccion->id_carta = $this->checkIfExists('id', $coleccion->id_carta, '\Cartas')->nombre;
+            $data[] = [
+                'Usuario' => $coleccion->id_usuario,
+                'Nombre de usuario'=> $this->checkIfExists('id',$usuario, '\Usuarios')->username,
+                'carta' => $coleccion->id_carta,
+                'Jugador' => $this->checkIfExists('id', $coleccion->id_carta, '\Cartas')->nombre,
+                'Imagen' => $this->checkIfExists('id', $coleccion->id_carta, '\Cartas')->img_url
+            ];
         }
-        return $colecciones;
+        return $data;
     }
 
     /** 
      *  FUNCION POST
      */
 
+    //  Funcion para introducir una nueva coleccion
      public function InsertColeccion(Request $request){
         $keysToCheck = [ 
             'id_usuario',
@@ -68,6 +75,8 @@ class ColeccionController extends Controller
      /**
       *  FUNCION PUT
       */
+
+    //   funcion mara modificfar los datos de una entrada de la tabla coleecion
      public function UpdateColeccion(Request $request, $id){
         if(!$this->checkIfExists('id',$id, '\Coleccion')){ // se comrpueba que la coleccion existe
             return response()->json(['error'=> 'Coleccion no encontrada'],404);
@@ -78,7 +87,7 @@ class ColeccionController extends Controller
             return response()->json(['error'=> $this->error],400);
         }
         
-        
+        // se verifica que se ha eliminado una entrada de la tabla coleccion
         $resultado = Coleccion::where('id',$id)->update(['cantidad'=> $request->cantidad]);
         return ($resultado == 1) ? "Ok, Coleccion actualizada correctamente" : "Error, coleccion no actualizada"; 
     
@@ -87,9 +96,38 @@ class ColeccionController extends Controller
     /**
      *  FUNCION DELETE
      */
+    // funcion para eliminnar una coleccion
     public function DeleteColeccion($id){
+       
+         $this->checkMercado(($id));//se llama a la funcion para comprobar y eliminar las colecciones que esten puestas a la venta en el mercado
+
+        // se asigna la cantidad de columnas afectadas a una variable
         $resultado = Coleccion::where('id',$id)->delete(); 
+        // se comprueba que la cantidad sea igual a uno y se manda el mensaje correspondiente
         return ($resultado == 1) ? "Ok, coleccion eliminada correctamente" : "Error, coleccion no eliminada"; 
+    }
+
+    // funcion para eliminar todas las colecciones de un usuaraio 
+    public function DeleteColeccionesUsuarios($usuario){
+
+        
+        if(!intval($usuario)){ //se comprobara si el usuario se ha introducido por id o por su nombre de usuario y en el segundo caso se buscara su id
+            // se toma el id en el caso de que se haya introducido el nombre de usuario
+            $usuario = $this->checkIfExists('username',$usuario, '\Usuarios')->id;
+        }
+
+        // se cuenta la cantidad de columnas que se deberian ver afectadas 
+        $count = Coleccion::where('id_usuario',$usuario)->count(); 
+
+        $sales = Coleccion::where('id_usuario',$usuario)->get();
+        foreach($sales as $sale){
+            $this->checkMercado($sale->id);
+        }
+
+        //se eliminan las columnas donde el id del usuario coincida
+        $delete = Coleccion::where('id_usuario',$usuario)->delete();
+        //si las cantidades no coinciden se muestra el mensaje de error
+        return ($delete == $count)? "Ok, Colecciones eliminadas correctametne" : "Error, no se ha podido eliminar alguna coleccion";
     }
 
     /**
@@ -132,5 +170,19 @@ class ColeccionController extends Controller
         if($request->has('cantidad')) {
             if($request->cantidad < 0) $this->error = 'La cantidad no puede ser negativa';
         } else $this->error = 'no hay datos que actualizar'; //el unico parametro modificable sera cantidad
+    }   
+    
+    /** 
+     * Funcion para comprobar y eliminar las colecciones del mercado en el caso de que el usuario la elimine o elimine su cuenta
+     */
+    private function checkMercado($idColeccion){
+        // se crea un nuevo objeto controlador de mercado
+         $mercado = new MercadoController();
+
+        //  se toman las colecciones del mercado basandose en la id que se le pasa a la funcion
+        $onSlae = $this->checkIfExists("id_coleccion", $idColeccion, "\Mercado");
+        if($onSlae){ // en caso de que haya alguna coleccion en el mercado se usa la funcion de eliminar del MercadoController
+            $mercado->DeleteMercado($onSlae->id);
+        }
     }
 }
