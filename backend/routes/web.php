@@ -145,35 +145,29 @@ $router->get('/carta/{id}/mercado', ['uses'=> 'MercadoController@GetCartaMercado
 /**
  * Devolver todas las cartas en mercado de un usuario, incluyendo si esta vendida
  */
-$router->get('/{usuario}/mercado/all', ['uses'=> 'MercadoController@GetAllUsuarioMercado']);
+$router->get('/usuario/{usuario}/mercado/all', ['uses'=> 'MercadoController@GetAllUsuarioMercado']);
 
 /**
  * Devolver todas las cartas en venta de un usuario
  */
-$router->get('/{usuario}/mercado', ['uses'=> 'MercadoController@GetUsuarioMercado']);
+$router->get('/usuario/{usuario}/mercado', ['uses'=> 'MercadoController@GetUsuarioMercado']);
 
 /**
  * Devolver si una carta de una coleccion esta en venta
  */
-$router->get('/{usuario}/coleccion?id={id}/mercado', ['uses'=> 'MercadoController@GetColeccionMercado']);
+$router->get('/coleccion/{id}/mercado', ['uses'=> 'MercadoController@GetColeccionMercado']);
 
 /**
  * Poner una carta de una coleccion en venta
  */
-$router->post('/{usuario}/coleccion?id={id}/insertmercado', ['uses'=> 'MercadoController@InsertMercado']);
+$router->post('/mercado/insert', ['uses'=> 'MercadoController@InsertMercado']);
 
 // TODO: PUT para cambiar valores (precio, poner en venta, etc.)
 
 /**
  * Marcar una entrada del mercado como vendida
- */ // TODO: hacer un PUT/PATCH (Hacer con put)
-$router->post('/mercado/{id}/vendida', ['uses'=> 'MercadoController@UpdateVendida']);
-// 1. Marcar como vendidad
-// 2. Modificar en vendedor cantidad en su coleccion  (restar 1)
-// 3. Modificar en vendedor el sueldo en usuario (sumar precio)
-// 4. Modificar en comprador cantidad en su coleccion (sumar 1)
-// 5. Modificar en comprador el sueldo en usuario (restar precio)
-
+ */
+$router->put('/mercado/comprar', ['uses'=> 'MercadoController@Comprar']);
 
 /**
  * Eliminar una entrada del mercado
