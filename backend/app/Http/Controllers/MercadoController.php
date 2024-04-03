@@ -94,6 +94,7 @@ class MercadoController extends Controller
 
     // Devolver si una carta de una coleccion esta en venta
     // $router->get('/coleccion/{id}/mercado', ['uses'=> 'MercadoController@GetColeccionMercado']);
+    // TODO: COMPROBAR QUE NO ESTA EN VENTA
     public function GetColeccionMercado($id){
         $cartas = Mercado::where('id_coleccion', $id)->get(); // con esto hago un select * from mercado where id_coleccion = $id
 
