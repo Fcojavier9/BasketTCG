@@ -30,3 +30,7 @@ RUN rm -rf /var/www/html \
     && mv /var/www/public /var/www/html \
     && chmod -R 0777 /var/www/storage/ \
     && composer install
+
+# Install Xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
