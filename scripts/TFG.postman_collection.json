@@ -1,0 +1,529 @@
+{
+	"info": {
+		"_postman_id": "2d745334-f3a3-46ad-9232-c649cbf05986",
+		"name": "TFG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33894222"
+	},
+	"item": [
+		{
+			"name": "Cartas",
+			"item": [
+				{
+					"name": "Recuperar Cartas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"post\",\r\n    \"name\": \"probandoPost\",\r\n    \"password\": \"passwordhash5\",\r\n    \"img_url\": \"img/usuarios/5.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/cartas",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"cartas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar Carta por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"username\": \"prueba3\",\r\n    \"name\": \"User Two\",\r\n    \"password\": \"passwordhash2\",\r\n    \"saldo\": 100,\r\n    \"img_url\": \"img/usuarios/2.jpg\",\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/carta/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"carta",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Carta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"fran4\",\r\n    \"position\": \"pg\",\r\n    \"rarity\": \"comun\",\r\n    \"puntuacion\": \"150\",\r\n    \"img_url\": \"img/usuarios/5.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/insertCarta",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"insertCarta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Cartas por ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Pau Gasol\",\r\n    \"position\": \"pg\",\r\n    \"rarity\": \"heroe\",\r\n    \"puntuacion\": \"150\",\r\n    \"img_url\": \"img/carta/3.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/updateCarta/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"updateCarta",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Carta por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/deleteCarta/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"deleteCarta",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Recuperar Usuarios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"post\",\r\n    \"name\": \"probandoPost\",\r\n    \"password\": \"passwordhash5\",\r\n    \"img_url\": \"img/usuarios/5.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar Usuarios por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"username\": \"prueba3\",\r\n    \"name\": \"User Two\",\r\n    \"password\": \"passwordhash2\",\r\n    \"saldo\": 100,\r\n    \"img_url\": \"img/usuarios/2.jpg\",\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/usuario/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"usuario",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"post\",\r\n    \"name\": \"probandoPost\",\r\n    \"password\": \"passwordhash5\",\r\n    \"img_url\": \"img/usuarios/5.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/insertUsuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"insertUsuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Usuarios por ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"pablo\",\r\n    \"name\": \"User Two\",\r\n    \"password\": \"passwordhash2\",\r\n    \"saldo\": 100,\r\n    \"img_url\": \"img/usuarios/2.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/updateUsuario/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"updateUsuario",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Usuario por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"post\",\r\n    \"name\": \"probandoPost\",\r\n    \"password\": \"passwordhash5\",\r\n    \"img_url\": \"img/usuarios/5.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/deleteUsuario/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"deleteUsuario",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mercado",
+			"item": [
+				{
+					"name": "Recuperar entradas en Mercado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8200/mercado",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"mercado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar entrada en Mercado por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8200/mercado/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"mercado",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar todas las cartas en venta en Mercado por ID de carta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8200/carta/1/mercado",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"carta",
+								"1",
+								"mercado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar todas las cartas en Mercado por ID de carta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8200/carta/1/mercado/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"carta",
+								"1",
+								"mercado",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar todas las cartas en mercado de un usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8200/usuario/1/mercado/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"usuario",
+								"1",
+								"mercado",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar todas las cartas en venta de un usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8200/usuario/1/mercado/",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"usuario",
+								"1",
+								"mercado",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar informacion en mercado de una carta concreta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8200/coleccion/2/mercado",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"coleccion",
+								"2",
+								"mercado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inserta entrada en Mercado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_coleccion\": \"3\",\r\n    \"precio\": \"200\",\r\n    \"cantidad\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/mercado/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"mercado",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comprar entrada en Mercado",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"3\",\r\n    \"id_comprador\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8200/mercado/3/comprar",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"mercado",
+								"3",
+								"comprar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar entrada en Mercado (DEBUG)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8200/mercado/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"mercado",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
