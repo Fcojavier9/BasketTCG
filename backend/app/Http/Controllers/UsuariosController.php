@@ -66,6 +66,8 @@ class UsuariosController extends Controller
         ]); // con esto hago un insert into users (username, name, password, img_url) values ($request->username, $request->name, $request->password, $request->img_url)
     }
 
+    // Hacer el login del usuario con post y devolver true o false y usuario
+
     /** 
      *  FUNCION PUT/PATCH
      */
