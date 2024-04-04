@@ -45,6 +45,11 @@ $router->get('/usuarios', ['uses' => 'UsuariosController@GetUsuarios']); // este
 $router->get('/usuario/{id}', ['uses' => 'UsuariosController@GetUsuario']);
 
 /**
+ * autenticacion de datos
+ */
+$router->post('/authUsuario', ['uses' => 'UsuariosController@AuthUsuario']);
+
+/**
  * inserccion de datos
  */
 $router->post('/insertUsuario', ['uses' => 'UsuariosController@InsertUsuario']);
