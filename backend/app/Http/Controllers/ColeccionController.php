@@ -51,7 +51,7 @@ class ColeccionController extends Controller
         $keysToCheck = [ 
             'id_usuario',
             'id_carta', 
-            'cantidad', 
+            'cantidad' 
         ];
 
         
