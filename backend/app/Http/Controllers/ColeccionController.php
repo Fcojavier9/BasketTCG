@@ -13,25 +13,22 @@ class ColeccionController extends Controller
     /** 
      *  FUNCION GET
      */
-
+    
     // devolver carta por id
-    public function GetColeccion($usuario){
-        // MOSTRAR DATOS DE CARTA (imagen carta, nombre carta, id carta ) y id usuario;
-
+    public function GetColeccion($usuario){        
+        $data = []; //Variable que contendra los datos de las colecciones
         if(!intval($usuario)){ //se comprobara si el usuario se ha introducido por id o por su nombre de usuario y en el segundo caso se buscara su id
             $usuario = $this->checkIfExists('username',$usuario, '\Usuarios')->id;
-        }
-        
-        $colecciones = Coleccion::where("id_usuario",$usuario)->get(); // con esto hago un select * from coleccion where id = $id
-        
-        if(!$colecciones){ 
-            return response()->json(['error' => 'El usuario no tiene coleccion disponible'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404 si el usuario no tinene ninguna coleccion
+            
         }
 
-       
+
+        
+        $colecciones = Coleccion::where("id_usuario",$usuario)->get(); // con esto hago un select * from coleccion where id = $id
+           
           //se asigna el controlador a una variable y se usa el metodo get por id para mostrar el nombre de usuario en lugar del id y lo mismo para el nombre de la carta
         foreach($colecciones as $coleccion){
-            $data[] = [
+            $data = [
                 'Usuario' => $coleccion->id_usuario,
                 'Nombre de usuario'=> $this->checkIfExists('id',$usuario, '\Usuarios')->username,
                 'carta' => $coleccion->id_carta,
@@ -39,7 +36,9 @@ class ColeccionController extends Controller
                 'Imagen' => $this->checkIfExists('id', $coleccion->id_carta, '\Cartas')->img_url
             ];
         }
-        return $data;
+
+        //si la variable contiene datos se mostraran, de lo contrario se devolvera el error
+        return $data? $data : response()->json(['error' => 'No se han encontrado datos'], 404);;
     }
 
     /** 
@@ -51,7 +50,7 @@ class ColeccionController extends Controller
         $keysToCheck = [ 
             'id_usuario',
             'id_carta', 
-            'cantidad', 
+            'cantidad' 
         ];
 
         

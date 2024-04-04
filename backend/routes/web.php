@@ -167,7 +167,7 @@ $router->post('/mercado/insert', ['uses'=> 'MercadoController@InsertMercado']);
 /**
  * Marcar una entrada del mercado como vendida
  */
-$router->put('/mercado/comprar', ['uses'=> 'MercadoController@Comprar']);
+$router->put('/mercado/{id}/comprar', ['uses'=> 'MercadoController@Comprar']);
 
 /**
  * Eliminar una entrada del mercado

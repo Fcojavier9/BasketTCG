@@ -120,8 +120,10 @@ class MercadoController extends Controller
             return response()->json(['error' => 'Se necesitan todas los campos requeridos'], 404);
         }
 
-        // compruebo que no este ya en el mercado
-        $mercado = Mercado::where('id_coleccion', $request->id_coleccion)->get();
+        // compruebo que no este ya en el mercado, por lo que cuento los id de coleccion que existen en la bbdd, 1 si hay y 0 si no hay
+        $mercado = Mercado::where('id_coleccion', $request->id_coleccion)->count();
+        
+        // si igual a 0 seguimos, si distinto de cero devolvemos un error
         if($mercado){
             return response()->json(['error' => 'Carta ya en venta'], 400); // con esto devuelvo un json con un mensaje de error y un codigo 400
         }
@@ -156,30 +158,32 @@ class MercadoController extends Controller
     }
 
     /** 
-     *  FUNCION PUT/PATCH (WIP)
+     *  FUNCION PUT/PATCH 
      */
 
     // Marcar una entrada del mercado como vendida
-    // TODO: Como podriamos comprobar que el comprado es él y no otro usuario?
-    public function Comprar(Request $request){
+    public function Comprar(Request $request, $id){
         // Lista de claves que deseas verificar
-        $keysToCheck = ['id', 'id_comprador'];
-
-        // Sacamos el id del vendedor de la entrada en mercado
-
-        // SELECT id_usuario FROM Coleccion  WHERE id IN 
-        // ( SELECT id_coleccion FROM Mercado WHERE id = ? );
-        $id_vendedor = Coleccion::select('id_usuario')->whereIn('id', function($query) use ($request) {
-            $query->select('id_coleccion')->from('mercado')->where('id', $request->id);
-        })->get();
+        $keysToCheck = ['id_comprador'];
 
         // Verificar si todas las claves están presentes en la solicitud
         if (!$this->hasKeys($request, $keysToCheck)) { // funcion hasKeys, abajo del todo
             return response()->json(['error' => 'Se necesitan todas los campos requeridos'], 404);
         }
 
+        // Sacamos el id del vendedor de la entrada en mercado
+
+        // SELECT id_usuario FROM Coleccion  WHERE id IN 
+        // ( SELECT id_coleccion FROM Mercado WHERE id = ? );
+        $id_vendedor = Coleccion::select('id_usuario')
+                        ->whereIn('id', function($query) use ($request) {
+                            $query->select('id_coleccion')
+                                ->from('mercado')
+                                ->where('id', $request->id);
+        })->get()->pluck('id_usuario')->first(); // selecciono la columna que quiero, ya que el get me lo devuelve todo el objeto, y cojo el primer resultado
+
         // Comprobamos que la entrada en mercado existe
-        $mercado = Mercado::find($request->id); // con esto hago un select * from mercado where id = $id
+        $mercado = Mercado::find($id); // con esto hago un select * from mercado where id = $id
         if(!$mercado){
             return response()->json(['error' => 'Entrada en mercado no encontrada'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404
         }
@@ -191,19 +195,16 @@ class MercadoController extends Controller
 
         // Comprobamos que el comprador no sea el vendedor
         // these are strings
-        if($mercado->id_coleccion === $id_vendedor){
+        if($mercado->id_comprador === $id_vendedor){
             return response()->json(['error' => 'No puedes comprar tu propia carta'], 400); // con esto devuelvo un json con un mensaje de error y un codigo 400
         }
-
-        // WIP - Hay problemas con convertir el saldo a INT
   
-        // Comprobamos que el comprador tenga suficiente dinero
-        $saldoComprador = Usuarios::where('id', $request->id_comprador)->first();
-        // Por si acaso (WIP)
-        if(!$saldoComprador) {
-            return response()->json(['error' => 'Comprador no encontrado'], 404);
-        }
-        if($saldoComprador->saldo < $mercado->precio){
+        // creo un objeto de la clase UsuariosController
+        $usuario = new UsuariosController();
+        $comprador = $usuario->GetUsuario($request->id_comprador);
+        $vendedor = $usuario->GetUsuario($id_vendedor);
+
+        if($comprador->saldo < $mercado->precio){
             return response()->json(['error' => 'No tienes suficiente dinero para comprar la carta'], 400);
         }
 
@@ -211,34 +212,43 @@ class MercadoController extends Controller
         // Esto permite que si hay un error, se deshagan todos los cambios
         DB::beginTransaction();
 
+        // usamos una transaccion con rollback, ya que se tocan tablas diferentes
+        // si por ejemplo se ha modificado en mercado pero da error en usuarios, se deshacen los cambios
+
         try {
             // 1. Marcar como vendida (hemos comprobado antes que no está vendida)
             $mercado->vendida = true;
             $mercado->save();
 
             // 2. Modificar en vendedor cantidad en su coleccion (restar 1)
-            $cantidad = Coleccion::select('cantidad')->where('id', $mercado->id_coleccion)->first();
-            $cantidad = $cantidad - 1;
-            Coleccion::where('id', $mercado->id_coleccion)->update(['cantidad' => $cantidad]);
+            $coleccionVendedor = Coleccion::find($mercado->id_coleccion);
+            $cantidadVendedor = $coleccionVendedor->cantidad - 1;
+            Coleccion::where('id', $mercado->id_coleccion)->update(['cantidad' => $cantidadVendedor]);
 
             // 3. Modificar en vendedor el saldo en usuario (sumar precio)
-            $saldo = Usuarios::select('saldo')->where('id', $id_vendedor)->first();
-            $saldo = $saldo + $mercado->precio;
-            Usuarios::where('id', $id_vendedor)->update(['saldo' => $saldo]);
+            $saldoVendedor = $vendedor->saldo + $mercado->precio;
+            Usuarios::where('id', $id_vendedor)->update(['saldo' => $saldoVendedor]);
 
             // 4. Modificar en comprador cantidad en su coleccion (sumar 1)
-            $cantidad = Coleccion::select('cantidad')->where('id', $mercado->id_coleccion)->first();
-            $cantidad = $cantidad + 1;
-            Coleccion::where('id', $mercado->id_coleccion)->update(['cantidad' => $cantidad]);
+            $coleccionComprador = Coleccion::select('cantidad')->where('id_usuario', $request->id_comprador)->where('id_carta',$coleccionVendedor->id_carta)->first();
+            if($coleccionComprador){
+                $coleccionComprador->cantidad + 1;
+                Coleccion::where('id', $mercado->id_coleccion)->update(['cantidad' => $cantidadComprador]);
+            } else{
+                $resultado = $this->createRequest($request->id_comprador,$coleccionVendedor->id_carta, 1);
+                if($resultado === "Error, coleccion no actualizada"){
+                    return response()->json(['error' => 'Error al comprar la carta'], 500);
+                }
+            } 
+            
 
             // 5. Modificar en comprador el saldo en usuario (restar precio)
-            $saldo = Usuarios::select('saldo')->where('id', $request->id_comprador)->first();
-            $saldo = $saldo - $mercado->precio;
-            Usuarios::where('id', $request->id_comprador)->update(['saldo' => $saldo]);
+            $saldoComprador = $comprador->saldo - $mercado->precio;
+            Usuarios::where('id', $request->id_comprador)->update(['saldo' => $saldoComprador]);
 
             DB::commit();
             return response()->json(['success' => 'Carta comprada'], 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollback();
             return response()->json(['error' => 'Error al comprar la carta'], 500);
         }
@@ -262,12 +272,29 @@ class MercadoController extends Controller
     }
 
     // Funcion extra para comprobar que request tenga las claves que necesitamos
-    public function hasKeys(Request $request, $keysToCheck) {
+    private function hasKeys(Request $request, $keysToCheck) {
         foreach ($keysToCheck as $key) {
             if (!$request->has($key)) {
                 return false; // Retorna falso si alguna clave no está presente
             }
         }
         return true; // Retorna verdadero si todas las claves están presentes
+    }
+
+    // funcion para crear json con los datos de la coleccion
+    private function createRequest($id_usuario, $id_carta, $cantidad){
+
+        //creamos un objeto resquest ya que es lo que pide el controlador
+        $request = new Request([
+            'id_usuario' => $id_usuario,
+            'id_carta' => $id_carta,
+            'cantidad' => $cantidad
+        ]);
+        
+        // creo una instancia de ColeccionController para llamar a insertColeccion
+        $coleccion = new ColeccionController();
+
+        return $coleccion->InsertColeccion($request);
+
     }
 }
