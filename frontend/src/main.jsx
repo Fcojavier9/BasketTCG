@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {Usuarios} from './components/Usuarios.jsx'
-//import './styles/index.css'
+import { BasketApp } from './BasketApp'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Usuarios />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <BasketApp />
+    </React.StrictMode>,
+  </BrowserRouter>
 )
