@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 
 // creamos el componente Usuarios, como no pongo default, puedo importarlo con llaves en la clase que lo llame
-export const Usuarios = () => {
+export const InicioPage = () => {
 
     // creamos un estado para guardar los usuarios
     const [usuarios, setUsuarios] = useState([])
@@ -34,11 +34,11 @@ export const Usuarios = () => {
     return (
         <>
             <h1>Usuarios</h1>
-            <ul>
+            <ol>
                 {usuarios.map((usuario) => (
                 <li key={usuario.id}>Usuario: <b>{usuario.username}</b>, con el correo: <b>{usuario.email}</b></li>
                 ))}
-            </ul>
+            </ol>
         </>
     );
 }
