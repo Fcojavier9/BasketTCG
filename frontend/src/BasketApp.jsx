@@ -8,7 +8,7 @@ export const BasketApp = () => {
       <NavBar/>
       <div className="container">
         <Routes>
-          <Route path="/" element={<InicioPage />}></Route>
+          <Route path="/" element={<InicioPage endPoint="usuarios" />}></Route>
           <Route path="/*" element={<Navigate to="/" />}></Route>
         </Routes>
       </div>
