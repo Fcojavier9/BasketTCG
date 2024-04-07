@@ -1,42 +1,25 @@
-// importamos los hooks a utilizar
-import { useEffect, useState } from "react"
+// importamos el customHooks a utilizar
+import { useFetchData } from "../customHooks/useFetchData";
 
 // creamos el componente Usuarios, como no pongo default, puedo importarlo con llaves en la clase que lo llame
-export const InicioPage = () => {
+export const InicioPage = ({endPoint}) => {
 
-    // creamos un estado para guardar los usuarios
-    const [usuarios, setUsuarios] = useState([])
-    
-    // creamos una función asincrona para hacer la petición a la API
-    const fetchUsuarios = async () =>{
-
-        // intentamos hacer la petición
-        try{
-            // guardamos la respuesta en la variable response, el await es para esperar a que la petición termine
-            const response = await fetch("http://localhost:8200/usuarios")
-            // guardamos los datos de la respuesta en la variable data, el await es para esperar a que la respuesta se convierta en JSON
-            const data = await response.json()
-            // actualizamos el estado usuarios con los datos de la respuesta
-            setUsuarios(data)
-
-        }catch(error){ // si hay un error, lo mostramos en consola
-            console.error(error)
-        }
-    }
-
-    // useEffect es un hook que se ejecuta cuando el componente se monta o se actualiza 
-    // en este caso, llamamos a la función fetchUsuarios
-    useEffect(() => {
-        fetchUsuarios()
-    }, []);
+    // utilizamos el custom hook useFetchData, pasándole el endPoint
+    // destructuramos data e isLoading del objeto que retorna useFetchData
+    // data es un array con los datos de la API
+    // isLoading es un booleano que indica si la petición a la API está en curso
+    const {data, isLoading} = useFetchData(endPoint)
     
     // retornamos un fragmento con un título y una lista de usuarios
     return (
         <>
             <h1>Usuarios</h1>
+            {/* si isLoading es true, mostramos un mensaje de carga */
+            isLoading && <p>Cargando, espere por favor...</p> // usamos una "condicion ternaria" para mostrar el mensaje de carga
+            /* si isLoading es false, mostramos el título y la lista de usuarios */}            
             <ol>
-                {usuarios.map((usuario) => (
-                <li key={usuario.id}>Usuario: <b>{usuario.username}</b>, con el correo: <b>{usuario.email}</b></li>
+                {data.map((data) => (
+                <li key={data.id}>Usuario: <b>{data.username}</b>, con el correo: <b>{data.email}</b></li>
                 ))}
             </ol>
         </>
