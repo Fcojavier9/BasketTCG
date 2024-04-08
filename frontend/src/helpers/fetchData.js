@@ -17,4 +17,4 @@ export const fetchData = async (endPoint) => {
       // si hay un error, lo mostramos en consola
       console.error(error)
     }
-  }
+}
