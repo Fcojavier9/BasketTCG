@@ -1,14 +1,21 @@
 // importamos el customHooks a utilizar
+import { useState } from "react";
 import { useFetchData } from "../customHooks/useFetchData";
 
 // creamos el componente Usuarios, como no pongo default, puedo importarlo con llaves en la clase que lo llame
 export const InicioPage = ({endPoint}) => {
 
+    const [endP, setEndP] = useState(endPoint) // [variable, funcion para setearla] = useState(valor inicial de la variable)
+
     // utilizamos el custom hook useFetchData, pasándole el endPoint
     // destructuramos data e isLoading del objeto que retorna useFetchData
     // data es un array con los datos de la API
     // isLoading es un booleano que indica si la petición a la API está en curso
-    const {data, isLoading} = useFetchData(endPoint)
+    const {data, isLoading} = useFetchData(endP)
+    
+    const handleFetch = () => {
+        setEndP("cartas")
+    }
     
     // retornamos un fragmento con un título y una lista de usuarios
     return (
@@ -18,10 +25,15 @@ export const InicioPage = ({endPoint}) => {
             isLoading && <p>Cargando, espere por favor...</p> // usamos una "condicion ternaria" para mostrar el mensaje de carga
             /* si isLoading es false, mostramos el título y la lista de usuarios */}            
             <ol>
-                {data.map((data) => (
-                <li key={data.id}>Usuario: <b>{data.username}</b>, con el correo: <b>{data.email}</b></li>
+                {/* Utilizamos un ternario dentro de un ternario */
+                data.map((data) => ((endP === "usuarios")
+                ? <li key={data.id}>Usuario: <b>{data.username}</b>, con el correo: <b>{data.email}</b></li>
+                : (isLoading) 
+                    ?<p>Cargando, espere por favor...</p>
+                    :<li key={data.id}>Nombre jugador: <b>{data.nombre}</b></li>   
                 ))}
             </ol>
+            <button onClick={handleFetch}>Cartas</button>
         </>
     );
 }
