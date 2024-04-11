@@ -13,7 +13,7 @@ export const NavBar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <NavLink to='/' className="nav-link active">Inicio</NavLink>
+                            <NavLink to='/' className="nav-link active left">Inicio</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to='/' className="nav-link active">Colección</NavLink>

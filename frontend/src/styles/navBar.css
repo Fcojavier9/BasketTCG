@@ -2,3 +2,48 @@
     width: 100px;
     height: auto;
 }
+
+.nav-link {
+    color: #ffffff !important; /* Cambia el color del texto a blanco */
+} 
+
+.nav-link:hover {
+    border-radius: 25%;
+}
+
+/* Estilos para pantallas grandes */
+@media screen and (min-width: 1024px) {
+    .nav-link {
+        padding-left: 10px; /* Ajusta el espacio a la izquierda del texto */
+        padding-right: 10px; /* Ajusta el espacio a la derecha del texto */
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-link:hover {
+        color: black !important;
+        font-weight: bold;
+        border: rgb(255, 255, 255) 2px solid;
+        background: radial-gradient(#ffffff 0%, #c34a4a 65%);
+    }
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 1023px) {
+
+    .nav-link {
+        margin-left: auto; /* Ajusta el margen izquierdo para pegar los elementos a la derecha */
+        font-size: 0.8em;
+        padding-left: 10px; /* Ajusta el espacio a la izquierda del texto */
+        padding-right: 10px; /* Ajusta el espacio a la derecha del texto */
+        text-align: center;
+        width: 20%;
+    }
+    
+    .nav-link:hover {
+        color: black !important;
+        font-weight: bold;
+        border: rgb(255, 255, 255) 2px solid;
+        background: radial-gradient(#ffffff 0%, #c34a4a 65%);
+    }
+}

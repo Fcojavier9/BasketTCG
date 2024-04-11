@@ -7,6 +7,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <React.StrictMode>
       <BasketApp />
-    </React.StrictMode>,
+    </React.StrictMode>
   </BrowserRouter>
 )
