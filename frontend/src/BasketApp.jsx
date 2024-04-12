@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 import { InicioPage } from "./pages/InicioPage";
+import './basketApp.css';
 
 export const BasketApp = () => {
   return (

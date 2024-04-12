@@ -5,16 +5,16 @@ import { useFetchData } from "../customHooks/useFetchData";
 // creamos el componente Usuarios, como no pongo default, puedo importarlo con llaves en la clase que lo llame
 export const InicioPage = ({endPoint}) => {
 
-    const [endP, setEndP] = useState(endPoint) // [variable, funcion para setearla] = useState(valor inicial de la variable)
+    const [endP, setEndP] = useState(endPoint); // [variable, funcion para setearla] = useState(valor inicial de la variable)
 
     // utilizamos el custom hook useFetchData, pasándole el endPoint
     // destructuramos data e isLoading del objeto que retorna useFetchData
     // data es un array con los datos de la API
     // isLoading es un booleano que indica si la petición a la API está en curso
-    const {data, isLoading} = useFetchData(endP)
+    const {data, isLoading} = useFetchData(endP);
     
     const handleFetch = () => {
-        setEndP("cartas")
+        setEndP("cartas");
     }
     
     // retornamos un fragmento con un título y una lista de usuarios

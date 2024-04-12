@@ -1,30 +1,40 @@
-.image-100 {
+.image-100 { /* Clase para la imagen de 100 px de ancho, actualmente para el logo */
     width: 100px;
     height: auto;
 }
 
+.backgroundNavBar{
+    background-image: linear-gradient(to right, black 15%, #0B41CB 130%); /* Gradiente para la transición de color */
+    padding: 0.5em 0; /* Ajusta el espacio interno de la barra de navegación */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); /* Agrega una sombra a la barra de navegación */
+    margin-bottom: 2em;
+}
+
 .nav-link {
-    color: #ffffff !important; /* Cambia el color del texto a blanco */
+    color: #ffffff !important; /* Cambia el color del texto a blanco, con el important le digo que tiene prioridad ante otros estilos */
+    font-size: 15px !important;
+    border: 2px solid transparent; /* Borde inicial transparente */
+
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    position: relative; /* Posición relativa para el efecto de borde */
+    overflow: hidden; /* Oculta el desbordamiento */
 } 
 
 .nav-link:hover {
-    border-radius: 25%;
+    border-radius: 30%; /* modifica las esquinas */
 }
 
 /* Estilos para pantallas grandes */
 @media screen and (min-width: 1024px) {
     .nav-link {
-        padding-left: 10px; /* Ajusta el espacio a la izquierda del texto */
-        padding-right: 10px; /* Ajusta el espacio a la derecha del texto */
         text-align: center;
-        width: 100%;
+        padding: 10px 20px; /* Espaciado interno */
+        width: 6em;
     }
 
     .nav-link:hover {
-        color: black !important;
         font-weight: bold;
-        border: rgb(255, 255, 255) 2px solid;
-        background: radial-gradient(#ffffff 0%, #c34a4a 65%);
+        animation: pulse-border 1s infinite alternate; /* Aplica la animación */
     }
 }
 
@@ -33,17 +43,29 @@
 
     .nav-link {
         margin-left: auto; /* Ajusta el margen izquierdo para pegar los elementos a la derecha */
+        margin-right: 0.1em;
         font-size: 0.8em;
-        padding-left: 10px; /* Ajusta el espacio a la izquierda del texto */
-        padding-right: 10px; /* Ajusta el espacio a la derecha del texto */
+        padding: 0.4em 0.1em; /* Espaciado interno */
         text-align: center;
-        width: 20%;
+        width: 6em;
     }
     
     .nav-link:hover {
-        color: black !important;
         font-weight: bold;
-        border: rgb(255, 255, 255) 2px solid;
-        background: radial-gradient(#ffffff 0%, #c34a4a 65%);
+        animation: pulse-border 1s infinite alternate; /* Aplica la animación */
+    }
+}
+
+/* Define la animación */
+@keyframes pulse-border {
+    from {
+        border-color: #ffffff; /* Color inicial del borde */
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); /* Sombra inicial */
+        
+    }
+    to {
+        border-color: #C34A4A; /* Color final del borde */
+        box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); /* Sombra final */
+        background-color: #C34A4A; /* Cambia el color de fondo al final de la transicion */
     }
 }
