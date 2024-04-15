@@ -66,6 +66,18 @@
 /* Estilos para pantallas pequeñas */
 @media screen and (max-width: 991px) {
 
+    .nav-perfil{
+        color: black !important;
+        font-weight: bold;
+        background-image: url(../assets/Usuario.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-top: 0.4em;
+        width: 6.8em !important;
+        height: auto;
+        margin-left:auto;
+    }
+
     .nav-link {
         margin-left: auto; /* Ajusta el margen izquierdo para pegar los elementos a la derecha */
         margin-right: 0.4em;
@@ -73,6 +85,11 @@
         padding: 0.4em 0.1em; /* Espaciado interno */
         text-align: center;
         width: 6em;
+    }
+
+    .nav-perfil:hover{
+        font-weight: bold;
+        border-radius: 0;
     }
     
     .nav-link:hover {
@@ -88,6 +105,14 @@
     .navbar-collapse{
         background-image: linear-gradient(to right, transparent 60%, rgba(11, 65, 203, 0.7) 98%, transparent); /* Gradiente para la transición de color */;
         border-radius: 0 0 1em 1em;
+    }
+
+    .open-menu{
+        background-image: url(../assets/x-lg.svg);
+    }
+
+    .open-menu svg{
+        color:white;
     }
 }
 
