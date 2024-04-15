@@ -106,6 +106,7 @@
         background-image: linear-gradient(to right, transparent 60%, rgba(11, 65, 203, 0.7) 98%, transparent); /* Gradiente para la transición de color */;
         border-radius: 0 0 1em 1em;
     }
+<<<<<<< HEAD
 
     .open-menu{
         background-image: url(../assets/x-lg.svg);
@@ -114,6 +115,8 @@
     .open-menu svg{
         color:white;
     }
+=======
+>>>>>>> 9af213c (estilado navbar responsivo)
 }
 
 /* Define la animación */
