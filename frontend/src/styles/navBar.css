@@ -1,6 +1,5 @@
-.image-100 { /* Clase para la imagen de 100 px de ancho, actualmente para el logo */
-    width: 100px;
-    height: auto;
+.margin-left-auto { /* Clase para mover un elemento a la derecha */
+    margin-left: auto;
 }
 
 .backgroundNavBar{
@@ -24,8 +23,34 @@
     border-radius: 30%; /* modifica las esquinas */
 }
 
+.navbar-nav{
+    width: 100%;
+}
+
 /* Estilos para pantallas grandes */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
+    .nav-perfil{
+        color: black !important;
+        font-weight: bold;
+        background-image: url(../assets/Usuario.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        width: 8.5em !important;
+        height: auto;
+        margin-left:auto;
+              
+    }
+
+    .nav-perfil:hover{
+        font-weight: bold;
+        border-radius: 0;
+    }
+
+    .image-logo { /* para pantallas mas grandes */
+        width: 5em;
+        height: auto;
+    }
+
     .nav-link {
         text-align: center;
         padding: 10px 20px; /* Espaciado interno */
@@ -39,20 +64,55 @@
 }
 
 /* Estilos para pantallas pequeñas */
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 991px) {
+
+    .nav-perfil{
+        color: black !important;
+        font-weight: bold;
+        background-image: url(../assets/Usuario.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-top: 0.4em;
+        width: 6.8em !important;
+        height: auto;
+        margin-left:auto;
+    }
 
     .nav-link {
         margin-left: auto; /* Ajusta el margen izquierdo para pegar los elementos a la derecha */
-        margin-right: 0.1em;
+        margin-right: 0.4em;
         font-size: 0.8em;
         padding: 0.4em 0.1em; /* Espaciado interno */
         text-align: center;
         width: 6em;
     }
+
+    .nav-perfil:hover{
+        font-weight: bold;
+        border-radius: 0;
+    }
     
     .nav-link:hover {
         font-weight: bold;
         animation: pulse-border 1s infinite alternate; /* Aplica la animación */
+    }
+
+    .image-logo { /* para pantallas mas pequeñas*/
+        width: 4em;
+        height: auto;
+    }
+
+    .navbar-collapse{
+        background-image: linear-gradient(to right, transparent 60%, rgba(11, 65, 203, 0.7) 98%, transparent); /* Gradiente para la transición de color */;
+        border-radius: 0 0 1em 1em;
+    }
+
+    .open-menu{
+        background-image: url(../assets/x-lg.svg);
+    }
+
+    .open-menu svg{
+        color:white;
     }
 }
 
@@ -61,7 +121,6 @@
     from {
         border-color: #ffffff; /* Color inicial del borde */
         box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); /* Sombra inicial */
-        
     }
     to {
         border-color: #C34A4A; /* Color final del borde */
