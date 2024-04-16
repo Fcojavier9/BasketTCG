@@ -4,43 +4,41 @@ import "../styles/footer.css"; // importamos css personalizado
 
 export const Footer = () => {
     return (
-        <footer className="footer">
-            <div className="col footer-col-1">
-                <h3>Basket TCG</h3>
-                <p>Proyecto de TFG por:</p>
-                <div className="footer-githubs">
-                    <a href="#" className="footer-githubs-link">
-                        {/* Placeholder de imagen de github */}
-                        <img src="https://pluspng.com/img-png/github-logo-png-white-github-11-icon-free-white-social-icons-256x256.png" alt="Fran" />
-                    </a>
-                    <a href="#" className="footer-githubs-link">
-                        {/* Placeholder de imagen de github */}
-                        <img src="https://pluspng.com/img-png/github-logo-png-white-github-11-icon-free-white-social-icons-256x256.png" alt="Pablo" />
-                    </a>
-                    <a href="#" className="footer-githubs-link">
-                        {/* Placeholder de imagen de github */}
-                        <img src="https://pluspng.com/img-png/github-logo-png-white-github-11-icon-free-white-social-icons-256x256.png" alt="Rafa" />
-                    </a>
+    <div className="container-fluid footer-container">
+        <footer className="row row-cols-4 py-4 my-4">
+            <div className="col footer-col footer-col-1">
+                <div className="d-flex align-items-end footer-brand">
+                    <NavLink to="/" className="navbar-brand" href="#">
+                        <img src={logo} alt="logo" className="image-logo" />
+                    </NavLink>
+                    <h4>BasketTCG</h4>
                 </div>
-                <p>2024 © PONER LICENCIA</p>
+                <p className="footer-social">Desarrollado por:</p>
+                <div className="footer-social">
+                    <a href="https://github.com/Fcojavier9"><img src="https://github.com/Fcojavier9.png" alt="Fran" srcset="" /></a>
+                    <a href="https://github.com/PabloNarVal"><img src="https://github.com/PabloNarVal.png" alt="Pablo" srcset="" /></a>
+                    <a href="https://github.com/rafa-sh"><img src="https://github.com/rafa-sh.png" alt="Rafa" srcset="" /></a>
+                </div>
             </div>
-            <div className="col footer-col-2">
-                <ul>
-                    <li><NavLink to="/">Inicio</NavLink></li>
-                    <li><NavLink to="/">Colección</NavLink></li>
-                    <li><NavLink to="/">Mercado</NavLink></li>
-                    <li><NavLink to="/">Noticias</NavLink></li>
-                    <li><NavLink to="/">Unirse / Entrar</NavLink></li>
+            <div className="col footer-col footer-col-right">
+                <ul className="nav flex-column">
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Inicio</a></li>
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Colección</a></li>
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Mercado</a></li>
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Noticias</a></li>
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Perfil</a></li>
                 </ul>
             </div>
-            <div className="col footer-col-3">
-                <ul>
-                    <li><NavLink to="/">Código fuente</NavLink></li>
-                    <li><NavLink to="/">Documentación</NavLink></li>
-                    <li><NavLink to="/">Licencia</NavLink></li>
-                    <li><NavLink to="/">Legal</NavLink></li>
+
+            <div className="col footer-col footer-col-right">
+                <ul className="nav flex-column">
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Código fuente</a></li>
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Documentación</a></li>
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Licencia</a></li>
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Legal</a></li>
                 </ul>
             </div>
         </footer>
+    </div>
     )
 }
