@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 import { InicioPage } from "./pages/InicioPage";
+import { Footer } from "./components/Footer";
 import './basketApp.css';
 
 export const BasketApp = () => {
@@ -13,6 +14,7 @@ export const BasketApp = () => {
           <Route path="/*" element={<Navigate to="/" />}></Route>
         </Routes>
       </div>
+      <Footer/>
     </>
   );
 };
