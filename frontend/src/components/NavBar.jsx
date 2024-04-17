@@ -13,7 +13,7 @@ export const NavBar = () => {
   return (
     <nav className="navbar bg-dark navbar-expand-lg backgroundNavBar" data-bs-theme="dark">
       <div className="container-fluid" style={{height: "7em"}}>
-        <NavLink to="/" className="navbar-brand" href="#">
+        <NavLink to="/usuarios" className="navbar-brand" href="#">
           <img src={logo} alt="logo" className="image-logo" />
         </NavLink>
         <button
@@ -48,7 +48,7 @@ export const NavBar = () => {
               </NavLink>
             </li>
             <li className="nav-item ">
-              <NavLink to="/" className="nav-link active">
+              <NavLink to="/*" className="nav-link active">
                 Colección
               </NavLink>
             </li>

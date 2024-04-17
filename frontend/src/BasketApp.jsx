@@ -10,7 +10,7 @@ export const BasketApp = () => {
       <NavBar/>
       <div className="container">
         <Routes>
-          <Route path="/" element={<InicioPage endPoint="usuarios" />}></Route>
+          <Route path="/usuarios" element={<InicioPage endPoint="usuarios" />}></Route>
           <Route path="/*" element={<Navigate to="/" />}></Route>
         </Routes>
       </div>
