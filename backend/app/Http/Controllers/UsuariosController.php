@@ -31,35 +31,35 @@ class UsuariosController extends Controller
      */
 
     // Hacer el login del usuario con post y devolver true o false y usuario
-    public function AuthUsuario(Request $request){
-        // Lista de claves que deseas verificar
-        $keysToCheck = ['username', 'email','password'];
+    // public function AuthUsuario(Request $request){
+    //     // Lista de claves que deseas verificar
+    //     $keysToCheck = ['username', 'email','password'];
 
-        // Verificar si todas las claves están presentes en la solicitud
-        if (!$this->hasKeys($request, $keysToCheck, "Auth")) { // funcion hasKeys, abajo del todo
-            return response()->json(['error' => 'Se necesitan todas los campos requeridos'], 400);
-        }
+    //     // Verificar si todas las claves están presentes en la solicitud
+    //     if (!$this->hasKeys($request, $keysToCheck, "Auth")) { // funcion hasKeys, abajo del todo
+    //         return response()->json(['error' => 'Se necesitan todas los campos requeridos'], 400);
+    //     }
 
-        // compruebo si username o email no son nulos
-        $user = $request->has('username') 
-        ? Usuarios::where('username', $request->username)->first() 
-        : Usuarios::where('email', $request->email)->first(); // con esto hago un select * from usuarios where username = $request->username or email = $request->email
+    //     // compruebo si username o email no son nulos
+    //     $user = $request->has('username') 
+    //     ? Usuarios::where('username', $request->username)->first() 
+    //     : Usuarios::where('email', $request->email)->first(); // con esto hago un select * from usuarios where username = $request->username or email = $request->email
         
-        // si el usuario no existe, devuelvo un error
-        if(!$user){
-            return response()->json(['error' => 'Usuario no encontrado'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404
-        }
+    //     // si el usuario no existe, devuelvo un error
+    //     if(!$user){
+    //         return response()->json(['error' => 'Usuario no encontrado'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404
+    //     }
 
-        // Comprobacion y cifrado de la contraseña
-        $password = $user->password;
-        $passwordCifrada = hash('sha256', $request->password);
+    //     // Comprobacion y cifrado de la contraseña
+    //     $password = $user->password;
+    //     $passwordCifrada = hash('sha256', $request->password);
 
-        // compruebo que la contraseña sea la misma que la de la bbdd
-        return ($passwordCifrada == $password) 
-            ? true
-            : false;
+    //     // compruebo que la contraseña sea la misma que la de la bbdd
+    //     return ($passwordCifrada == $password) 
+    //         ? true
+    //         : false;
         
-    }
+    // }
 
     public function InsertUsuario(Request $request){
 

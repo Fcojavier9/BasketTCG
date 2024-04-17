@@ -15,9 +15,9 @@ export const Footer = () => {
                 </div>
                 <p className="footer-social">Desarrollado por:</p>
                 <div className="footer-social">
-                    <a href="https://github.com/Fcojavier9"><img src="https://github.com/Fcojavier9.png" alt="Fran" srcset="" /></a>
-                    <a href="https://github.com/PabloNarVal"><img src="https://github.com/PabloNarVal.png" alt="Pablo" srcset="" /></a>
-                    <a href="https://github.com/rafa-sh"><img src="https://github.com/rafa-sh.png" alt="Rafa" srcset="" /></a>
+                    <a href="https://github.com/Fcojavier9"><img src="https://github.com/Fcojavier9.png" alt="Fran" srcSet="" /></a>
+                    <a href="https://github.com/PabloNarVal"><img src="https://github.com/PabloNarVal.png" alt="Pablo" srcSet="" /></a>
+                    <a href="https://github.com/rafa-sh"><img src="https://github.com/rafa-sh.png" alt="Rafa" srcSet="" /></a>
                 </div>
             </div>
             <div className="col footer-col footer-col-right">

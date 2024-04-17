@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "../styles/inicio.css" // importamos css personalizado
-import { Carta } from './Carta'
+import { Carta } from '../components/Carta'
 import { useFetchData } from "../customHooks/useFetchData"
 import cartaComun from "../assets/cartaComun.png";
 import cartaRara from "../assets/cartaRara.png";
