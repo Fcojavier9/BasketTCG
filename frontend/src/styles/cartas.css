@@ -1,0 +1,37 @@
+/* hoja de estilos para las cartas que se mostraran en carrusel en la pagina principal */
+
+.center{ 
+    /* clase para la carta central que determinara:  */
+    position: absolute; /* La imagen sera de posicion absoluta respecto de la pantalla*/
+    top: 50vh; /*Separacion respecto de la parte superior*/
+    left: 75vh; /*Separacion respecto del lateral izquierdo*/
+    width: 50vh; /*Altura de la carta*/
+    height: 50vh; /*Ancho de la carta*/
+  
+  }
+  .left{
+    position: absolute;
+    bottom: 0vh;/*Separacion respecto de la parte inferior*/
+    left: 35vh;
+    width: 35vh;
+    height: 35vh;
+    transform: matrix(0.75, 0.5, -0.01, 1, 0, 0); /*esta funcion de css permite alterar la estructura, respectivamente: 
+        - ajuste  del ancho en el eje x
+        - modifica la inclinacion en el eje x
+        - modifica la inclinacion en el eje y
+        - ajuste  del alto en el eje y
+        - ajusta la posicion respecto al eje x 
+        - ajusta la posicion respecto al eje y
+    */
+    filter: brightness(25%);/*Funcion que asigna lo brillante que se vera*/
+  }
+  .right{
+    position: absolute;
+    bottom: 0vh;
+    right: 35vh;/**/
+    width: 35vh;
+    height: 35vh;
+    transform: matrix(0.75, -0.5, -0.01, 1, 0, 0);
+    filter: brightness(25%);
+  }
+
