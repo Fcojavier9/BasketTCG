@@ -1,0 +1,106 @@
+/* 
+div {
+  border: 2px solid white;
+} */
+body {
+  background-color: black;
+  background-image: url("../assets/fondoInicio.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 767px) {
+  body {
+    background-image: none;
+  }
+}
+.cont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 90vh;
+}
+.foco {
+  display: flex;
+  color: white;
+  width: 78vh;
+  align-items: center;
+}
+
+
+.ground {
+    position: absolute;
+    width: 58vh;
+    height: 55px;
+    bottom: -10vh;
+    left: 70.5vh;
+    border-radius: 100%;
+    background: url("../assets/suelo.jpg");
+    border-color: #ffffff;
+}
+
+
+/*Foco y color del suela para las cartas comunes*/
+.comun {
+  background: radial-gradient(
+    40% 150% at 50% 100%, /*los dos primeros porcentajes son el ancho y alto del degradado y los segundos el punto central de este*/
+    #FFFFFF 0%, /*Color central del degradado y el tamaño de su centro*/
+    transparent 95%  /*Color externo del degradado y desde donde empieza con respecto al centro*/
+  );
+}
+.comun-ground{
+    /*Sombra externa e interna del suelo, los datos antes de la coma se refieren a las dimensiones y color de la sombra exterior 
+    y mediante la "inset" se especifica la sombra por dentro */
+    box-shadow: 0px 0px 50px #FFFFFF, inset 0px 0px 50px #FFFFFF;
+}
+
+/* Foco y color de suelo para cartas raras */
+.rara {
+    background: radial-gradient(
+        40% 150% at 50% 100%, /*los dos primeros porcentajes son el ancho y alto del degradado y los segundos el punto central de este*/
+        #FFB800 0%, /*Color central del degradado y el tamaño de su centro*/
+        transparent 95%  /*Color externo del degradado y desde donde empieza con respecto al centro*/
+      );
+}   
+.rara-ground{
+    
+    box-shadow: 0px 0px 50px #FFB800, inset 0px 0px 50px #FFB800;
+}
+
+/* Foco y color del suelo para cartas heroicas */
+.heroe { 
+    background: radial-gradient(
+    40% 150% at 50% 100%, /*los dos primeros porcentajes son el ancho y alto del degradado y los segundos el punto central de este*/
+    #54bfe1 0%, /*Color central del degradado y el tamaño de su centro*/
+    transparent 95%  /*Color externo del degradado y desde donde empieza con respecto al centro*/
+  );
+} 
+.heroe-ground{
+    
+    box-shadow: 0px 0px 50px #54bfe1, inset 0px 0px 50px #52bcde;
+}
+
+.cartaContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.cartaCentral{
+  position: absolute;
+  top: 50vh;
+  left: 78vh;
+
+}
+.cartaL{
+  position: absolute;
+  top: 50vh;
+
+}
+.cartaR{
+  position: absolute;
+  top: 50vh;
+
+}
