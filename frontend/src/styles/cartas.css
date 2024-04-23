@@ -1,37 +1,458 @@
 /* hoja de estilos para las cartas que se mostraran en carrusel en la pagina principal */
-
 .center{ 
-    /* clase para la carta central que determinara:  */
-    position: absolute; /* La imagen sera de posicion absoluta respecto de la pantalla*/
-    top: 50vh; /*Separacion respecto de la parte superior*/
-    left: 75vh; /*Separacion respecto del lateral izquierdo*/
-    width: 50vh; /*Altura de la carta*/
-    height: 50vh; /*Ancho de la carta*/
+  position: absolute; /* La imagen sera de posicion absoluta respecto de la pantalla*/
+  display: inline-block;
+  animation: levitate 2s infinite alternate;
   
+}
+.left{
+  position: absolute;
+  transform: matrix(0.75, 0.5, -0.01, 1, 0, 0); /*esta funcion de css permite alterar la estructura, respectivamente: 
+      - ajuste  del ancho en el eje x
+      - modifica la inclinacion en el eje x
+      - modifica la inclinacion en el eje y
+      - ajuste  del alto en el eje y
+      - ajusta la posicion respecto al eje x 
+      - ajusta la posicion respecto al eje y
+  */
+  filter: brightness(25%);/*Funcion que asigna lo brillante que se vera*/
+}
+.right{
+  position: absolute;
+  transform: matrix(0.75, -0.5, -0.01, 1, 0, 0);
+  filter: brightness(25%);
+}
+/* @keyframes levitate {
+  from {
+      top: 42vh; 
+  }
+  to {
+      top: 38vh;
+  }  
+} */
+
+
+@media  (max-width: 376px)  {
+  .center{ 
+    left: 32vw; 
+    width: 35vw; 
+    
   }
   .left{
-    position: absolute;
-    bottom: 0vh;/*Separacion respecto de la parte inferior*/
-    left: 35vh;
-    width: 35vh;
-    height: 35vh;
-    transform: matrix(0.75, 0.5, -0.01, 1, 0, 0); /*esta funcion de css permite alterar la estructura, respectivamente: 
-        - ajuste  del ancho en el eje x
-        - modifica la inclinacion en el eje x
-        - modifica la inclinacion en el eje y
-        - ajuste  del alto en el eje y
-        - ajusta la posicion respecto al eje x 
-        - ajusta la posicion respecto al eje y
-    */
-    filter: brightness(25%);/*Funcion que asigna lo brillante que se vera*/
+    left: 7vw;
+    width: 22vw;
   }
   .right{
-    position: absolute;
-    bottom: 0vh;
-    right: 35vh;/**/
-    width: 35vh;
-    height: 35vh;
-    transform: matrix(0.75, -0.5, -0.01, 1, 0, 0);
-    filter: brightness(25%);
+    right: 7vw;
+    width: 22vw;
   }
+} 
+@media (min-width: 377px) and (max-width: 480px)  {
+  .center{ 
+    left: 30vw; 
+    width: 40vw; 
+    
+  }
+  .left{
+    left: 7vw;
+    width: 20vw;
+  }
+  .right{
+    right: 7vw;
+    width: 20vw;
+  }
+} 
+@media (min-width: 480px) and (max-width: 620px)  {
+  .center{ 
+    left: 30vw; 
+    width: 40vw; 
+    
+  }
+  .left{
+    left: 7vw;
+    width: 20vw;
+  }
+  .right{
+    right: 7vw;
+    width: 20vw;
+  }
+} 
+@media (min-width: 620px) and (max-width: 820px){
+ .center{ 
+    left: 33vw; 
+    width: 33vw; 
+    
+  }
+  .left{
+    left: 6vw;
+    width: 20vw;
+  }
+  .right{
+    right: 6vw;
+    width: 20vw;
+  }
+}
+@media (min-width: 820px) and (max-width: 1025px){
+ .center{ 
+    left: 33vw; 
+    width: 33vw; 
+    
+  }
+  .left{
+    left: 10vw;
+    width: 24vw;
+  }
+  .right{
+    right: 10vw;
+    width: 24vw;
+  }
+}
+@media (min-width: 1025px) and (max-width: 2160px){
+  .center{ 
+    left: 35vw; 
+    width: 30vw; 
+    
+  }
+  .left{
+    left: 15vw;
+    width: 20vw;
+  }
+  .right{
+    right: 15vw;
+    width: 20vw;
+  }
+}
+@media (min-width: 2160px) and (max-width: 2561px){
+  .center{ 
+    left: 33vw; 
+    width: 33vw; 
+    
+  }
+  .left{
+    left: 8vw;
+    width: 22vw;
+  }
+  .right{
+    right: 8vw;
+    width: 22vw;
+  }
+}
+@media (min-width: 2561px) and (max-width: 4320px){
+  .center{ 
+    left: 33vw; 
+    width: 33vw; 
+    
+  }
+  .left{
+    left: 8vw;
+    width: 22vw;
+  }
+  .right{
+    right: 8vw;
+    width: 22vw;
+  }
+}
 
+
+/* Ajuste de css segun el alto de la pantalla */
+
+@media (max-height: 376px){
+  .center{ 
+    bottom: 15vh; 
+    height: 30vh; 
+    
+  }
+  .left{
+    bottom: 12vh;
+    height: 30vh;
+  }
+  .right{
+    bottom: 12vh;
+    height: 30vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 17vh; 
+    }
+    to {
+        bottom: 13vh;
+    }  
+  }
+}
+
+@media (min-height: 376px) and (max-height: 530px){
+  .center{ 
+    bottom: 20vh; 
+    height: 28vh; 
+  }
+  .left{
+    bottom: 12vh;
+    height: 28vh;
+  }
+  .right{
+    bottom: 12vh;
+    height: 28vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 22vh; 
+    }
+    to {
+        bottom: 18vh;
+    }  
+  }
+}
+@media (min-height: 530px) and (max-height: 641px){
+  .center{ 
+    bottom: 22vh; 
+    height: 30vh; 
+    
+  }
+  .left{
+    bottom: 15vh;
+    height: 30vh;
+  }
+  .right{
+    bottom: 15vh;
+    height: 30vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 24vh; 
+    }
+    to {
+        bottom: 20vh;
+    }  
+  }
+}
+
+@media (min-height: 641px) and (max-height: 741px){
+  .center{ 
+    bottom: 20vh; 
+    height: 30vh; 
+    
+  }
+  .left{
+    bottom: 17vh;
+    height: 26vh;
+  }
+  .right{
+    bottom: 17vh;
+    height: 26vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 22vh; 
+    }
+    to {
+        bottom: 18vh;
+    }  
+  }
+}
+@media (min-height: 741px) and (max-height: 861px){
+  .center{ 
+    bottom: 23vh; 
+    height: 30vh; 
+    
+  }
+  .left{
+    bottom: 21vh;
+    height: 24vh;
+  }
+  .right{
+    bottom: 21vh;
+    height: 24vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 25vh; 
+    }
+    to {
+        bottom: 21vh;
+    }  
+  }
+}
+@media (min-height: 861px) and (max-height: 1030px){ 
+  .center{ 
+    bottom: 24vh; 
+    height: 32vh; 
+    
+  }
+  .left{
+    bottom: 22vh;
+    height: 25vh;
+  }
+  .right{
+    bottom: 22vh;
+    height: 25vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 26vh; 
+    }
+    to {
+        bottom: 22vh;
+    }  
+  }
+}
+@media (min-height: 1030px) and (max-height: 1200px){ 
+  .center{ 
+    bottom: 22vh; 
+    height: 32vh; 
+    
+  }
+  .left{
+    bottom: 24vh;
+    height: 24vh;
+  }
+  .right{
+    bottom: 24vh;
+    height: 24vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 24vh; 
+    }
+    to {
+        bottom: 20vh;
+    }  
+  }
+}
+@media (min-height: 1200px) and (max-height: 1550px){ 
+  .center{ 
+    bottom: 22vh; 
+    height: 35vh; 
+    
+  }
+  .left{
+    bottom: 20vh;
+    height: 25vh;
+  }
+  .right{
+    bottom: 20vh;
+    height: 25vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 24vh; 
+    }
+    to {
+        bottom: 20vh;
+    }  
+  }
+}
+@media (min-height: 1550px) and (max-height: 1750px){ 
+  .center{ 
+    bottom: 22vh; 
+    height: 32vh; 
+    
+  }
+  .left{
+    bottom: 18vh;
+    height: 20vh;
+  }
+  .right{
+    bottom: 18vh;
+    height: 20vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 24vh; 
+    }
+    to {
+        bottom: 20vh;
+    }  
+  }
+}
+@media (min-height: 1750px) and (max-height: 1950px){ 
+  .center{ 
+    bottom: 22vh; 
+    height: 32vh; 
+    
+  }
+  .left{
+    bottom: 18vh;
+    height: 20vh;
+  }
+  .right{
+    bottom: 18vh;
+    height: 20vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 24vh; 
+    }
+    to {
+        bottom: 20vh;
+    }  
+  }
+}
+@media (min-height: 1950px) and (max-height: 2561px){ 
+  .center{ 
+    bottom: 22vh; 
+    height: 32vh; 
+    
+  }
+  .left{
+    bottom: 18vh;
+    height: 20vh;
+  }
+  .right{
+    bottom: 18vh;
+    height: 20vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 24vh; 
+    }
+    to {
+        bottom: 20vh;
+    }  
+  }
+}
+@media (min-height: 2561px) and (max-height: 3840px){ 
+  .center{ 
+    bottom: 22vh; 
+    height: 32vh; 
+    
+  }
+  .left{
+    bottom: 18vh;
+    height: 20vh;
+  }
+  .right{
+    bottom: 18vh;
+    height: 20vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 24vh; 
+    }
+    to {
+        bottom: 20vh;
+    }  
+  }
+}
+@media (min-height: 3840px) and (max-height: 7680px){ 
+  .center{ 
+    bottom: 22vh; 
+    height: 32vh; 
+    
+  }
+  .left{
+    bottom: 18vh;
+    height: 20vh;
+  }
+  .right{
+    bottom: 18vh;
+    height: 20vh;
+  }
+  @keyframes levitate {
+    from {
+        bottom: 24vh; 
+    }
+    to {
+        bottom: 20vh;
+    }  
+  }
+}

@@ -3,7 +3,7 @@ div {
   border: 2px solid white;
 } */
 body {
-  background-color: black;
+  background-color: #181818;
   background-image: url("../assets/fondoInicio.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -14,32 +14,254 @@ body {
 @media (max-width: 767px) {
   body {
     background-image: none;
+    background-color: #181818; 
   }
 }
+
 .cont {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 90vh;
 }
 .foco {
   display: flex;
   color: white;
-  width: 78vh;
   align-items: center;
 }
-
-
 .ground {
     position: absolute;
-    width: 58vh;
-    height: 55px;
-    bottom: -10vh;
-    left: 70.5vh;
     border-radius: 100%;
     background: url("../assets/suelo.jpg");
     border-color: #ffffff;
 }
+
+
+/* =====> Ajustes de pantallas en css segun el ancho <========== */
+
+@media  (max-width: 376px)  {
+  .foco {
+    width: 55vw;
+  }
+  .ground {
+    width: 45vw;
+    left: 27vw;
+  }
+} 
+@media (min-width: 376px) and (max-width: 480px)  {
+  .foco {
+    width: 50vw;
+  }
+  .ground {
+    width: 40vw;
+    left: 30vw;
+  }
+} 
+@media (min-width: 480px) and (max-width: 620px)  {
+  .foco {
+    width: 55vw;
+  }
+  .ground {
+    width: 45vw;
+    left: 27.5vw;
+  }
+} 
+@media (min-width: 620px) and (max-width: 820px){
+  .foco {
+    width: 50vw;
+  }
+  .ground {
+    width: 40vw;
+    left: 30vw;
+  }
+}
+@media (min-width: 820px) and (max-width: 1025px){
+  .foco {
+    width: 45vw;
+  }
+  .ground {
+    width: 35vw;
+    left: 32vw;
+  }
+}
+@media (min-width: 1025px) and (max-width: 2160px){
+  .foco {
+    width: 40vw;
+  }
+  .ground {
+    width: 30vw;
+    left: 35vw;
+  }
+}
+
+@media (min-width: 2160px) and (max-width: 4320px){
+  .foco {
+    width: 45vw;
+  }
+  .ground {
+    width: 35vw;
+    left: 32vw;
+  }
+}
+
+/* =====> Ajustes de pantallas en css segun el alto <========== */
+
+@media (max-height: 376px){
+  .cont {
+    height: 60vh;
+  }
+  .foco {
+    height: 52vh;
+  }
+  .ground {
+    height: 4px;
+    bottom: 0vh;
+  }
+}
+@media (min-height: 376px) and (max-height: 530px){
+  .cont {
+    height: 70vh;
+  }
+  .foco {
+    height: 64vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 2vh;
+  }
+}
+@media (min-height: 530px) and (max-height: 641px){
+  .cont {
+    height: 70vh;
+  }
+  .foco {
+    height: 64vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 8vh;
+  }
+}
+@media (min-height: 641px) and (max-height: 741px){
+  .cont {
+    height: 75vh;
+  }
+  .foco {
+    height: 70vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 5vh;
+  }
+}
+@media (min-height: 741px) and (max-height: 861px){ 
+  .cont {
+    height: 79vh;
+  }
+  .foco {
+    height: 70vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 8vh;
+  }
+}
+@media (min-height: 861px) and (max-height: 1030px){ 
+  .cont {
+    height: 80vh;
+  }
+  .foco {
+    height: 70vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 12vh;
+  }
+}
+@media (min-height: 1030px) and (max-height: 1200px){ 
+  .cont {
+    height: 80vh;
+  }
+  .foco {
+    height: 75vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 10vh;
+  }
+}
+@media (min-height: 1200px) and (max-height: 1550px){ 
+  .cont {
+    height: 82vh;
+  }
+  .foco {
+    height: 76vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 12vh;
+  }
+}
+@media (min-height: 1550px) and (max-height: 1750px){ 
+  .cont {
+    height: 80vh;
+  }
+  .foco {
+    height: 70vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 12vh;
+  }
+}
+@media (min-height: 1750px) and (max-height: 1950px){ 
+  .cont {
+    height: 80vh;
+  }
+  .foco {
+    height: 70vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 12vh;
+  }
+}
+@media (min-height: 1950px) and (max-height: 2561px){ 
+  .cont {
+    height: 80vh;
+  }
+  .foco {
+    height: 70vh;
+  }
+  .ground {
+    height: 50px;
+    bottom: 12vh;
+  }
+}
+@media (min-height: 2561px) and (max-height: 3840px){ 
+  .cont {
+    height: 80vh;
+  }
+  .foco {
+    height: 70vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 12vh;
+  }
+}
+@media (min-height: 3840px) and (max-height: 7680px){ 
+  .cont {
+    height: 80vh;
+  }
+  .foco {
+    height: 70vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 12vh;
+  }
+}
+
 
 
 /*Foco y color del suela para las cartas comunes*/
@@ -82,25 +304,19 @@ body {
     box-shadow: 0px 0px 50px #54bfe1, inset 0px 0px 50px #52bcde;
 }
 
-.cartaContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
 
-.cartaCentral{
-  position: absolute;
-  top: 50vh;
-  left: 78vh;
+/* =========> A espera de ajustar dimensiones de nav <================= */
 
-}
-.cartaL{
-  position: absolute;
-  top: 50vh;
-
-}
-.cartaR{
-  position: absolute;
-  top: 50vh;
-
-}
+/* 
+@media (max-height: 361px){
+  .cont {
+    height: 49vh;
+  }
+  .foco {
+    height: 70vh;
+  }
+  .ground {
+    height: 40px;
+    bottom: 30px;
+  }
+} */
