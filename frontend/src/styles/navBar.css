@@ -6,7 +6,6 @@
     background-image: linear-gradient(to right, black 15%, #0B41CB 130%); /* Gradiente para la transición de color */
     padding: 0.5em 0; /* Ajusta el espacio interno de la barra de navegación */
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); /* Agrega una sombra a la barra de navegación */
-    margin-bottom: 2em;
 }
 
 .nav-link {
