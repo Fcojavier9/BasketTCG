@@ -6,6 +6,8 @@ import "../styles/navBar.css"; // importamos css personalizado
 export const NavBar = () => {
   const [isActive, setIsActive] = useState(false);
 
+  const [isLogin, setIsLogin] = useState(false);
+
   const toggleMenu = () => {
     setIsActive(!isActive);
   };
@@ -38,27 +40,27 @@ export const NavBar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
             <li className="nav-item order-lg-last margin-left-auto">
-              <NavLink to="/" className="nav-link nav-perfil active">
-                Perfil
+              <NavLink to={isLogin ? "/usuario" : "/login" } className="nav-link nav-perfil active">
+                {isLogin ? "Perfil" : "Iniciar Sesión"}
               </NavLink>
             </li>
             <li className="nav-item margin-left-auto">
-              <NavLink to="/" className="nav-link active ">
+              <NavLink to={isLogin ? "/" : "/login" } className="nav-link active ">
                 Inicio
               </NavLink>
             </li>
             <li className="nav-item ">
-              <NavLink to="/*" className="nav-link active">
+              <NavLink to={isLogin ? "/*" : "/login" } className="nav-link active">
                 Colección
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/" className="nav-link active">
+              <NavLink to={isLogin ? "/" : "/login" } className="nav-link active">
                 Mercado
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/" className="nav-link active">
+              <NavLink to={isLogin ? "/" : "/login" } className="nav-link active">
                 Noticias
               </NavLink>
             </li>

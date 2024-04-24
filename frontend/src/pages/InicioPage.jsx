@@ -11,8 +11,10 @@ export const InicioPage = ({endPoint, token, metodo}) => {
     // destructuramos data e isLoading del objeto que retorna useFetchData
     // data es un array con los datos de la API
     // isLoading es un booleano que indica si la petición a la API está en curso
-    const {data, isLoading} = useFetchData(endP, token, metodo);
-    
+    const {data, isLoading} = useFetchData(endP, metodo, token );
+
+    const typeData = typeof data;
+
     const handleFetch = () => {
         setEndP("cartas");
     }
@@ -25,13 +27,18 @@ export const InicioPage = ({endPoint, token, metodo}) => {
             isLoading && <p>Cargando, espere por favor...</p> // usamos una "condicion ternaria" para mostrar el mensaje de carga
             /* si isLoading es false, mostramos el título y la lista de usuarios */}            
             <ol>
-                {/* Utilizamos un ternario dentro de un ternario */
-                data.map((data) => ((endP === "usuarios")
-                ? <li key={data.id}>Usuario: <b>{data.username}</b>, con el correo: <b>{data.email}</b></li>
-                : (isLoading) 
-                    ?<p>Cargando, espere por favor...</p>
-                    :<li key={data.id}>Nombre jugador: <b>{data.nombre}</b></li>   
-                ))}
+                { typeData === "object" && /* Utilizamos un ternario dentro de un ternario */
+                    data.map((dato) => ((endP === "usuarios")
+                    ? <li key={dato.id}>Usuario: <b>{dato.username}</b>, con el correo: <b>{dato.email}</b></li>
+                    : (isLoading) 
+                        ?<p>Cargando, espere por favor...</p>
+                        :<li key={dato.id}>Nombre jugador: <b>{dato.nombre}</b></li>   
+                    ))
+                }
+
+                {typeData === "string" &&/* Utilizamos un ternario dentro de un ternario */
+                    <li>{data}</li>  
+                }
             </ol>
             <button onClick={handleFetch}>Cartas</button>
         </>
