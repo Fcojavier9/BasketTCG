@@ -27,8 +27,8 @@ class AuthController extends Controller
         return JWT::encode($payload, $jwtSecret, 'HS256');
 
         /** 
-         * ? https://jwt.io/
-         * ? https://jwt.io/libraries
+         * ! https://jwt.io/
+         * ! https://jwt.io/libraries
          **/
     }
 

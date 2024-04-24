@@ -1,6 +1,9 @@
 .footer-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
     margin-top: auto;
-    padding-top: 1em;
     background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.8),
@@ -8,6 +11,11 @@
         rgba(64, 64, 64, 1) 100%
     )
 }
+
+footer {
+    width: 100%;
+}
+
 .footer-col-1 {
     background-color: transparent !important;
     color: white;
@@ -18,19 +26,18 @@
 }
 
 .footer-col {
+    flex: 1 0 20%;
     background-color: rgb(96, 96, 96);
     border-radius: 5%;
-    padding: 1em;
-    margin-left: 1em;
-    margin-right: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.footer-col-right {
-    margin-left: auto;
-}
 
 .footer-social, .footer-brand {
     display: flex;

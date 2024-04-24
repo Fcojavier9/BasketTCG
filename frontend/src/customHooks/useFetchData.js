@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchData } from "../helpers/fetchData";
 
 //creamos un custom hook para hacer la petición a la API
-export const useFetchData = (endPoint, token, metodo) => {
+export const useFetchData = (endPoint, metodo, token, body) => {
 
   // creamos un estado para guardar los datos de la API
   const [data, setData] = useState([]);// esto es como tener una variable array vacio y una funcion para setearla
@@ -13,7 +13,7 @@ export const useFetchData = (endPoint, token, metodo) => {
   // creamos una función asincrona para hacer la petición a la API
   const getData = async () =>{
     // llamamos a la función fetchData de helpers, pasándole el endPoint
-    const {data, isLoading} = await fetchData(endPoint, token, metodo);
+    const {data, isLoading} = await fetchData(endPoint, metodo, token, body);
 
     // actualizamos el estado con los datos de la respuesta
     setData(data);
