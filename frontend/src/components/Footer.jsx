@@ -13,28 +13,31 @@ export const Footer = () => {
                     </NavLink>
                     <h4>BasketTCG</h4>
                 </div>
-                <p className="footer-social">Desarrollado por:</p>
                 <div className="footer-social">
                     <a href="https://github.com/Fcojavier9"><img src="https://github.com/Fcojavier9.png" alt="Fran" srcSet="" /></a>
                     <a href="https://github.com/PabloNarVal"><img src="https://github.com/PabloNarVal.png" alt="Pablo" srcSet="" /></a>
                     <a href="https://github.com/rafa-sh"><img src="https://github.com/rafa-sh.png" alt="Rafa" srcSet="" /></a>
                 </div>
             </div>
-            <div className="col footer-col footer-col-right">
+            <div className="col footer-col">
                 <ul className="nav flex-column">
-                    <li className="nav-item mb-2"><a href="#" className="footer-link">Inicio</a></li>
                     <li className="nav-item mb-2"><a href="#" className="footer-link">Colección</a></li>
                     <li className="nav-item mb-2"><a href="#" className="footer-link">Mercado</a></li>
                     <li className="nav-item mb-2"><a href="#" className="footer-link">Noticias</a></li>
-                    <li className="nav-item mb-2"><a href="#" className="footer-link">Perfil</a></li>
                 </ul>
             </div>
 
-            <div className="col footer-col footer-col-right">
+            <div className="col footer-col">
                 <ul className="nav flex-column">
                     <li className="nav-item mb-2"><a href="#" className="footer-link">Código fuente</a></li>
                     <li className="nav-item mb-2"><a href="#" className="footer-link">Documentación</a></li>
                     <li className="nav-item mb-2"><a href="#" className="footer-link">Licencia</a></li>
+                </ul>
+            </div>
+            <div className="col footer-col footer-col-right">
+                <ul className="nav flex-column">
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Perfil</a></li>
+                    <li className="nav-item mb-2"><a href="#" className="footer-link">Inicio</a></li>
                     <li className="nav-item mb-2"><a href="#" className="footer-link">Legal</a></li>
                 </ul>
             </div>
