@@ -37,7 +37,7 @@ export const NavBar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
-            <li className="nav-item order-md-last margin-left-auto">
+            <li className="nav-item order-lg-last margin-left-auto">
               <NavLink to="/" className="nav-link nav-perfil active">
                 Perfil
               </NavLink>
