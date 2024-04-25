@@ -32,7 +32,7 @@ BEGIN
             password VARCHAR(70),
             saldo INTEGER DEFAULT 500,
             img_url VARCHAR(255),
-            sobres INTEGER DEFAULT 0,
+            sobres INTEGER DEFAULT 5,
             is_admin BOOLEAN DEFAULT FALSE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

@@ -21,8 +21,6 @@ class ColeccionController extends Controller
             $usuario = $this->checkIfExists('username',$usuario, '\Usuarios')->id;
             
         }
-
-
         
         $colecciones = Coleccion::where("id_usuario",$usuario)->get(); // con esto hago un select * from coleccion where id = $id
            
