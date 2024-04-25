@@ -204,140 +204,140 @@
 }
 @media (min-height: 530px) and (max-height: 641px){
   .center{ 
-    bottom: 22vh; 
+    bottom: 30vh; 
     height: 30vh; 
     
   }
   .left{
-    bottom: 15vh;
+    bottom: 25vh;
     height: 30vh;
   }
   .right{
-    bottom: 15vh;
+    bottom: 25vh;
     height: 30vh;
   }
   @keyframes levitate {
     from {
-        bottom: 24vh; 
+        bottom: 32vh; 
     }
     to {
-        bottom: 20vh;
+        bottom: 28vh;
     }  
   }
 }
 
 @media (min-height: 641px) and (max-height: 741px){
   .center{ 
-    bottom: 20vh; 
+    bottom: 30vh; 
     height: 30vh; 
     
   }
   .left{
-    bottom: 17vh;
+    bottom: 25vh;
     height: 26vh;
   }
   .right{
-    bottom: 17vh;
+    bottom: 25vh;
     height: 26vh;
   }
   @keyframes levitate {
     from {
-        bottom: 22vh; 
+        bottom: 32vh; 
     }
     to {
-        bottom: 18vh;
+        bottom: 28vh;
     }  
   }
 }
 @media (min-height: 741px) and (max-height: 861px){
   .center{ 
-    bottom: 23vh; 
-    height: 30vh; 
+    bottom: 35vh; 
+    height: 35vh; 
     
   }
   .left{
-    bottom: 21vh;
-    height: 24vh;
+    bottom: 30vh;
+    height: 25vh;
   }
   .right{
-    bottom: 21vh;
-    height: 24vh;
+    bottom: 30vh;
+    height: 25vh;
   }
   @keyframes levitate {
     from {
-        bottom: 25vh; 
+        bottom: 37vh; 
     }
     to {
-        bottom: 21vh;
+        bottom: 33vh;
     }  
   }
 }
 @media (min-height: 861px) and (max-height: 1030px){ 
   .center{ 
-    bottom: 24vh; 
+    bottom: 30vh; 
     height: 32vh; 
     
   }
   .left{
-    bottom: 22vh;
+    bottom: 27vh;
     height: 25vh;
   }
   .right{
-    bottom: 22vh;
+    bottom: 27vh;
     height: 25vh;
   }
   @keyframes levitate {
     from {
-        bottom: 26vh; 
+        bottom: 32vh; 
     }
     to {
-        bottom: 22vh;
+        bottom: 28vh;
     }  
   }
 }
 @media (min-height: 1030px) and (max-height: 1200px){ 
   .center{ 
-    bottom: 22vh; 
+    bottom: 35vh; 
     height: 32vh; 
     
   }
   .left{
-    bottom: 24vh;
+    bottom: 35vh;
     height: 24vh;
   }
   .right{
-    bottom: 24vh;
+    bottom: 35vh;
     height: 24vh;
   }
   @keyframes levitate {
-    from {
-        bottom: 24vh; 
+    /* from {
+        bottom: 32vh; 
     }
     to {
-        bottom: 20vh;
-    }  
+        bottom: 28vh;
+    }   */
   }
 }
 @media (min-height: 1200px) and (max-height: 1550px){ 
   .center{ 
-    bottom: 22vh; 
+    bottom: 30vh; 
     height: 35vh; 
     
   }
   .left{
-    bottom: 20vh;
+    bottom: 29vh;
     height: 25vh;
   }
   .right{
-    bottom: 20vh;
+    bottom: 29vh;
     height: 25vh;
   }
   @keyframes levitate {
     from {
-        bottom: 24vh; 
+        bottom: 32vh; 
     }
     to {
-        bottom: 20vh;
+        bottom: 28vh;
     }  
   }
 }
@@ -366,7 +366,7 @@
 }
 @media (min-height: 1750px) and (max-height: 1950px){ 
   .center{ 
-    bottom: 22vh; 
+    bottom: 22%; 
     height: 32vh; 
     
   }
@@ -380,34 +380,34 @@
   }
   @keyframes levitate {
     from {
-        bottom: 24vh; 
+        bottom: 24%; 
     }
     to {
-        bottom: 20vh;
+        bottom: 20%;
     }  
   }
 }
 @media (min-height: 1950px) and (max-height: 2561px){ 
   .center{ 
-    bottom: 22vh; 
+    bottom: 35vh; 
     height: 32vh; 
     
   }
   .left{
-    bottom: 18vh;
+    bottom: 35vh;
     height: 20vh;
   }
   .right{
-    bottom: 18vh;
+    bottom: 35vh;
     height: 20vh;
   }
   @keyframes levitate {
-    from {
+    /* from {
         bottom: 24vh; 
     }
     to {
         bottom: 20vh;
-    }  
+    }   */
   }
 }
 @media (min-height: 2561px) and (max-height: 3840px){ 
