@@ -20,10 +20,10 @@ export const fetchAuth = async (body) => {
     );
 
     // si la respuesta es 400, retornamos un mensaje de error
-    if(response.status === 400) return {data: "response", isLoading: false};
+    if(response.status === 400) return { data: "", isToken: false}
         
     // si la respuesta es 401, retornamos un mensaje de error
-    if(response.status === 401) return {data: "Error, Unauthorized", isLoading: false};
+    if(response.status === 401) return { data: "", isToken: false}
 
     //sino,  guardamos los datos de la respuesta en la variable data, el await es para esperar a que la respuesta se convierta en JSON
     const resp = await response.json();

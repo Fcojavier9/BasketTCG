@@ -10,9 +10,7 @@
 
 .nav-link {
     color: #ffffff !important; /* Cambia el color del texto a blanco, con el important le digo que tiene prioridad ante otros estilos */
-    font-size: 15px !important;
     border: 2px solid transparent; /* Borde inicial transparente */
-
     cursor: pointer; /* Cambia el cursor al pasar el mouse */
     position: relative; /* Posición relativa para el efecto de borde */
     overflow: hidden; /* Oculta el desbordamiento */

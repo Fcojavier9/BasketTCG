@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom"; // importamos NavLink de react-router-dom, que nos permite navegar entre rutas sin recargar la página
+import { useToken } from "../customHooks/useToken";
 import logo from "../assets/logo.png";
 import "../styles/navBar.css"; // importamos css personalizado
 
 export const NavBar = () => {
   const [isActive, setIsActive] = useState(false);
+  const {isValidToken} = useToken();
+  const [isLogin, setIsLogin] = useState(isValidToken);
 
-  const [isLogin, setIsLogin] = useState(false);
+  useEffect(() => {
+    setIsLogin(isValidToken);
+  }, [isValidToken]);
+
 
   const toggleMenu = () => {
     setIsActive(!isActive);
@@ -40,17 +46,17 @@ export const NavBar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
             <li className="nav-item order-lg-last margin-left-auto">
-              <NavLink to={isLogin ? "/usuario" : "/login" } className="nav-link nav-perfil active">
+              <NavLink to={isLogin ? "/" : "/login" } className="nav-link nav-perfil active">
                 {isLogin ? "Perfil" : "Iniciar Sesión"}
               </NavLink>
             </li>
             <li className="nav-item margin-left-auto">
-              <NavLink to={isLogin ? "/" : "/login" } className="nav-link active ">
+              <NavLink to="/" className="nav-link active ">
                 Inicio
               </NavLink>
             </li>
             <li className="nav-item ">
-              <NavLink to={isLogin ? "/*" : "/login" } className="nav-link active">
+              <NavLink to={isLogin ? "/" : "/login" } className="nav-link active">
                 Colección
               </NavLink>
             </li>
@@ -60,7 +66,7 @@ export const NavBar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to={isLogin ? "/" : "/login" } className="nav-link active">
+              <NavLink to="/" className="nav-link active">
                 Noticias
               </NavLink>
             </li>

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export const useToken = () => {
   const [token, setToken] = useState(null);
   const [isValidToken, setIsValidToken] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const validateToken = async () => {
@@ -40,7 +42,7 @@ export const useToken = () => {
     };
 
     validateToken();
-  }, []);
+  }, [location]);
 
-  return { token, isValidToken };
+  return { isValidToken };
 };
