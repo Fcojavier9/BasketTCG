@@ -69,7 +69,7 @@ BEGIN
 
         -- Add example data
         INSERT INTO usuarios (username, email, name, password, saldo, img_url) VALUES
-            ('fran', 'fran@email.es', 'FcoJavier9', 'passwordhash1', 100, 'url1/usuarios/1.jpg'),
+            ('fran', 'fran@email.es', 'FcoJavier9', 'fran', 100, 'url1/usuarios/1.jpg'),
             ('pablo', 'pablo@email.es', 'PabloNarVal', 'passwordhash2', 150, 'img/usuarios/2.jpg'),
             ('rafa', 'rafa@email.es', 'Rafa el guay', 'passwordhash3', 420, 'img/usuarios/3.jpg'),
             ('marc', 'marc@email.com', 'Marc spector', 'passwordhash4', 200, 'img/usuarios/4.jpg'),
