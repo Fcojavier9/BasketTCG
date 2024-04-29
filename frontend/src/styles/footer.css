@@ -19,6 +19,8 @@ footer {
 .footer-col-1 {
     background-color: transparent !important;
     color: white;
+    margin-bottom: 0.5em;
+    margin-top: 0;
 }
 
 .footer-col-1 p {
@@ -58,4 +60,8 @@ footer {
 
 .footer-link:hover {
     text-decoration: underline;
+}
+
+.custom-footer-item {
+    margin: 0.3em;
 }
