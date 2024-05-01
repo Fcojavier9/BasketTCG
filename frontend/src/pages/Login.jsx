@@ -28,9 +28,17 @@ export const Login = () => {
     };
 
     try {
-      const { data } = await fetchAuth(body);
-      localStorage.setItem("token", data);
-      setLogin(!login);
+      const { token, id } = await fetchAuth(body);
+      localStorage.setItem("token", token);
+      localStorage.setItem("id", id);
+      if (token !== undefined) {
+        setLogin(!login);
+      }else{
+        alert("Usuario o contraseña incorrectos");
+        setIsLoading(false);
+        return
+      }
+      
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
@@ -41,7 +49,13 @@ export const Login = () => {
 
   // Mientras se verifica la validez del token, mostramos un mensaje de carga
   if (isLoading) {
-    return <p>Cargando, espere por favor...</p>;
+    return (
+      <div className="login">
+        <div className="form-container">
+          <p>Cargando, espere por favor...</p>
+        </div>
+      </div>
+    )
   }
 
   // Si no estamos cargando y el token no es válido, mostramos el formulario de inicio de sesión

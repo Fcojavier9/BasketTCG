@@ -28,11 +28,14 @@ export const fetchAuth = async (body) => {
     //sino,  guardamos los datos de la respuesta en la variable data, el await es para esperar a que la respuesta se convierta en JSON
     const resp = await response.json();
 
-    const data = resp.token;
+    const token = resp.token;
+    const id = resp.id;
+
 
     // retornamos los datos en forma de objeto
     return {
-      data,
+      token,
+      id,
       isToken: true,
     };
   } catch (error) {

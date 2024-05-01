@@ -35,6 +35,17 @@ $router->post('/auth/login', [
     'uses' => 'AuthController@Authenticate'
 ]);
 
+/**
+ *                                          TABLA CARTAS
+ */
+
+/**
+ * devolver cartas
+ */
+$router->get('/cartas', [
+    'uses' => 'CartasController@Getcartas'
+]); // este seria el primer endpoint
+
 $router->group(
     ['middleware' => 'jwt.auth'],
     function() use ($router){
@@ -85,18 +96,10 @@ $router->group(
         $router->delete('/deleteUsuario/{id}', [
             'uses' => 'UsuariosController@DeleteUsuario'
         ]);
-
-
+        
         /**
          *                                          TABLA CARTAS
          */
-
-        /**
-         * devolver cartas
-         */
-        $router->get('/cartas', [
-            'uses' => 'CartasController@Getcartas'
-        ]); // este seria el primer endpoint
 
         /**
          * devolver carta por id

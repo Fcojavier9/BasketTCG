@@ -20,7 +20,9 @@ class Usuarios extends Model{
         'name',
         'password',
         'saldo', 
-        'img_url'
+        'img_url',
+        'sobres',
+        'is_admin'
     ];
 }
 

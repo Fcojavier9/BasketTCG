@@ -57,7 +57,8 @@ class AuthController extends Controller
         $aux = ($passwordCifrada == $passwordUsuario);
         if($aux){
             $respuesta = response()->json([
-                'token' => $this->jwt($usuario)
+                'token' => $this->jwt($usuario),
+                "id" => $usuario->id,
             ], 200);
             return $respuesta;
         }
