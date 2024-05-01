@@ -5,7 +5,7 @@ services:
     container_name: baskettcg-frontend-1
     image: node:latest
     working_dir: /app
-    command: sh -c "npm install && npm run dev"
+    command: sh -c "npm install && npm run dev -- --host"
     volumes:
       - ./frontend:/app
     ports:
