@@ -33,7 +33,7 @@ class UsuariosController extends Controller
     public function InsertUsuario(Request $request){
 
         // Lista de claves que deseas verificar
-        $keysToCheck = ['username', 'email', 'name', 'password', 'img_url'];
+        $keysToCheck = ['username', 'email', 'password'];
 
         // Verificar si todas las claves están presentes en la solicitud
         if (!$this->hasKeys($request, $keysToCheck)) { // funcion hasKeys, abajo del todo
@@ -59,10 +59,10 @@ class UsuariosController extends Controller
         return Usuarios::create([ //arreglo asociativo
             'username' => $request->username,
             'email' => $request->email,
-            'name' => $request->name,
+            'name' => $request->name ? $request->name : null, // si no se envia name, se pone null
             'password' => $passwordCifrada,
             'saldo'=> ($request->saldo) ? $request->saldo : 500, // si no se envia saldo, se pone 500
-            'img_url' => $request->img_url
+            'img_url' => $request->img_url ? $request->img_url : "sin imagen" // si no se envia img_url, se pone null
         ]); // con esto hago un insert into users (username, name, password, img_url) values ($request->username, $request->name, $request->password, $request->img_url)
     }
 
@@ -167,26 +167,13 @@ class UsuariosController extends Controller
 
     // Funcion extra para comprobar que request tenga las claves que necesitamos
     private function hasKeys(Request $request, $keysToCheck, $condition = "") {
-
         // variable auxiliar
         $aux = false;
         foreach ($keysToCheck as $key) {
-
-            // Si la clave no está presente en la solicitud y no es Auth, devuelvo falso
-            if (!$request->has($key) && $condition != "Auth") {
+            if (!$request->has($key)) {
                 return false; // Retorna falso si alguna clave no está presente
             }
 
-            // Si la clave es username o email, pongo la variable auxiliar a true
-            if($key == "username" || $key == "email"){
-                $aux = true;
-            }
-
-        }
-
-        // Si la condicion es Auth y la variable auxiliar es false, devuelvo falso
-        if($condition == "Auth" && $aux == false){
-            return false;
         }
         return true; // Retorna verdadero si todas las claves están presentes
     }

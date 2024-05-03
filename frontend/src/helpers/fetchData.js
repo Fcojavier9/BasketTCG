@@ -2,7 +2,7 @@
 export const fetchData = async (endPoint, metodo, token = null, body = null) => {
 
   // si no hay token y el endPoint no es auth/login, retornamos un mensaje de error
-  if (token === null && endPoint !== "auth/login") {
+  if (token === null && endPoint !== "insertUsuario") {
     return {
       data: "Es necesario estar logueado para acceder a esta información",
       isLoading: false,
@@ -17,9 +17,6 @@ export const fetchData = async (endPoint, metodo, token = null, body = null) => 
     },
   };
 
-  // si el endpoint es distinto de login, añadimos el token ya que sera necesario
-  if (endPoint !== "auth/login") requestOptions.headers["Authorization"] = `Bearer ${token}`;
-
   // si el body no es null, lo añadimos a las opciones de la petición
   if (body !== null) requestOptions.body = JSON.stringify(body);
 
@@ -30,11 +27,19 @@ export const fetchData = async (endPoint, metodo, token = null, body = null) => 
       requestOptions
     );
 
+    console.log(response)
+
     // si la respuesta es 400, retornamos un mensaje de error
-    if(response.status === 400) return {data: "Error, Bad request", isLoading: false};
+    if(response.status === 400){
+      const data = await response.json();
+      return {data: data.error, isLoading: false, error: 400};
+    };
     
     // si la respuesta es 401, retornamos un mensaje de error
-    if(response.status === 401) return {data: "Error, Unauthorized", isLoading: false};
+    if(response.status === 401){
+      const data = await response.json();
+      return {data: data.error, isLoading: false, error: 400};
+    };
 
     //sino,  guardamos los datos de la respuesta en la variable data, el await es para esperar a que la respuesta se convierta en JSON
     const data = await response.json();
@@ -43,6 +48,7 @@ export const fetchData = async (endPoint, metodo, token = null, body = null) => 
     return {
       data,
       isLoading: false,
+      error: false
     };
   } catch (error) {
     // si hay un error, lo mostramos en consola

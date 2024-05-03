@@ -20,6 +20,11 @@ h1 {
   box-shadow: 0 0 30px rgb(0, 0, 0);
 }
 
+.letra-borde{
+  color: white;
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
+
 .input-container {
   margin-bottom: 20px;
 }
@@ -28,14 +33,6 @@ h1 {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-}
-
-.input-label-email {
-  color: white;
-}
-
-.input-label-password {
-  color: white;
 }
 
 .input-container input {
@@ -89,3 +86,5 @@ h1 {
   justify-content: center;
   margin-top: 1em;
 }
+
+

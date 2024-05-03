@@ -63,23 +63,27 @@ export const Login = () => {
     <div className="login">
       <div className="form-container">
         <form onSubmit={handleLogin}>
-          <h1>Log-in</h1>
+          <h1 className="letra-borde">Log-in</h1>
           <div className="input-container">
-            <label className="input-label-email">
+            <label className="letra-borde">
               Correo electrónico:
               <input
                 type="email"
                 value={email}
+                autocomplete="email"
+                placeholder="Introduzca email"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </label>
           </div>
           <div className="input-container">
-            <label className="input-label-password">
+            <label className="letra-borde">
               Contraseña:
               <input
                 type="password"
                 value={password}
+                autocomplete="current-password"
+                placeholder="Introduzca contraseña"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
@@ -87,7 +91,7 @@ export const Login = () => {
           <div className="button-container">
             <button type="submit" className="basketball">Iniciar sesión</button>
           </div>
-          <a className="enlace-registro" href="/register">¿No tienes cuenta? Regístrate aquí</a>
+          <a className="enlace-registro letra-borde" href="/register">¿No tienes cuenta? Regístrate aquí</a>
         </form>
       </div>
     </div>
