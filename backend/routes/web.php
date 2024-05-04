@@ -36,6 +36,16 @@ $router->post('/auth/login', [
 ]);
 
 /**
+ *                                          TABLA USUARIOS
+ */
+/**
+ * insercion de datos
+ */
+$router->post('/insertUsuario', [
+    'uses' => 'UsuariosController@InsertUsuario'
+]);
+
+/**
  *                                          TABLA CARTAS
  */
 
@@ -75,13 +85,6 @@ $router->group(
         // $router->post('/authUsuario', [
         //     'uses' => 'UsuariosController@AuthUsuario'
         // ]);
-
-        /**
-         * inserccion de datos
-         */
-        $router->post('/insertUsuario', [
-            'uses' => 'UsuariosController@InsertUsuario'
-        ]);
 
         /**
          * actualizar usuario por id
