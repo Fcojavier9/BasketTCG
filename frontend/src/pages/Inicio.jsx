@@ -1,25 +1,67 @@
 import { useEffect, useState } from "react"
 import "../styles/inicio.css" // importamos css personalizado
 import { Carta } from '../components/Carta'
-import { useFetchData } from "../customHooks/useFetchData"
+import { fetchData } from "../helpers/fetchData";
 import cartaComun from "../assets/cartaComun.png";
 import cartaRara from "../assets/cartaRara.png";
 import cartasHeroe from "../assets/cartasHeroe.png";
+import { useToken } from "../customHooks/useToken";
+import { useFetchData } from "../customHooks/useFetchData";
 
-export const Inicio = ({endPoint}) => {
-    const [endP, setEndPoint] = useState(endPoint);
-    const {data, isLoading} = useFetchData(endP);
-    const [cartas, setCartas] = useState([]);
+const ENDPOINT_COLECCION = '/coleccion';
+const ENDPOINT_CARTAS = 'cartas';
+
+export const Inicio = () => {
+    const [cartas, setCartas] = useState();
     const [foco, setFoco] = useState();
     const [suelo, setSuelo] = useState();
     const [rareza, setRareza] = useState();
-    
-    cartas.push(
-       {clase:"heroe", imagen: cartasHeroe} ,
-       {clase:"rara", imagen: cartaRara} ,
-       {clase:"comun", imagen: cartaComun} ,
-    );
+    const {isValidToken} = useToken();
+    const [isLoading, setIsLoading] = useState(false);
+    let token = null;
 
+    // cartas.push(
+    //    {clase:"heroe", imagen: cartasHeroe} ,
+    //    {clase:"rara", imagen: cartaRara} ,
+    //    {clase:"comun", imagen: cartaComun} ,
+    // );
+
+    const handleUnlogued = async () => {
+        setCartas([])
+        try {
+            
+            const { data, isLoading } = await fetchData(ENDPOINT_CARTAS, 'GET', token);
+            data ? setCartas(data) : setCartas([]);
+            setIsLoading(isLoading);
+            
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+    
+    const handleColeccion = async () => {
+        setCartas([])
+        const token = localStorage.getItem("token");
+        let endpoint = `fran${ENDPOINT_COLECCION}`
+        try {
+            
+            const { data, isLoading } = await fetchData(endpoint, 'GET', token);
+            data && setCartas(data);
+            setIsLoading(isLoading);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+      
+    useEffect(() => {
+        const fetchData = async () => {
+            isValidToken ? await handleColeccion() : await handleUnlogued()
+        }
+        fetchData()
+    }, [isValidToken]);
+
+    
+    
      useEffect (() => {
         switch(rareza){
             case "heroe":
@@ -40,34 +82,36 @@ export const Inicio = ({endPoint}) => {
         }
      }, [rareza]);
 
-    return(
-        <>
-            <div className="cont">
-                {isLoading ? <p>Cargando, espere por favor...</p> :
-                data? (
-                    <div className="cartaContainer">
-                        <div className= {foco} >
-                            <div className={suelo}/>
-                        <Carta 
-                            elemento={cartas[0]} 
-                            position="center"
-                            tipo = {setRareza}
-                        />
-                        <Carta 
-                            elemento={cartas[1]} 
-                            position="right"/>
-                        <Carta 
-                            elemento={cartas[cartas.length - 1]}  
-                            position="left"/>
-                            </div> 
-                    </div>
-                    ) : (
-                        <h1>No hay cartas disponibles</h1>
-                    )} 
-            </div>   
-        </>
-    )
+     console.log(cartas)
 
+    return(
+    <>
+
+    {isLoading? (
+        <h1>Cargando...</h1>
+    ):(
+        <div className="cartaContainer">
+        {/* <div className= {foco} >
+            <div className={suelo}/>
+        <Carta 
+            elemento={cartas[0]} 
+            position="center"
+            tipo = {setRareza}
+        />
+        <Carta 
+            elemento={cartas[1]} 
+            position="right"/>
+        <Carta 
+            elemento={cartas[cartas.length - 1]}  
+            position="left"/>
+            </div>  */}
+           
+    </div>
+    )}
+    
+    </>
+    
+    )
 }
 
 
