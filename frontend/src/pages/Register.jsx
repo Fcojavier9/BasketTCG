@@ -86,7 +86,7 @@ export const Register = () => {
               <input
                 type="email"
                 value={email}
-                autocomplete="email"
+                autoComplete="email"
                 placeholder="Introduzca email"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -98,7 +98,7 @@ export const Register = () => {
               <input
                 type="text"
                 value={username}
-                autocomplete="username"
+                autoComplete="username"
                 placeholder="Introduzca usuario"
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -110,7 +110,7 @@ export const Register = () => {
               <input
                 type="password"
                 value={password}
-                autocomplete="current-password"
+                autoComplete="current-password"
                 placeholder="Introduzca contraseña"
                 onChange={(e) => setPassword(e.target.value)}
               />

@@ -8,53 +8,59 @@ import cartasHeroe from "../assets/cartasHeroe.png";
 import { useToken } from "../customHooks/useToken";
 import { useFetchData } from "../customHooks/useFetchData";
 
-export const Inicio = ({endPoint}) => {
-    const [endP, setEndPoint] = useState('/cartas');
-    const [token, setToken] = useState('');
-    const [cartas, setCartas] = useState([]);
+const ENDPOINT_COLECCION = '/coleccion';
+const ENDPOINT_CARTAS = 'cartas';
+
+export const Inicio = () => {
+    const [cartas, setCartas] = useState();
     const [foco, setFoco] = useState();
     const [suelo, setSuelo] = useState();
     const [rareza, setRareza] = useState();
     const {isValidToken} = useToken();
-    const [isLogin, setIsLogin] = useState(isValidToken);
-
-    const {data, isLoading} = useFetchData(endP, 'GET', token);
+    const [isLoading, setIsLoading] = useState(false);
+    let token = null;
 
     // cartas.push(
     //    {clase:"heroe", imagen: cartasHeroe} ,
     //    {clase:"rara", imagen: cartaRara} ,
     //    {clase:"comun", imagen: cartaComun} ,
     // );
+
+    const handleUnlogued = async () => {
+        setCartas([])
+        try {
+            
+            const { data, isLoading } = await fetchData(ENDPOINT_CARTAS, 'GET', token);
+            data ? setCartas(data) : setCartas([]);
+            setIsLoading(isLoading);
+            
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+    
+    const handleColeccion = async () => {
+        setCartas([])
+        const token = localStorage.getItem("token");
+        let endpoint = `fran${ENDPOINT_COLECCION}`
+        try {
+            
+            const { data, isLoading } = await fetchData(endpoint, 'GET', token);
+            data && setCartas(data);
+            setIsLoading(isLoading);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
       
     useEffect(() => {
-        isValidToken? handleColeccion() : handleUnlogued()
-        console.log(isValidToken)
-
+        const fetchData = async () => {
+            isValidToken ? await handleColeccion() : await handleUnlogued()
+        }
+        fetchData()
     }, [isValidToken]);
 
-    const handleColeccion = () => {
-        let total = [] 
-
-        setEndPoint(endPoint)
-        setToken(localStorage.getItem("token"))  
-        console.log(endP)
-
-        data.map((elemento) => (
-            total.push(elemento.carta)
-        )) 
-        setCartas(total)
-        
-    }
-    const handleUnlogued = () => {
-        let total = [] 
-
-        setEndPoint('/cartas')
-        setToken(null) 
-        data.map((elemento) => (
-            total.push(elemento.id)
-        )) 
-        setCartas(total)    
-    }
+    
     
      useEffect (() => {
         switch(rareza){
@@ -76,12 +82,9 @@ export const Inicio = ({endPoint}) => {
         }
      }, [rareza]);
 
-   
+     console.log(cartas)
 
-    console.log(cartas)
-
-     
-     return(
+    return(
     <>
 
     {isLoading? (

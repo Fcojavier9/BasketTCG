@@ -17,7 +17,7 @@ export const BasketApp = () => {
           <Route path="/login" element={<Login endPoint="auth/login" metodo="POST" />}/>
           <Route path="/register" element={<Register endPoint="auth/login" metodo="POST" />}/>
           <Route path="/usuarios" element={<InicioPage endPoint="usuarios"  metodo="GET" />}/>
-          <Route path="/" element={<Inicio endPoint="fran/coleccion" metodo="GET"/>}/>
+          <Route path="/" element={<Inicio />}/>
           <Route path="/coleccion" element={<Coleccion endPoint="fran/coleccion" metodo="GET"/>}/>
           <Route path="/*" element={<Navigate to="/" />}/>
         </Routes>
