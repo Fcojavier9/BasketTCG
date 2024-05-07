@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFetchData } from "../customHooks/useFetchData";
 import { useToken } from "../customHooks/useToken";
-import "../styles/Coleccion.css"
+import "../styles/coleccion.css"
 import { Filtro } from '../components/Filtro'
 import { Carta } from "../components/Carta";
 
@@ -12,12 +12,6 @@ export const Coleccion = ({endPoint}) => {
     const {data, isLoading} = useFetchData(endP, 'GET', token)
     const [cartas, setCartas] = useState([])
     const coleccion = []
-  
-
-
-  
-
-
 
     return (
         <>

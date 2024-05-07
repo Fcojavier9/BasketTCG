@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import "../styles/register.css";
 import { fetchData } from "../helpers/fetchData";
 import { fetchAuth } from "../helpers/fetchAuth";
+import { useToken } from "../customHooks/useToken";
 
 const ENDPOINT = "insertUsuario";
 const METODO = "POST";
@@ -15,11 +16,17 @@ export const Register = () => {
   const [diferente, setDiferente] = useState(false);
   const [register, setRegister] = useState(false);
   const [isLoading, setIsLoading] = useState();
+  const { isValidToken, validateToken } = useToken();
 
-  // Cuando isValidToken cambia, actualiza el estado de carga
   useEffect(() => {
-    setIsLoading(false);
+    validateToken(localStorage.getItem("token"));
   }, [register]);
+
+  useEffect(() => {
+    if(isValidToken){
+      setIsLoading(false);
+    }
+  }, [isValidToken]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -46,15 +53,22 @@ export const Register = () => {
         setIsLoading(false);
         return
       };
-      setRegister(!register);
+
       const body2 = {
         email: email,
         password: password,
       };
-      const { token, id } = await fetchAuth(body2);
-      localStorage.setItem("token", token);
-      localStorage.setItem("id", id);
-      setIsLoading(isLoading);
+
+      try{
+        setIsLoading(true);
+        const { token, id } = await fetchAuth(body2);
+        localStorage.setItem("token", token);
+        localStorage.setItem("id", id); 
+      } catch (error) {
+        console.error("Error al loguearse tras registrar:", error);
+      }
+      
+      setRegister(!register);
     } catch (error) {
       console.error("Error al registrar:", error);
     }
@@ -72,7 +86,7 @@ export const Register = () => {
     )
   }
 
-  if(register && !isLoading) return <Navigate to="/" />;
+  if(register && !isLoading && isValidToken) return <Navigate to="/" />;
 
   // Si no estamos cargando y el token no es válido, mostramos el formulario de inicio de sesión
   return (
@@ -122,6 +136,7 @@ export const Register = () => {
               <input
                 type="password"
                 value={repassword}
+                autoComplete="new-password"
                 placeholder="Vuelva a introducir contraseña"
                 onChange={(e) => setRepassword(e.target.value)}
               />
