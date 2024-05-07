@@ -14,7 +14,6 @@ export const useToken = () => {
       // Verificar si hay un token almacenado
       if (storedToken) {
         setToken(storedToken);
-
         try {
           const response = await fetch("http://localhost:8200/usuarios", {
             method: "GET",

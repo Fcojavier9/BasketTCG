@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import "../styles/register.css";
 import { fetchData } from "../helpers/fetchData";
+import { fetchAuth } from "../helpers/fetchAuth";
 
 const ENDPOINT = "insertUsuario";
 const METODO = "POST";
@@ -46,15 +47,19 @@ export const Register = () => {
         return
       };
       setRegister(!register);
-      console.log(data)
+      const body2 = {
+        email: email,
+        password: password,
+      };
+      const { token, id } = await fetchAuth(body2);
+      localStorage.setItem("token", token);
+      localStorage.setItem("id", id);
       setIsLoading(isLoading);
     } catch (error) {
       console.error("Error al registrar:", error);
     }
 
   };
-
-  if(register && !isLoading) return <Navigate to="/" />;
 
   // Mientras se verifica la validez del token, mostramos un mensaje de carga
   if (isLoading) {
@@ -66,6 +71,8 @@ export const Register = () => {
       </div>
     )
   }
+
+  if(register && !isLoading) return <Navigate to="/" />;
 
   // Si no estamos cargando y el token no es válido, mostramos el formulario de inicio de sesión
   return (
@@ -79,7 +86,7 @@ export const Register = () => {
               <input
                 type="email"
                 value={email}
-                autocomplete="email"
+                autoComplete="email"
                 placeholder="Introduzca email"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -91,7 +98,7 @@ export const Register = () => {
               <input
                 type="text"
                 value={username}
-                autocomplete="username"
+                autoComplete="username"
                 placeholder="Introduzca usuario"
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -103,7 +110,7 @@ export const Register = () => {
               <input
                 type="password"
                 value={password}
-                autocomplete="current-password"
+                autoComplete="current-password"
                 placeholder="Introduzca contraseña"
                 onChange={(e) => setPassword(e.target.value)}
               />

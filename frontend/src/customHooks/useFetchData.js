@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import { fetchData } from "../helpers/fetchData";
 
 //creamos un custom hook para hacer la petición a la API
-export const useFetchData = (endPoint, metodo, token, body) => {
-
+export const useFetchData = (endPoint, metodo, token=null, body=null) => {
+  
   // creamos un estado para guardar los datos de la API
   const [data, setData] = useState([]);// esto es como tener una variable array vacio y una funcion para setearla
-  
   // creamos un estado para guardar el estado de carga de la petición a la API 
   const [isLoading, setIsLoading] = useState(true);
 

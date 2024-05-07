@@ -2,7 +2,7 @@
 export const fetchData = async (endPoint, metodo, token = null, body = null) => {
 
   // si no hay token y el endPoint no es auth/login, retornamos un mensaje de error
-  if (token === null && endPoint !== "insertUsuario") {
+  if (token === null && endPoint !== "insertUsuario" && endPoint !== "cartas") {
     return {
       data: "Es necesario estar logueado para acceder a esta información",
       isLoading: false,
@@ -17,6 +17,11 @@ export const fetchData = async (endPoint, metodo, token = null, body = null) => 
     },
   };
 
+  // si el token no es null, lo añadimos a las cabeceras
+  if (token !== null) {
+    requestOptions.headers["Authorization"] = `Bearer ${token}`;
+  }
+
   // si el body no es null, lo añadimos a las opciones de la petición
   if (body !== null) requestOptions.body = JSON.stringify(body);
 
@@ -26,8 +31,6 @@ export const fetchData = async (endPoint, metodo, token = null, body = null) => 
       `http://localhost:8200/${endPoint}`,
       requestOptions
     );
-
-    console.log(response)
 
     // si la respuesta es 400, retornamos un mensaje de error
     if(response.status === 400){
