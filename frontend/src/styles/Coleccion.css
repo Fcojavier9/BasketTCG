@@ -1,0 +1,41 @@
+body{
+    background-image: url("../assets/Fondo_coleccion.jpg") ;
+    background-color: #181818;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.album{
+    display: flex;
+    flex-direction: row;
+    height: 75vh;
+    width: 85vw;
+    background-image: url('../assets/album.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+/* .pageL{
+box-sizing: border-box;
+
+width: 50%;
+height: 100%;
+margin-right: 0%;
+background-image: url('../assets/pagina_izquierda.png');
+background-repeat: no-repeat;
+background-size: 100%;
+background-position: left;
+}
+.pageR{
+box-sizing: border-box;
+
+width: 50%;
+height: 100%;
+
+background-image: url('../assets/pagina_derecha.png');
+background-repeat: no-repeat;
+background-size: 100%;
+background-position: right;
+} */

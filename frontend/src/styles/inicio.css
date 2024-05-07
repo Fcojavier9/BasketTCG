@@ -4,7 +4,7 @@ div {
 } */
 body {
   background-color: #181818;
-  background-image: url("../assets/fondoInicio.jpeg");
+  background-image: url("../assets/fondoInicio.jpeg") ;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
