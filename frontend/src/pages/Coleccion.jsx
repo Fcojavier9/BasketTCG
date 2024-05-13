@@ -12,12 +12,6 @@ export const Coleccion = ({endPoint}) => {
     const {data, isLoading} = useFetchData(endP, 'GET', token)
     const [cartas, setCartas] = useState([])
     const coleccion = []
-  
-
-
-  
-
-
 
     return (
         <>

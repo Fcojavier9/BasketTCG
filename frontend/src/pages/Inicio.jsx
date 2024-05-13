@@ -82,8 +82,6 @@ export const Inicio = () => {
         }
      }, [rareza]);
 
-     console.log(cartas)
-
     return(
     <>
 
