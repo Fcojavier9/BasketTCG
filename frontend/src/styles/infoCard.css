@@ -1,0 +1,31 @@
+.info-card {
+  height: 10.5vh;
+  
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-image: url("../assets/fondo_card.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 300px) {
+    .info-card {
+        margin: 1.5em 1em 1em 3em;
+    }
+}
+
+@media (min-width: 1024) {
+    .info-card {
+        margin: 5em 1em;
+    }
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+}
+
+.input-container input {
+  width: 80%; /* Ajusta el ancho del input según necesites */
+}
