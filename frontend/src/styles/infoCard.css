@@ -1,6 +1,4 @@
 .info-card {
-  height: 10.5vh;
-  
   border: 1px solid #ccc;
   padding: 10px;
   background-image: url("../assets/fondo_card.jpg");
@@ -9,23 +7,44 @@
   background-repeat: no-repeat;
 }
 
+
+.edit-button{
+  border-radius: 5px;
+  border: 1px solid black;
+  background-image: linear-gradient(to right, #f35a0e 0%, #d04301  51%, #f35a0e  100%);
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* tiempo que tarda en cambiar de color */
+}
+
+.edit-button:hover {
+  font-weight: bold;
+  animation: pulse-border 1s infinite alternate; /* Aplica la animación */
+}
+
+/* Define la animación */
+@keyframes pulse-border {
+  from {
+      border-color: #ffffff; /* Color inicial del borde */
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); /* Sombra inicial */
+  }
+  to {
+      border-color: #C34A4A; /* Color final del borde */
+      box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); /* Sombra final */
+      background-color: #C34A4A; /* Cambia el color de fondo al final de la transicion */
+  }
+}
+
 @media (min-width: 300px) {
     .info-card {
-        margin: 1.5em 1em 1em 3em;
+      height: 6.8em;
+      margin: 1.5em 1em 1em 1em;
     }
 }
 
-@media (min-width: 1024) {
+@media (min-width: 1024px) {
     .info-card {
-        margin: 5em 1em;
+      height: 5.5em;
+      margin: 1.5em 1em 1em 3em;
     }
-}
-
-.input-container {
-  display: flex;
-  justify-content: center;
-}
-
-.input-container input {
-  width: 80%; /* Ajusta el ancho del input según necesites */
 }

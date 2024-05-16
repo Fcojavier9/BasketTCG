@@ -7,6 +7,7 @@ import { useToken } from "../customHooks/useToken";
 import cartaComun from "../assets/cartaComun.png";
 import cartaRara from "../assets/cartaRara.png";
 import cartasHeroe from "../assets/cartasHeroe.png";
+import { LoadingCircle } from "../components/LoadingCircle";
 
 const ENDPOINT_COLECCION = '/coleccion';
 const ENDPOINT_CARTAS = 'cartas';
@@ -141,7 +142,7 @@ export const Inicio = () => {
     {
     
     (foco===undefined || cartas === undefined)? (
-        <p>Cargando...</p>
+        <LoadingCircle sizeLoading={200}/>
     )
     :(
         <div className="cont">

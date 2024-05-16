@@ -1,5 +1,69 @@
 .user-panel {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  background: rgba(128,128,128, 0.5);
+  border-radius: 10px;
+  border: 5px solid #ffffff;
+}
+
+.admin-panel {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: rgba(128,128,128, 0.5);
+  border-radius: 10px;
+  border: 5px solid #ffffff;
+  margin-top: 2em;
+}
+
+.panel{
+  margin: 2em 1em 2em 1em;
+  padding: 20px;
+  width: 90%;
+}
+
+.user-title{
+  background-image: url("../assets/cabecera.jpg");
+  border-image: fill 0 linear-gradient(rgba(0, 0, 0, 0),#0000003b);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  height: 7em;
+  width: 100%;
+  color: rgb(11, 65, 203);
+  margin-bottom: 2em;
+}
+
+@media (min-width: 300px) {
+  .user-panel {
+    display: flex;
+    text-align: center;
+  }
+
+  .user-title{
+    padding: 3em 2em;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+}
+
+@media (min-width: 1024px) {
+  .panel{
+    margin-left: 15em;
+    padding: 20px;
+    width: 60%;
+  }
+
+  .user-title{
+    font-weight: bold;
+    font-size: 35px;
+    height: 7em;
+    padding: 3.2em 3em;
+    width: 100%;
+    margin-bottom: 1em;
+  }
 }
 
