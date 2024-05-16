@@ -5,6 +5,7 @@ import { Register } from "./pages/Register";
 import { InicioPage } from "./pages/InicioPage";
 import { Inicio } from "./pages/Inicio";
 import { Perfil } from "./pages/Perfil";
+import { Admin } from "./pages/Admin";
 import { Footer } from "./components/Footer";
 import './basketApp.css';
 import { Coleccion } from "./pages/Coleccion";
@@ -20,6 +21,7 @@ export const BasketApp = () => {
         <Routes>
           <Route path="/login" element={<Login/>}/>
           <Route path="/perfil" element={<Perfil/>}/>
+          <Route path="/admin" element={<Admin/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/" element={<Inicio />}/>
           <Route path="/mercado" element={<Mercado endPoint="mercado" metodo="GET"/>}/>

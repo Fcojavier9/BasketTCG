@@ -148,7 +148,7 @@ export const Inicio = () => {
     {
     
     (foco===undefined || cartas === undefined)? (
-        <p>Cargando...</p>
+        <LoadingCircle sizeLoading={200}/>
     )
     :(
         <div className="cont">

@@ -25,6 +25,7 @@ export const Perfil = () => {
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [saldo, setSaldo] = useState(0);
   const [activeField, setActiveField] = useState("");
 
   const openModal = (field) => {
@@ -40,6 +41,7 @@ export const Perfil = () => {
       setName(data.name);
       setUsername(data.username);
       setEmail(data.email);
+      setSaldo(data.saldo);
       setIsAdmin(data.is_admin);
       setIsLoadingData(false);
     };
@@ -105,7 +107,8 @@ export const Perfil = () => {
   ) : (
     <div className="panel">
       <div className="user-title">
-        <p>{`Bienvenido, ${username}`}</p>
+        <p>{`Bienvenido, ${username} 🎉`}</p>
+        <p>{`Su saldo es: ${saldo}BP`}</p>
       </div>
       <div className="user-panel">
         <InfoCard

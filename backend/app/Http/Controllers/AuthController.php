@@ -21,7 +21,7 @@ class AuthController extends Controller
             'iss' => "api-basket-tcg", // Emisor del token
             'sub' => $usuario->id, // Sujeto del token (ID del usuario)
             'iat' => time(), // Tiempo de emisión del token 
-            'exp' => time() + 60*60 // Tiempo de expiración del token (1 hora después del tiempo de emisión)
+            'exp' => time() + 60*60*24 // Tiempo de expiración del token (1 día después del tiempo de emisión)
         ];
         $jwtSecret = (string) env('JWT_SECRET');
         return JWT::encode($payload, $jwtSecret, 'HS256');
