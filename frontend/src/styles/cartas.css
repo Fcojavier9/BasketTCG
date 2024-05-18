@@ -31,7 +31,10 @@
   }  
 } */
 
-
+.cartaColeccion{
+  width: 20%;
+  height: 20%;
+}
 @media  (max-width: 376px)  {
   .center{ 
     left: 32vw; 

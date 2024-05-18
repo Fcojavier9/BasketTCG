@@ -7,11 +7,20 @@ import "../styles/navBar.css"; // importamos css personalizado
 export const NavBar = () => {
   const [isActive, setIsActive] = useState(false);
   const {isValidToken} = useToken();
-  const [isLogin, setIsLogin] = useState(isValidToken);
+  const [isLogin, setIsLogin] = useState();
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     setIsLogin(isValidToken);
   }, [isValidToken]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); 
+
+    return () => clearTimeout(timer);
+  }, []);
 
 
   const toggleMenu = () => {
@@ -46,8 +55,13 @@ export const NavBar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
             <li className="nav-item order-lg-last margin-left-auto">
-              <NavLink to={isLogin ? "/" : "/login" } className="nav-link nav-perfil active">
-                {isLogin ? "Perfil" : "Iniciar Sesión"}
+              <NavLink to={isLogin ? "/perfil" : "/login" } className="nav-link nav-perfil active">
+                {isLoading 
+                    ? "Cargando..."
+                    : isLogin 
+                      ? "Perfil" 
+                      : "Iniciar Sesión"
+                }
               </NavLink>
             </li>
             <li className="nav-item margin-left-auto">

@@ -1,22 +1,89 @@
-body{
-    background-image: url("../assets/Fondo_coleccion.jpg") ;
-    background-color: #181818;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
+body {
+  background-image: url("../assets/Fondo_coleccion.jpg");
+  background-color: #181818;
+  /* background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
+  /* background-size: cover; */
+  background-position: center;
+  /* flex-direction: initial !important; */
 }
 
-
-.album{
-    display: flex;
-    flex-direction: row;
-    height: 75vh;
-    width: 85vw;
-    background-image: url('../assets/album.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
+.coleccion {
+  display: flex;
+  flex-direction: row;
+  width: 112%;
+  align-items: center;
+  position: relative;
+  left: -5vw;
+  justify-content: space-around;
 }
+
+.album {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 5vh;
+  height: 75vh;
+  width: 85vw;
+  background-image: url("../assets/album.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+.pagina {
+  display: "flex";
+  flex-direction: "column";
+  width: 80%;
+  height: 90%;
+  justify-content: center;
+  align-items: space-around;
+
+}
+.fila {
+  display: flex;
+  flex-direction: row;
+  /* width:  100%; */
+    margin-top: 5%;
+  justify-content: space-around;
+}
+
+.fila .cartaColeccion:nth-child(2){
+    /* padding-bottom: 5%; */
+    position: relative;
+    bottom: 4vh;
+}
+.pagina:nth-child(1) .fila .cartaColeccion:nth-child(3),
+.pagina:nth-child(2) .fila .cartaColeccion:nth-child(1){
+    position: relative;
+    bottom: 5vh;
+}
+
+.flecha {
+  /* margin: 20px; */
+  border-radius: 100%;
+}
+.flecha:hover {
+  animation: pulse 1s infinite alternate;
+}
+.flecha:active {
+    filter: brightness(0.7);
+    transform: scale(0.9);
+  }
+@keyframes pulse {
+ 
+  from {
+    border-color: #c34a4a; 
+    box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); 
+    background-color: #c34a4a; 
+  }
+  to {
+    border-color: #0B41CB; 
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    background-color: #0B41CB;
+  }
+}
+
 /* .pageL{
 box-sizing: border-box;
 

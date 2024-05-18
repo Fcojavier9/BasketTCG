@@ -11,7 +11,7 @@ class CorsMiddleware
         // Verificar si la solicitud es una solicitud OPTIONS
         if ($request->isMethod('OPTIONS')) {
             // Responder con los encabezados CORS necesarios para las solicitudes OPTIONS
-            return response()->json([], 200)
+            return response()->json([], 204)
                 ->header('Access-Control-Allow-Origin', '*')
                 ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
                 ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
