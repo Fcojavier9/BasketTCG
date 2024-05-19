@@ -26,7 +26,7 @@ export const Inicio = () => {
     //    {clase:"comun", imagen: cartaComun} ,
     // );
 
-    const handleUnlogued = async () => {
+    const handleUnlogged = async () => {
         setCartas([])
         try {
             
@@ -55,7 +55,7 @@ export const Inicio = () => {
       
     useEffect(() => {
         const fetchData = async () => {
-            isValidToken ? await handleColeccion() : await handleUnlogued()
+            isValidToken ? await handleColeccion() : await handleUnlogged()
         }
         fetchData()
     }, [isValidToken]);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFetchData } from "../customHooks/useFetchData";
 import { useToken } from "../customHooks/useToken";
-import "../styles/coleccion.css"
+import "../styles/Coleccion.css"
 import { Filtro } from '../components/Filtro'
 import { Carta } from "../components/Carta";
 

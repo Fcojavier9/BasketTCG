@@ -61,7 +61,7 @@ export const NavBar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to={isLogin ? "/" : "/login" } className="nav-link active">
+              <NavLink to={isLogin ? "/mercado" : "/login" } className="nav-link active">
                 Mercado
               </NavLink>
             </li>

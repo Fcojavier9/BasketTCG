@@ -1,0 +1,44 @@
+.busqueda-mercado-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    background-color: #aaa;
+    width: 100%;
+    color: #000;
+}
+
+@media (min-width: 768px) {
+    .busqueda-mercado-container {
+        flex-direction: row;
+    }
+}
+
+.dropdown-container,
+.search-bar-container {
+    flex: 1;
+    padding: 1em;
+    background-color: #bbb;
+    border-radius: 4px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold; /* Add this line */
+}
+
+.form-select,
+.form-control {
+    width: 100%;
+    padding: 0.5em;
+    border: none;
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.form-select:focus,
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #ccc;
+}
