@@ -1,0 +1,58 @@
+/* BACKGROUND */
+.fondo-estrellas-1 {
+  background-image: url("../assets/stars-1.svg");
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  will-change: transform, filter;
+  z-index: -1;
+  mix-blend-mode: screen;
+  animation: bg-scroll 20s linear infinite;
+}
+
+.fondo-estrellas-2 {
+  background-image: url("../assets/stars-2.svg");
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  will-change: transform, filter;
+  z-index: -1;
+  mix-blend-mode: screen;
+  animation: bg-scroll-2 13s linear infinite;
+}
+
+@keyframes bg-scroll {
+  0% {
+    background-position: 0% 0%;
+    filter: opacity(50%);
+  }
+  50% {
+    background-position: 0% -234px;
+    filter: opacity(25%);
+  }
+  100% {
+    background-position: 0% -468px;
+    filter: opacity(50%);
+  }
+}
+
+@keyframes bg-scroll-2 {
+  0% {
+    background-position: 0% 0%;
+    filter: opacity(25%);
+  }
+  50% {
+    background-position: 0% -234px;
+    filter: opacity(50%);
+  }
+  100% {
+    background-position: 0% -468px;
+    filter: opacity(25%);
+  }
+}

@@ -1,4 +1,4 @@
-body {
+/* body {
   background-image: url("../assets/Fondo_coleccion.jpg");
   background-color: #181818;
   /* background-repeat: no-repeat; */
@@ -6,7 +6,7 @@ body {
   /* background-size: cover; */
   background-position: center;
   /* flex-direction: initial !important; */
-}
+/* } */
 
 .coleccion {
   display: flex;

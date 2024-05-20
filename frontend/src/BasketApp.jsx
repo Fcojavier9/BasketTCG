@@ -9,12 +9,14 @@ import { Footer } from "./components/Footer";
 import './basketApp.css';
 import { Coleccion } from "./pages/Coleccion";
 import { Mercado } from "./pages/Mercado";
+import { FondoEstrellas } from "./components/FondoEstrellas";
 
 export const BasketApp = () => {
   return (
     <>
       <NavBar/>
       <div className="container">
+        <FondoEstrellas/>
         <Routes>
           <Route path="/login" element={<Login/>}/>
           <Route path="/perfil" element={<Perfil/>}/>
