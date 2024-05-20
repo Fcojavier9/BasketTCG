@@ -18,6 +18,9 @@ RUN npm install -g vite
 # Instala @rollup/rollup para construcción
 RUN npm install @rollup/rollup
 
+#Instala la libreria Mui(https://mui.com)
+RUN npm install @mui/material @emotion/react @emotion/styled
+
 # Comando para iniciar la aplicación Vite (solo para desarrollo)
 CMD ["npm", "run", "dev"]
 

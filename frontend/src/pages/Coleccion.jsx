@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useToken } from "../customHooks/useToken";
 
-import "../styles/coleccion.css"
+import "../styles/coleccion.css";
 import { Filtro } from "../components/Filtro";
 import { Carta } from "../components/Carta";
 import { fetchData } from "../helpers/fetchData";
 import flechaR from "../assets/flechaR.png";
 import flechaL from "../assets/flechaL.png";
+import { CartaModal } from "../components/CartaModal";
 // import {Modal} from
 
 const ENDPOINT_COLECCION = "/coleccion";
@@ -19,6 +20,18 @@ export const Coleccion = ({ endPoint }) => {
   const [cartas, setCartas] = useState();
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const [selectedCarard, setSelecCard] = useState();
+
+  const handleOpen = (selected) => {
+    setSelecCard(selected);
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setSelecCard('');
+    setOpen(false);
+  };
 
   const handlePage = (direction) => {
     let pagina = page + direction;
@@ -118,7 +131,7 @@ export const Coleccion = ({ endPoint }) => {
                   {pagina.map((fila) => (
                     <div className="fila">
                       {fila.map((card) => (
-                        <Carta carta={card} estilo={"cartaColeccion"} />
+                        <Carta carta={card} estilo={"cartaColeccion"} accion={()=>handleOpen(card)}/>
                       ))}
                     </div>
                   ))}
@@ -136,6 +149,11 @@ export const Coleccion = ({ endPoint }) => {
               </div>
             )}
           </div>
+          <CartaModal
+            carta={selectedCarard}
+            open={open}
+            handleClose={handleClose}
+          />
         </div>
       )}
     </>

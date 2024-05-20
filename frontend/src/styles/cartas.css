@@ -30,7 +30,11 @@
       top: 38vh;
   }  
 } */
-
+.imgModal{
+  width: 65%;
+  height: auto;
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
+}
 .cartaColeccion{
   width: 20%;
   height: 20%;
