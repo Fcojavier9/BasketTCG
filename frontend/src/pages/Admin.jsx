@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { InfoCard } from "../components/InfoCard";
-import { ButtonCard } from "../components/ButtonCard";
 import { Modal } from "../components/Modal";
 import { fetchData } from "../helpers/fetchData";
 import { LoadingCircle } from "../components/LoadingCircle";
@@ -21,7 +20,6 @@ export const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [activeField, setActiveField] = useState("");
   const [page, setPage] = useState(1);
 

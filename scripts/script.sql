@@ -135,7 +135,7 @@ BEGIN
             ('Kobe Bryant', 'sg', 'heroe', 95, 'assets/cartas/42.jpg'),
             ('Tim Duncan', 'pf', 'heroe', 95, 'assets/cartas/43.jpg'),
             ('Shaquille O''Neal', 'c', 'heroe', 96, 'assets/cartas/44.jpg'),
-            ('Larry Bird', 'sf', 'heroe', 97, 'assets/cartas/46.jpg'),
+            ('Larry Bird', 'sf', 'heroe', 97, 'assets/cartas/45.jpg'),
             ('Magic Johnson', 'pg', 'heroe', 98, 'assets/cartas/46.jpg'),
             ('Kareem Abdul-Jabbar', 'c', 'heroe', 99, 'assets/cartas/47.jpg'),
             ('Michael Jordan', 'sg', 'heroe', 100, 'assets/cartas/48.jpg');
