@@ -8,13 +8,15 @@ import { fetchData } from "../helpers/fetchData";
 import flechaR from "../assets/flechaR.png";
 import flechaL from "../assets/flechaL.png";
 import { CartaModal } from "../components/CartaModal";
+import cartaDorso from "../assets/cartaDorso.png"
 // import {Modal} from
 
-const ENDPOINT_COLECCION = "/coleccion";
+const ENDPOINT_COLECCION = localStorage.getItem('id')+"/coleccion";
+const token = localStorage.getItem('token');
 
 export const Coleccion = ({ endPoint }) => {
   const [first, setFirst] = useState(1);
-  const [last, setLast] = useState(18);
+  const [last, setLast] = useState(12);
   const [page, setPage] = useState(1);
   const [mostrar, setMostrar] = useState([[]]);
   const [cartas, setCartas] = useState();
@@ -23,9 +25,16 @@ export const Coleccion = ({ endPoint }) => {
 
   const [open, setOpen] = useState(false);
   const [selectedCarard, setSelecCard] = useState();
-
-  const handleOpen = (selected) => {
+  const [cantidad, setCantidad] = useState()
+  const [coleccionId, setColeccionId] = useState()
+  const [search, setSearch] =useState([
+   
+  ]);
+  const [coleccion, setColeccion]= useState()
+  const handleOpen = (selected, repes = 0, id) => {
     setSelecCard(selected);
+    setCantidad(repes);
+    setColeccionId(id);
     setOpen(true);
   };
   const handleClose = () => {
@@ -37,49 +46,45 @@ export const Coleccion = ({ endPoint }) => {
     let pagina = page + direction;
     setPage(pagina);
   };
-  // const handleColeccion = async () => {
-  //     setCartas([])
-  //     const token = localStorage.getItem("token");
-  //     let endpoint = `fran${ENDPOINT_COLECCION}`
-  //     try {
+  const handleColeccion = async () => {
+      setColeccion([])
+      const token = localStorage.getItem("token");
+      try {
 
-  //         let listado = []
-  //         const { data, isLoading } = await fetchData(endpoint, 'GET', token);
-  //         data.map(async (item)=>{
-  //             const {data, isLoading} = await fetchData(`carta/${item.carta}`, 'GET', token)
-  //             listado.push(data)
+          let listado = []
+          const { data, isLoading } = await fetchData(ENDPOINT_COLECCION, 'GET', token);
+          data && setColeccion(data)
 
-  //             listado &&  setCartas(listado);
-  //         })
-
-  //         setIsLoading(isLoading);
-  //     } catch (error) {
-  //         console.error("Error fetching data:", error);
-  //     }
-  // }
+          setIsLoading(isLoading);
+      } catch (error) {
+          console.error("Error fetching data:", error);
+      }
+  }
   const handleUnlogued = async () => {
     setCartas([]);
 
     try {
       const { data, isLoading } = await fetchData("cartas", "GET", null);
       data ? setCartas(data) : setCartas([]);
-
+      
       setIsLoading(isLoading);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
-
+  
+  console.log("cartas", coleccion)
   useEffect(() => {
-    const fetchData = async () => {
+    const getData = async () => {
+      await handleColeccion();
       await handleUnlogued();
     };
-    fetchData();
-  }, []);
+    getData();
+  }, [open]);
 
   useEffect(() => {
-    setFirst(page === 0 ? 1 : 18 * (page - 1) + 1);
-    setLast(page === 0 ? 18 : 18 * (page - 1) + 18);
+    setFirst(page === 0 ? 1 : 12 * (page - 1) + 1);
+    setLast(page === 0 ? 12 : 12 * (page - 1) + 12);
 
     if (cartas != undefined) {
       let m = [];
@@ -93,7 +98,7 @@ export const Coleccion = ({ endPoint }) => {
           fila.push(cartas[j]);
         }
 
-        i < first + 9 ? l.push(fila) : r.push(fila);
+        i < first + 6 ? l.push(fila) : r.push(fila);
       }
       m.push(l, r);
       setMostrar(m);
@@ -106,23 +111,20 @@ export const Coleccion = ({ endPoint }) => {
         <div>
           <h1>PORTADA</h1>
 
-          <div className="flecha">
-            <img src={flechaR} alt="siguiente" onClick={() => handlePage(1)} />
-          </div>
+            <img src={flechaR} alt="siguiente" className="flechaR" onClick={() => handlePage(1)} />
         </div>
       ) : (
         <div>
-          <Filtro />
+          {/* <DataGrid /> */}
           <div className="coleccion">
             {page > 0 && (
-              <div className="flecha">
                 <img
                   style={{ marginRight: "50%" }}
                   src={flechaL}
                   alt="anterior"
+                  className="flechaL"
                   onClick={() => handlePage(-1)}
                 />
-              </div>
             )}
 
             <div className="album">
@@ -130,27 +132,35 @@ export const Coleccion = ({ endPoint }) => {
                 <div className="pagina">
                   {pagina.map((fila) => (
                     <div className="fila">
-                      {fila.map((card) => (
-                        <Carta carta={card} estilo={"cartaColeccion"} accion={()=>handleOpen(card)}/>
-                      ))}
+                      {fila.map((card) => {
+                        let c = coleccion.find(entrada => entrada.carta === card?.id);
+                        return (coleccion.some(elemento => elemento.carta === card?.id)) ? (
+                          console.log('adfasfa',c),
+                          <Carta carta={card} estilo={(c.cantidad>1)?"cartaColeccion repe":"cartaColeccion"} accion={()=>handleOpen(card, c.cantidad, c.id)}/> 
+                          
+                        ):
+                        <img src={cartaDorso} className="cartaColeccion dorso" ></img>
+                      })}
                     </div>
                   ))}
                 </div>
               ))}
             </div>
 
-            {page < cartas?.length / 18 && (
-              <div className="flecha">
+            {page < Math.ceil(cartas?.length / 12) && (
                 <img
+                 className="flechaR"
                   src={flechaR}
                   alt="siguiente"
                   onClick={() => handlePage(1)}
                 />
-              </div>
+              
             )}
           </div>
           <CartaModal
             carta={selectedCarard}
+            cantidad={cantidad}
+            coleccionId={coleccionId}
             open={open}
             handleClose={handleClose}
           />
@@ -159,3 +169,4 @@ export const Coleccion = ({ endPoint }) => {
     </>
   );
 };
+

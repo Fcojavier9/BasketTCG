@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .caja {
@@ -9,14 +10,15 @@
   flex-direction: column;
   width: 45%;
   height: 45%;
-  background-color: rgb(147, 147, 158);
   border-radius: 15%;
-  background-image: url('../assets/fondo-modal.webp');
+  background: url('../assets/fondo-modal.webp') no-repeat center/cover;
   border: 3px solid white;
+  justify-content: space-between;
 }
 .datos {
   display: flex;
   flex-direction: row;
+
 }
 
 .informacion {
@@ -25,6 +27,9 @@
   flex-direction: column;
   /* align-items: center; */
   justify-content: space-around;
+  padding-left: 2%;
+  /* border: 2px solid red */
+
 }
 .linea{
     display: flex;
@@ -39,12 +44,15 @@
     margin-right: 10%;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 15%;
+    padding-top: 3%;
 }
 .principal {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 3%;
+  width: 55%;
+  margin-left: 10%;
+  padding-top: 5%;
+
   
 }
 
@@ -52,10 +60,13 @@
   display: flex;
   flex-direction: row;
   margin-top: 3%;
+  /* border: 2px solid red; */
+  margin-left: 15%;
 }
 
 .nombre{
     margin-top: 5%;
+    padding-left: 15%;
 }
 
 .vender, .cerrar{
@@ -63,7 +74,7 @@
     color: white;
     background-color: transparent;
     border: none;
-    font-size: 3vh;
+    font-size: 1.2em;
     border-radius: 35%;
     padding: 3%;
     margin-right: 15%;
@@ -77,6 +88,64 @@
 .cerrar:hover{
     font-weight: bold;
     animation: pulse-blue 1s infinite alternate;
+}
+.number{
+  display: flex;
+  flex: row;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  
+}
+.inputCantidad{
+  text-align: center;
+  width: 3ch;
+  margin-left: 10%;
+  margin-right: 10%;
+  color: white;
+  background-color: rgb(138, 138, 138, 0.5);
+  border-radius: 1.5vh;
+  border: 3px solid white;
+}
+.inputPrecio{
+  text-align: center;
+  width: 8ch;
+  
+  margin-left: 10%;
+  margin-right: 10%;
+  color: white;
+  background-color: rgb(138, 138, 138, 0.5);
+  border-radius: 1.5vh;
+  border: 3px solid white;
+}
+.incremento{
+  order: 1;
+  color: white;
+  background-color: transparent;
+  border-radius: 100%;
+  border: 3px solid white;
+  height:  1.2em;
+  width: 1.2em;
+  
+}
+.decremento{
+  color: white;
+  background-color: transparent;
+  border-radius: 100%;
+  border: 3px solid white;
+  height:  1.2em;
+  width: 1.2em;
+}
+
+.iconoIncremento{
+  position: relative;
+  top: -35%;
+  left: -10%;
+}
+.iconoDecremento{
+  position: relative;
+  top: -40%;
+  /* left: -5%; */
 }
 
 @keyframes pulse-red {
@@ -101,4 +170,119 @@
         box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); /* Sombra final */
         background-color: #0B41CB; /* Cambia el color de fondo al final de la transicion */
     }
+}
+
+@media ((min-width: 640px) and (max-width: 960px)) and ((min-height: 480px) and (max-height: 540px)) {
+
+  .caja {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    height: 45%;
+    border-radius: 15%;
+    background: url('../assets/fondo-modal.webp') no-repeat center/cover;
+    border: 3px solid white;
+    justify-content: space-between;
+  }
+  .datos {
+    display: flex;
+    flex-direction: row;
+  
+  }
+  
+  .informacion {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-around;
+    padding-left: 2%;
+    /* border: 2px solid red */
+  
+  }
+  .linea{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-inline: 10%;
+  }
+  .texto{
+      margin-top: 10%;
+      font-size: 1.3em;
+      /* border: 3px solid red; */
+      margin-right: 10%;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 15%;
+  }
+  .principal {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    margin-left: 10%;
+    padding-top: 3%;
+  
+    
+  }
+  
+  .botones {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3%;
+    /* border: 2px solid red; */
+    margin-left: 15%;
+  }
+  
+  .nombre{
+      margin-top: 5%;
+  }
+  
+  .vender, .cerrar{
+  
+      color: white;
+      background-color: transparent;
+      border: none;
+      font-size: 1.2em;
+      border-radius: 35%;
+      padding: 3%;
+      margin-right: 15%;
+  }
+  
+  .vender:hover{
+      font-weight: bold;
+      animation: pulse-red 1s infinite alternate;
+  }
+  
+  .cerrar:hover{
+      font-weight: bold;
+      animation: pulse-blue 1s infinite alternate;
+  }
+  
+}
+
+@media ((min-width: 960px) and (max-width: 1280px)) and ((min-height: 540px) and (max-height: 720px)) {
+
+}
+
+@media ((min-width: 1280px) and (max-width: 1920px)) and ((min-height: 720px) and (max-height: 1080px)) {
+ 
+}
+@media ((min-width: 1920px) and (max-width: 2560px)) and ((min-height: 1080px) and (max-height: 1440px)) {
+  
+}
+
+@media ((min-width: 2560px) and (max-width: 3840px)) and ((min-height: 1440px) and (max-height: 2160px)) {
+  
+}
+
+@media screen {
+  @media (max-width: 720px) and (max-height: 1280px) {
+ 
+  }
+  @media ((min-width: 720px ) and (max-width: 1080px)) and ((min-height: 1280px) and (max-height: 1920px)) {
+
+  }
+
+  @media ((min-width: 1080px ) and (max-width: 1440px)) and ((min-height: 1920px) and (max-height:2560px )) {
+      
+  }
 }

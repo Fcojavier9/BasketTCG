@@ -1,13 +1,23 @@
 /* hoja de estilos para las cartas que se mostraran en carrusel en la pagina principal */
-.center{ 
+.center {
   position: absolute; /* La imagen sera de posicion absoluta respecto de la pantalla*/
   display: inline-block;
   animation: levitate 2s infinite alternate;
-  
+  left: 37vw;
+  bottom: 23vh;
+  width: 25vw;
+  height: auto;
 }
-.left{
+.left {
   position: absolute;
-  transform: matrix(0.75, 0.5, -0.01, 1, 0, 0); /*esta funcion de css permite alterar la estructura, respectivamente: 
+  transform: matrix(
+    0.75,
+    0.5,
+    -0.01,
+    1,
+    0,
+    0
+  ); /*esta funcion de css permite alterar la estructura, respectivamente: 
       - ajuste  del ancho en el eje x
       - modifica la inclinacion en el eje x
       - modifica la inclinacion en el eje y
@@ -15,451 +25,220 @@
       - ajusta la posicion respecto al eje x 
       - ajusta la posicion respecto al eje y
   */
-  filter: brightness(25%);/*Funcion que asigna lo brillante que se vera*/
+  filter: brightness(25%); /*Funcion que asigna lo brillante que se vera*/
+  left: 7vw;
+  bottom: 23vh;
+  width: 22vw;
+  height: auto;
 }
-.right{
+.right {
   position: absolute;
   transform: matrix(0.75, -0.5, -0.01, 1, 0, 0);
   filter: brightness(25%);
+  right: 7vw;
+  bottom: 23vh;
+  width: 22vw;
+  height: auto;
 }
-/* @keyframes levitate {
+
+@keyframes levitate {
   from {
-      top: 42vh; 
+    bottom: 25vh;
   }
   to {
-      top: 38vh;
-  }  
-} */
-.imgModal{
-  width: 65%;
+    bottom: 21vh;
+  }
+}
+
+.imgModal {
+  width: 100%;
   height: auto;
   filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
 }
-.cartaColeccion{
-  width: 20%;
-  height: 20%;
+.cartaColeccion {
+  width: 25%;
+  height: auto;
 }
-@media  (max-width: 376px)  {
-  .center{ 
-    left: 32vw; 
-    width: 35vw; 
-    
-  }
-  .left{
-    left: 7vw;
-    width: 22vw;
-  }
-  .right{
-    right: 7vw;
-    width: 22vw;
-  }
-} 
-@media (min-width: 377px) and (max-width: 480px)  {
-  .center{ 
-    left: 30vw; 
-    width: 40vw; 
-    
-  }
-  .left{
-    left: 7vw;
-    width: 20vw;
-  }
-  .right{
-    right: 7vw;
-    width: 20vw;
-  }
-} 
-@media (min-width: 480px) and (max-width: 620px)  {
-  .center{ 
-    left: 30vw; 
-    width: 40vw; 
-    
-  }
-  .left{
-    left: 7vw;
-    width: 20vw;
-  }
-  .right{
-    right: 7vw;
-    width: 20vw;
-  }
-} 
-@media (min-width: 620px) and (max-width: 820px){
- .center{ 
-    left: 33vw; 
-    width: 33vw; 
-    
-  }
-  .left{
-    left: 6vw;
-    width: 20vw;
-  }
-  .right{
-    right: 6vw;
-    width: 20vw;
-  }
+
+.dorso {
+  filter: brightness(60%);
 }
-@media (min-width: 820px) and (max-width: 1025px){
- .center{ 
-    left: 33vw; 
-    width: 33vw; 
-    
-  }
-  .left{
-    left: 10vw;
-    width: 24vw;
-  }
-  .right{
-    right: 10vw;
-    width: 24vw;
-  }
-}
-@media (min-width: 1025px) and (max-width: 2160px){
-  .center{ 
-    left: 35vw; 
-    width: 30vw; 
-    
-  }
-  .left{
-    left: 15vw;
-    width: 20vw;
-  }
-  .right{
-    right: 15vw;
-    width: 20vw;
-  }
-}
-@media (min-width: 2160px) and (max-width: 2561px){
-  .center{ 
-    left: 33vw; 
-    width: 33vw; 
-    
-  }
-  .left{
-    left: 8vw;
-    width: 22vw;
-  }
-  .right{
-    right: 8vw;
-    width: 22vw;
-  }
-}
-@media (min-width: 2561px) and (max-width: 4320px){
-  .center{ 
-    left: 33vw; 
-    width: 33vw; 
-    
-  }
-  .left{
-    left: 8vw;
-    width: 22vw;
-  }
-  .right{
-    right: 8vw;
-    width: 22vw;
-  }
+
+.repe {
+
+  background-image: url("../assets/cartaDorso.png");
+  background-repeat: no-repeat;
+  /* background-position: left; */
+  background-size: 100%;
+  padding-top: 2%;
+  padding-right: 1%;
+  
 }
 
 
-/* Ajuste de css segun el alto de la pantalla */
 
-@media (max-height: 376px){
-  .center{ 
-    bottom: 15vh; 
-    height: 30vh; 
-    
-  }
-  .left{
-    bottom: 12vh;
-    height: 30vh;
-  }
-  .right{
-    bottom: 12vh;
-    height: 30vh;
-  }
-  @keyframes levitate {
-    from {
-        bottom: 17vh; 
-    }
-    to {
-        bottom: 13vh;
-    }  
-  }
-}
-
-@media (min-height: 376px) and (max-height: 530px){
-  .center{ 
-    bottom: 20vh; 
-    height: 28vh; 
-  }
-  .left{
-    bottom: 12vh;
-    height: 28vh;
-  }
-  .right{
-    bottom: 12vh;
-    height: 28vh;
-  }
-  @keyframes levitate {
-    from {
-        bottom: 22vh; 
-    }
-    to {
-        bottom: 18vh;
-    }  
-  }
-}
-@media (min-height: 530px) and (max-height: 641px){
-  .center{ 
-    bottom: 30vh; 
-    height: 30vh; 
-    
-  }
-  .left{
-    bottom: 25vh;
-    height: 30vh;
-  }
-  .right{
-    bottom: 25vh;
-    height: 30vh;
-  }
-  @keyframes levitate {
-    from {
-        bottom: 32vh; 
-    }
-    to {
-        bottom: 28vh;
-    }  
-  }
-}
-
-@media (min-height: 641px) and (max-height: 741px){
-  .center{ 
-    bottom: 30vh; 
-    height: 30vh; 
-    
-  }
-  .left{
-    bottom: 25vh;
-    height: 26vh;
-  }
-  .right{
-    bottom: 25vh;
-    height: 26vh;
-  }
-  @keyframes levitate {
-    from {
-        bottom: 32vh; 
-    }
-    to {
-        bottom: 28vh;
-    }  
-  }
-}
-@media (min-height: 741px) and (max-height: 861px){
-  .center{ 
-    bottom: 35vh; 
-    height: 35vh; 
-    
-  }
-  .left{
-    bottom: 30vh;
-    height: 25vh;
-  }
-  .right{
-    bottom: 30vh;
-    height: 25vh;
-  }
-  @keyframes levitate {
-    from {
-        bottom: 37vh; 
-    }
-    to {
-        bottom: 33vh;
-    }  
-  }
-}
-@media (min-height: 861px) and (max-height: 1030px){ 
-  .center{ 
-    bottom: 30vh; 
-    height: 32vh; 
-    
-  }
-  .left{
-    bottom: 27vh;
-    height: 25vh;
-  }
-  .right{
-    bottom: 27vh;
-    height: 25vh;
-  }
-  @keyframes levitate {
-    from {
-        bottom: 32vh; 
-    }
-    to {
-        bottom: 28vh;
-    }  
-  }
-}
-@media (min-height: 1030px) and (max-height: 1200px){ 
-  .center{ 
-    bottom: 35vh; 
-    height: 32vh; 
-    
-  }
-  .left{
-    bottom: 35vh;
-    height: 24vh;
-  }
-  .right{
-    bottom: 35vh;
-    height: 24vh;
-  }
-  @keyframes levitate {
-    /* from {
-        bottom: 32vh; 
-    }
-    to {
-        bottom: 28vh;
-    }   */
-  }
-}
-@media (min-height: 1200px) and (max-height: 1550px){ 
-  .center{ 
-    bottom: 30vh; 
-    height: 35vh; 
-    
-  }
-  .left{
+@media ((min-width: 1280px) and (max-width: 1920px)) and ((min-height: 720px) and (max-height: 1080px)) {
+  .center {
     bottom: 29vh;
-    height: 25vh;
   }
-  .right{
+  .left {
     bottom: 29vh;
-    height: 25vh;
+  }
+  .right {
+    bottom: 29vh;
   }
   @keyframes levitate {
     from {
-        bottom: 32vh; 
+      bottom: 31vh;
     }
     to {
-        bottom: 28vh;
-    }  
+      bottom: 27vh;
+    }
   }
 }
-@media (min-height: 1550px) and (max-height: 1750px){ 
-  .center{ 
-    bottom: 22vh; 
-    height: 32vh; 
-    
+
+@media ((min-width: 1920px) and (max-width: 2560px)) and ((min-height: 1080px) and (max-height: 1440px)) {
+  .center {
+    bottom: 29vh;
   }
-  .left{
-    bottom: 18vh;
-    height: 20vh;
+  .left {
+    bottom: 29vh;
   }
-  .right{
-    bottom: 18vh;
-    height: 20vh;
+  .right {
+    bottom: 29vh;
   }
   @keyframes levitate {
     from {
-        bottom: 24vh; 
+      bottom: 31vh;
     }
     to {
-        bottom: 20vh;
-    }  
+      bottom: 27vh;
+    }
   }
 }
-@media (min-height: 1750px) and (max-height: 1950px){ 
-  .center{ 
-    bottom: 22%; 
-    height: 32vh; 
-    
+
+@media ((min-width: 2560px) and (max-width: 3840px)) and ((min-height: 1440px) and (max-height: 2160px)) {
+  .center {
+    bottom: 29vh;
   }
-  .left{
-    bottom: 18vh;
-    height: 20vh;
+  .left {
+    bottom: 29vh;
   }
-  .right{
-    bottom: 18vh;
-    height: 20vh;
+  .right {
+    bottom: 29vh;
   }
   @keyframes levitate {
     from {
-        bottom: 24%; 
+      bottom: 31vh;
     }
     to {
-        bottom: 20%;
-    }  
+      bottom: 27vh;
+    }
   }
 }
-@media (min-height: 1950px) and (max-height: 2561px){ 
-  .center{ 
-    bottom: 35vh; 
-    height: 32vh; 
+
+@media screen {
+  @media (max-width: 720px) and (max-height: 1280px) {
+    .center {
+      left: 27vw;
+      bottom: 50vh;
+      width: 45vw;
+      height: auto;
+    }
+    .left {
+      left: 7vw;
+      bottom: 45vh;
+      width: 25vw;
+      height: auto;
+    }
+    .right {
+      right: 7vw;
+      bottom: 45vh;
+      width: 25vw;
+      height: auto;
+    }
     
-  }
-  .left{
-    bottom: 35vh;
-    height: 20vh;
-  }
-  .right{
-    bottom: 35vh;
-    height: 20vh;
-  }
-  @keyframes levitate {
-    /* from {
-        bottom: 24vh; 
-    }
-    to {
-        bottom: 20vh;
-    }   */
-  }
+.cartaColeccion {
+  width: 55%;
+  height: auto;
+  margin-bottom: 10%;
 }
-@media (min-height: 2561px) and (max-height: 3840px){ 
-  .center{ 
-    bottom: 22vh; 
-    height: 32vh; 
-    
-  }
-  .left{
-    bottom: 18vh;
-    height: 20vh;
-  }
-  .right{
-    bottom: 18vh;
-    height: 20vh;
-  }
-  @keyframes levitate {
-    from {
-        bottom: 24vh; 
+    @keyframes levitate {
+      from {
+        bottom: 52vh;
+      }
+      to {
+        bottom: 48vh;
+      }
     }
-    to {
-        bottom: 20vh;
-    }  
   }
-}
-@media (min-height: 3840px) and (max-height: 7680px){ 
-  .center{ 
-    bottom: 22vh; 
-    height: 32vh; 
-    
-  }
-  .left{
-    bottom: 18vh;
-    height: 20vh;
-  }
-  .right{
-    bottom: 18vh;
-    height: 20vh;
-  }
-  @keyframes levitate {
-    from {
-        bottom: 24vh; 
+
+  @media ((min-width: 720px ) and (max-width: 1080px)) and ((min-height: 1280px) and (max-height: 1920px)) {
+    .center {
+      left: 27vw;
+      bottom: 50vh;
+      width: 45vw;
+      height: auto;
     }
-    to {
-        bottom: 20vh;
-    }  
+    .left {
+      left: 7vw;
+      bottom: 45vh;
+      width: 25vw;
+      height: auto;
+    }
+    .right {
+      right: 7vw;
+      bottom: 45vh;
+      width: 25vw;
+      height: auto;
+    }
+
+    .cartaColeccion {
+      width: 55%;
+      height: auto;
+      margin-bottom: 10%;
+    }
+
+    @keyframes levitate {
+      from {
+        bottom: 52vh;
+      }
+      to {
+        bottom: 48vh;
+      }
+    }
   }
-}
+
+    @media ((min-width: 1080px ) and (max-width: 1440px)) and ((min-height: 1920px) and (max-height:2560px )) {
+      .center {
+        left: 27vw;
+        bottom: 40vh;
+        width: 45vw;
+      }
+      .left {
+        left: 2vw;
+        bottom: 35vh;
+        width: 28vw;
+      }
+      .right {
+        right: 2vw;
+        bottom: 35vh;
+        width: 28vw;
+      }
+
+      .cartaColeccion {
+        width: 55%;
+        height: auto;
+        margin-bottom: 10%;
+      }
+      @keyframes levitate {
+        from {
+          bottom: 42vh;
+        }
+        to {
+          bottom: 38vh;
+        }
+      }
+    }
+  }
+

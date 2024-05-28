@@ -124,9 +124,9 @@ class MercadoController extends Controller
         $mercado = Mercado::where('id_coleccion', $request->id_coleccion)->count();
         
         // si igual a 0 seguimos, si distinto de cero devolvemos un error
-        if($mercado){
-            return response()->json(['error' => 'Carta ya en venta'], 400); // con esto devuelvo un json con un mensaje de error y un codigo 400
-        }
+        // if($mercado){
+            // return response()->json(['error' => 'Carta ya en venta'], 400); // con esto devuelvo un json con un mensaje de error y un codigo 400
+        // }
 
         // compruebo que el precio no sea negativo
         if($request->precio < 0){
@@ -138,13 +138,13 @@ class MercadoController extends Controller
             return response()->json(['error' => 'Cantidad no puede ser negativa'], 400); // con esto devuelvo un json con un mensaje de error y un codigo 400
         }
         // para saber si es mayor a la cantidad que tiene el usuario, necesito hacer un select * from coleccion where id = $request->id_coleccion, mirar columna cantidad
-        if($request->cantidad > 0){
-            // SELECT cantidad FROM coleccion WHERE id = $request->id_coleccion;
-            $cantidad = Coleccion::select('cantidad')->where('id', $request->id_coleccion)->get();
-            if($request->cantidad > $cantidad){
-                return response()->json(['error' => 'Cantidad no puede ser mayor a la cantidad que tiene el usuario'], 400); // con esto devuelvo un json con un mensaje de error y un codigo 400
-            }
-        }
+        // if($request->cantidad > 0){
+        //     // SELECT cantidad FROM coleccion WHERE id = $request->id_coleccion;
+        //     $tope = Coleccion::select('cantidad')->where('id', $request->id_coleccion)->get();
+        //     if($request->cantidad > $tope){
+        //         return response()->json(['error' => 'Cantidad no puede ser mayor a la cantidad que tiene el usuario'], 400); // con esto devuelvo un json con un mensaje de error y un codigo 400
+        //     }
+        // }
 
         // Finalmente ya hechas las compobaciones, inserto en la tabla mercado, una tupla por cada numero en 'cantidad'
         for($i = 0; $i < $request->cantidad; $i++){

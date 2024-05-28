@@ -1,238 +1,64 @@
-/* 
-div {
-  border: 2px solid white;
-} */
-body {
-  background-color: #181818;
-  /* background-image: url("../assets/fondoInicio.jpeg") ; */
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-}
-
-@media (max-width: 767px) {
-  body {
-    background-image: none;
-    background-color: #181818; 
-  }
-}
-
 .cont {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  border: 3px solid red;
+  height: 80vh;
 }
 .foco {
   display: flex;
   color: white;
   align-items: center;
+  width: 45vw;
+  height: 90%;
 }
 .ground {
-    position: absolute;
-    border-radius: 100%;
-    background: url("../assets/suelo.jpg");
-    border-color: #ffffff;
+  position: absolute;
+  border-radius: 100%;
+  background: url("../assets/suelo.jpg");
+  border-color: #ffffff;
+  width: 35vw;
+  left: 32vw;
+  height: 40px;
+  bottom: 20%;
 }
 
-
-/* =====> Ajustes de pantallas en css segun el ancho <========== */
-
-@media  (max-width: 376px)  {
-  .foco {
-    width: 55vw;
-  }
-  .ground {
-    width: 45vw;
-    left: 27vw;
-  }
-} 
-@media (min-width: 376px) and (max-width: 480px)  {
-  .foco {
-    width: 50vw;
-  }
-  .ground {
-    width: 40vw;
-    left: 30vw;
-  }
-} 
-@media (min-width: 480px) and (max-width: 620px)  {
-  .foco {
-    width: 55vw;
-  }
-  .ground {
-    width: 45vw;
-    left: 27.5vw;
-  }
-} 
-@media (min-width: 620px) and (max-width: 820px){
-  .foco {
-    width: 50%;
-  }
-  .ground {
-    width: 40vw;
-    left: 30vw;
-  }
-}
-@media (min-width: 820px) and (max-width: 1025px){
-  .foco {
-    width: 45vw;
-  }
-  .ground {
-    width: 35vw;
-    left: 32vw;
-  }
-}
-@media (min-width: 1025px) and (max-width: 2160px){
-  .foco {
-    width: 40vw;
-  }
-  .ground {
-    width: 30vw;
-    left: 35vw;
-  }
-}
-
-@media (min-width: 2160px) and (max-width: 4320px){
-  .foco {
-    width: 45vw;
-  }
-  .ground {
-    width: 35vw;
-    left: 32vw;
-  }
-}
-
-/* =====> Ajustes de pantallas en css segun el alto <========== */
-
-@media (max-height: 376px){
-  .cont {
-    height: 60vh;
-  }
-  .foco {
-    height: 55vh;
-  }
+@media (max-width: 640px) and (max-height: 480px) {
   .ground {
     height: 40px;
     bottom: 2vh;
   }
 }
-@media (min-height: 376px) and (max-height: 530px){
-  .cont {
-    height: 70vh;
-  }
-  .foco {
-    height: 64vh;
-  }
+
+@media ((min-width: 640px) and (max-width: 960px)) and ((min-height: 480px) and (max-height: 540px)) {
   .ground {
-    height: 40px;
-    bottom: 2vh;
+    height: 33px;
+    bottom: 6vh;
   }
 }
-@media (min-height: 530px) and (max-height: 641px){
-  .cont {
-    height: 75vh;
-  }
-  .foco {
-    height: 65vh;
-  }
+
+@media ((min-width: 960px) and (max-width: 1280px)) and ((min-height: 540px) and (max-height: 720px)) {
   .ground {
-    height: 40px;
-    bottom: 10vh;
-  }
-}
-@media (min-height: 641px) and (max-height: 741px){
-  .cont {
-    height: 70vh;
-  }
-  .foco {
-    height: 65vh;
-  }
-  .ground {
-    height: 40px;
+    height: 33px;
     bottom: 15vh;
   }
 }
-@media (min-height: 741px) and (max-height: 861px){ 
-  .cont {
-    height: 70vh;
-  }
-  .foco {
-    height: 65vh;
-  }
-  .ground {
-    height: 40px;
-    bottom: 14vh;
-  }
-}
-@media (min-height: 861px) and (max-height: 1030px){ 
-  .cont {
-    height: 70vh;
-  }
-  .foco {
-    height: 65vh;
-  }
-  .ground {
-    height: 40px;
-    bottom: 19vh;
-  }
-}
-@media (min-height: 1030px) and (max-height: 1200px){ 
-  .cont {
-    height: 70vh;
-  }
-  .foco {
-    height: 65vh;
-  }
+
+@media ((min-width: 1280px) and (max-width: 1920px)) and ((min-height: 720px) and (max-height: 1080px)) {
   .ground {
     height: 45px;
-    bottom: 22vh;
+    bottom: 10vh;
   }
 }
-@media (min-height: 1200px) and (max-height: 1550px){ 
-  .cont {
-    height: 73vh;
-  }
-  .foco {
-    height: 69vh;
-  }
+@media ((width: 1280px) and (max-width: 1920px)) and ((min-height: 720px) and (max-height: 1080px)) {
   .ground {
-    height: 40px;
-    bottom: 19vh;
+    height: 45px;
+    bottom: 20vh;
   }
 }
-@media (min-height: 1550px) and (max-height: 1750px){ 
-  .cont {
-    height: 80vh;
-  }
+
+@media ((min-width: 2560px) and (max-width: 3840px)) and ((min-height: 1440px) and (max-height: 2160px)) {
   .foco {
-    height: 70vh;
-  }
-  .ground {
-    height: 40px;
-    bottom: 12vh;
-  }
-}
-@media (min-height: 1750px) and (max-height: 1950px){ 
-  .cont {
-    height: 80vh;
-  }
-  .foco {
-    height: 70vh;
-  }
-  .ground {
-    height: 40px;
-    bottom: 12vh;
-  }
-}
-@media (min-height: 1950px) and (max-height: 2561px){ 
-  .cont {
-    height: 80vh;
-  }
-  .foco {
+    width: 65vw;
     height: 75vh;
   }
   .ground {
@@ -240,69 +66,85 @@ body {
     bottom: 15vh;
   }
 }
-@media (min-height: 2561px) and (max-height: 3840px){ 
-  .cont {
-    height: 80vh;
-  }
-  .foco {
-    height: 70vh;
-  }
-  .ground {
-    height: 40px;
-    bottom: 12vh;
-  }
-}
-@media (min-height: 3840px) and (max-height: 7680px){ 
-  .cont {
-    height: 80vh;
-  }
-  .foco {
-    height: 70vh;
-  }
-  .ground {
-    height: 40px;
-    bottom: 12vh;
-  }
-}
-
-
 
 /*Foco y color del suela para las cartas comunes*/
 .comun {
   background: radial-gradient(
-    40% 150% at 50% 100%, /*los dos primeros porcentajes son el ancho y alto del degradado y los segundos el punto central de este*/
-    #FFFFFF 0%, /*Color central del degradado y el tamaño de su centro*/
-    transparent 95%  /*Color externo del degradado y desde donde empieza con respecto al centro*/
+    40% 150% at 50% 100%,
+    /*los dos primeros porcentajes son el ancho y alto del degradado y los segundos el punto central de este*/
+      #ffffff 0%,
+    /*Color central del degradado y el tamaño de su centro*/ transparent 95%
+      /*Color externo del degradado y desde donde empieza con respecto al centro*/
   );
 }
-.comun-ground{
-    /*Sombra externa e interna del suelo, los datos antes de la coma se refieren a las dimensiones y color de la sombra exterior 
+.comun-ground {
+  /*Sombra externa e interna del suelo, los datos antes de la coma se refieren a las dimensiones y color de la sombra exterior 
     y mediante la "inset" se especifica la sombra por dentro */
-    box-shadow: 0px 0px 50px #FFFFFF, inset 0px 0px 50px #FFFFFF;
+  box-shadow: 0px 0px 50px #ffffff, inset 0px 0px 50px #ffffff;
 }
 
 /* Foco y color de suelo para cartas raras */
 .rara {
-    background: radial-gradient(
-        40% 150% at 50% 100%, /*los dos primeros porcentajes son el ancho y alto del degradado y los segundos el punto central de este*/
-        #FFB800 0%, /*Color central del degradado y el tamaño de su centro*/
-        transparent 95%  /*Color externo del degradado y desde donde empieza con respecto al centro*/
-      );
-}   
-.rara-ground{
-    
-    box-shadow: 0px 0px 50px #FFB800, inset 0px 0px 50px #FFB800;
+  background: radial-gradient(
+    40% 150% at 50% 100%,
+    /*los dos primeros porcentajes son el ancho y alto del degradado y los segundos el punto central de este*/
+      #ffb800 0%,
+    /*Color central del degradado y el tamaño de su centro*/ transparent 95%
+      /*Color externo del degradado y desde donde empieza con respecto al centro*/
+  );
+}
+.rara-ground {
+  box-shadow: 0px 0px 50px #ffb800, inset 0px 0px 50px #ffb800;
 }
 
 /* Foco y color del suelo para cartas heroicas */
-.heroe { 
-    background: radial-gradient(
-    40% 150% at 50% 100%, /*los dos primeros porcentajes son el ancho y alto del degradado y los segundos el punto central de este*/
-    #54bfe1 0%, /*Color central del degradado y el tamaño de su centro*/
-    transparent 95%  /*Color externo del degradado y desde donde empieza con respecto al centro*/
+.heroe {
+  background: radial-gradient(
+    40% 150% at 50% 100%,
+    /*los dos primeros porcentajes son el ancho y alto del degradado y los segundos el punto central de este*/
+      #54bfe1 0%,
+    /*Color central del degradado y el tamaño de su centro*/ transparent 95%
+      /*Color externo del degradado y desde donde empieza con respecto al centro*/
   );
-} 
-.heroe-ground{
-    
-    box-shadow: 0px 0px 50px #54bfe1, inset 0px 0px 50px #52bcde;
 }
+.heroe-ground {
+  box-shadow: 0px 0px 50px #54bfe1, inset 0px 0px 50px #52bcde;
+}
+
+
+  @media screen and (max-width: 720px) and (max-height: 1280px) {
+    .foco {
+      width: 65vw;
+      height: 60vh;
+    }
+    .ground {
+      left: 27vw;
+      height: 70px;
+      width: 45vw;
+      bottom: 28vh;
+    }
+  }
+  @media screen and ((min-width: 720px ) and (max-width: 1080px)) and ((min-height: 1280px) and (max-height: 1920px)) {
+    .foco {
+      width: 65vw;
+    }
+    .ground {
+      left: 27vw;
+      height: 70px;
+      bottom: 28vh;
+    }
+  }
+
+  @media screen and ((min-width: 1080px ) and (max-width: 1440px)) and ((min-height: 1920px) and (max-height:2560px )) {
+    .foco {
+      width: 75vw;
+      height: 75vh;
+    }
+    .ground {
+      width: 50vw;
+      left: 25vw;
+      height: 100px;
+      bottom: 17vh;
+    }
+  }
+

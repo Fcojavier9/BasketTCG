@@ -20,6 +20,7 @@ class Mercado extends Model{
         'id_coleccion', // revisar
         'vendida',
         'precio',
+        'cantidad'
     ];
 }
 

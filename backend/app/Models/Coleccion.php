@@ -17,6 +17,7 @@ class Coleccion extends Model{
      *  */ 
     
     protected $fillable = [
+        'id',
         'id_usuario',
         'id_carta',
         'cantidad'

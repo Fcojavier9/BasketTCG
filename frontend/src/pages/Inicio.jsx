@@ -153,11 +153,11 @@ export const Inicio = () => {
     :(
         <div className="cont">
             {/* <p>Carta: {iCenter}</p> */}
-            <div className= {foco} >
+                <div className= {foco} >
+                <img src={cartasHeroe} alt="carta" className="left" onClick={toLeft}/> 
+                <img src={cartasHeroe} alt="carta" className="center"/> 
+                <img src={cartasHeroe} alt="carta" className="right" onClick={toRight}/> 
                 <div className={suelo}/>
-        <img src={cartasHeroe} alt="carta" className="center"/> 
-        <img src={cartasHeroe} alt="carta" className="right" onClick={toRight}/> 
-        <img src={cartasHeroe} alt="carta" className="left" onClick={toLeft}/> 
 
                 {/* <Carta 
                     carta={iCenter}
