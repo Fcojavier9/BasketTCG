@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useToken } from "../customHooks/useToken";
+import { LoadingCircle } from "../components/LoadingCircle";
 
 import "../styles/coleccion.css";
 import { Filtro } from "../components/Filtro";
@@ -27,39 +28,39 @@ export const Coleccion = ({ endPoint }) => {
   const [selectedCarard, setSelecCard] = useState();
   const [cantidad, setCantidad] = useState()
   const [coleccionId, setColeccionId] = useState()
-  const [search, setSearch] =useState([
-   
-  ]);
-  const [coleccion, setColeccion]= useState()
+  const [coleccion, setColeccion]= useState();
+
   const handleOpen = (selected, repes = 0, id) => {
     setSelecCard(selected);
     setCantidad(repes);
     setColeccionId(id);
     setOpen(true);
   };
+
   const handleClose = () => {
     setSelecCard('');
     setOpen(false);
   };
 
   const handlePage = (direction) => {
-    let pagina = page + direction;
-    setPage(pagina);
+     const newPage = page + direction;
+    setPage(newPage);
+    setFirst(newPage === 1 ? 1 : (12 * (newPage - 1)) + 1);
+    setLast(newPage === 1 ? 12 : (12 * (newPage - 1)) + 12);
   };
+
   const handleColeccion = async () => {
       setColeccion([])
       const token = localStorage.getItem("token");
       try {
-
-          let listado = []
           const { data, isLoading } = await fetchData(ENDPOINT_COLECCION, 'GET', token);
           data && setColeccion(data)
-
           setIsLoading(isLoading);
       } catch (error) {
           console.error("Error fetching data:", error);
       }
   }
+
   const handleUnlogued = async () => {
     setCartas([]);
 
@@ -72,8 +73,7 @@ export const Coleccion = ({ endPoint }) => {
       console.error("Error fetching data:", error);
     }
   };
-  
-  console.log("cartas", coleccion)
+
   useEffect(() => {
     const getData = async () => {
       await handleColeccion();
@@ -83,10 +83,9 @@ export const Coleccion = ({ endPoint }) => {
   }, [open]);
 
   useEffect(() => {
-    setFirst(page === 0 ? 1 : 12 * (page - 1) + 1);
-    setLast(page === 0 ? 12 : 12 * (page - 1) + 12);
-
+    
     if (cartas != undefined) {
+     
       let m = [];
       let l = [];
       let r = [];
@@ -102,20 +101,19 @@ export const Coleccion = ({ endPoint }) => {
       }
       m.push(l, r);
       setMostrar(m);
+
+      console.log("aaaa", first)
+      console.log("aaaa", last)
+      console.log("aaaa",page)
     }
-  }, [page, cartas]);
+  }, [first, cartas]);
 
   return (
     <>
-      {page === 0 ? (
+    { isLoading ||cartas === undefined ? (
+        <LoadingCircle sizeLoading={200} />
+      ): (
         <div>
-          <h1>PORTADA</h1>
-
-            <img src={flechaR} alt="siguiente" className="flechaR" onClick={() => handlePage(1)} />
-        </div>
-      ) : (
-        <div>
-          {/* <DataGrid /> */}
           <div className="coleccion">
             {page > 0 && (
                 <img
@@ -123,7 +121,7 @@ export const Coleccion = ({ endPoint }) => {
                   src={flechaL}
                   alt="anterior"
                   className="flechaL"
-                  onClick={() => handlePage(-1)}
+                  onClick={() =>page!=1 && handlePage(-1)}
                 />
             )}
 
@@ -135,9 +133,7 @@ export const Coleccion = ({ endPoint }) => {
                       {fila.map((card) => {
                         let c = coleccion.find(entrada => entrada.carta === card?.id);
                         return (coleccion.some(elemento => elemento.carta === card?.id)) ? (
-                          console.log('adfasfa',c),
-                          <Carta carta={card} estilo={(c.cantidad>1)?"cartaColeccion repe":"cartaColeccion"} accion={()=>handleOpen(card, c.cantidad, c.id)}/> 
-                          
+                          <img src={`src/${card?.img_url}`} className={(c.cantidad>1)?"cartaColeccion repe":"cartaColeccion"} onClick={()=>handleOpen(card, c.cantidad, c.id)}/> 
                         ):
                         <img src={cartaDorso} className="cartaColeccion dorso" ></img>
                       })}
@@ -146,16 +142,13 @@ export const Coleccion = ({ endPoint }) => {
                 </div>
               ))}
             </div>
-
-            {page < Math.ceil(cartas?.length / 12) && (
                 <img
                  className="flechaR"
                   src={flechaR}
                   alt="siguiente"
-                  onClick={() => handlePage(1)}
+                  onClick={() => page < Math.ceil(cartas?.length / 12) && handlePage(1)}
                 />
-              
-            )}
+
           </div>
           <CartaModal
             carta={selectedCarard}
@@ -166,6 +159,7 @@ export const Coleccion = ({ endPoint }) => {
           />
         </div>
       )}
+        
     </>
   );
 };
