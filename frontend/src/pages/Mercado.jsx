@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/Mercado.css";
+import "../styles/mercado.css";
 import { Carta } from "../components/Carta";
 import { fetchData } from "../helpers/fetchData";
 import cartaComun from "../assets/cartaComun.png";

@@ -1,4 +1,4 @@
-import "../styles/FondoEstrellas.css";
+import "../styles/fondoEstrellas.css";
 
 export const FondoEstrellas = () => {
     return (
