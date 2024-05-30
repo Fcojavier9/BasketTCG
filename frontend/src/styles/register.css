@@ -1,4 +1,4 @@
-h1 {
+.h1-class-register {
   text-align: center;
   margin-bottom: 20px;
 }
@@ -10,7 +10,7 @@ h1 {
   align-items: center;
 }
 
-.form-container {
+.form-container-register {
   background-image: url("../assets/cancha_baloncesto.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -25,28 +25,28 @@ h1 {
   text-shadow: 2px 2px 2px rgb(0, 0, 0);
 }
 
-.input-container {
+.input-container-register {
   margin-bottom: 20px;
 }
 
-.input-container label {
+.input-container-register label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-.input-container input {
+.input-container-register input {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
 
-.button-container {
+.button-container-register {
   text-align: center;
 }
 
-.button-container button {
+.button-container-register button {
   padding: 10px 20px;
   border-radius: 5px;
   border: 1px solid black;
@@ -57,7 +57,7 @@ h1 {
   transition: background-color 0.3s ease; /* tiempo que tarda en cambiar de color */
 }
 
-.button-container button:hover {
+.button-container-register button:hover {
   font-weight: bold;
   background-image: linear-gradient(to right, #df4b05 0%, #f35a0e  51%, #df4b05  100%); /* Cambio de color al pasar el cursor */
 }
@@ -75,7 +75,7 @@ h1 {
   }
 }
 
-.basketball {
+.basketball-register {
   animation: bounce 1s infinite; /* La animación se repite infinitamente */
 }
 

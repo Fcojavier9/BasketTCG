@@ -5,7 +5,7 @@ import "../styles/footer.css"; // importamos css personalizado
 export const Footer = () => {
     return (
     <div className="container-fluid footer-container">
-        <footer className="row py-2 align-items-center">
+        <footer className="row py-2 align-items-center footer-class-footer">
             <div className="col-md-3 col-xs-12 footer-col-1">
                 <div className="d-flex align-items-end footer-brand">
                     <NavLink to="/" className="navbar-brand" href="#">

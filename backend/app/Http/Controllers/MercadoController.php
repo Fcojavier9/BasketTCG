@@ -146,13 +146,20 @@ class MercadoController extends Controller
         //     }
         // }
 
+        $array = [];
         // Finalmente ya hechas las compobaciones, inserto en la tabla mercado, una tupla por cada numero en 'cantidad'
         for($i = 0; $i < $request->cantidad; $i++){
-            return Mercado::create([ //arreglo asociativo
+            array_push($array, Mercado::create([ //arreglo asociativo
                 'id_coleccion' => $request->id_coleccion,
                 'vendida' => false,
                 'precio' => $request->precio
-            ]); // con esto hago un insert into mercado (id_coleccion, id_usuario, precio, vendida) values ($request->id_coleccion, $request->id_usuario, $request->precio, false)
+            ])); // con esto hago un insert into mercado (id_coleccion, id_usuario, precio, vendida) values ($request->id_coleccion, $request->id_usuario, $request->precio, false)
+        }
+
+        if($array){
+            return $array;
+        }else{
+            return response()->json(['error' => 'Error al poner la carta en venta'], 500); // con esto devuelvo un json con un mensaje de error y un codigo 500
         }
 
     }

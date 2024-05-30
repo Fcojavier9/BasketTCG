@@ -62,7 +62,6 @@ export const Admin = () => {
     setIsLoadingData(true);
     const endpoint_delete = `${ENDPOINT_DELETE}${id}`;
     const { data } = await fetchData(endpoint_delete, METODO_DELETE, TOKEN);
-    console.log(data);
     setId();
     handleExit();
   };
@@ -92,7 +91,7 @@ export const Admin = () => {
     />
   ) : (
     //Aqui me quedo
-    <div className="panel">
+    <div className="panel-admin">
       <div className="admin-panel">
         {currentItems.map((dato) => (
           <InfoCard

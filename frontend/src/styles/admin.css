@@ -18,7 +18,7 @@
     border: 5px solid #ffffff;
   }
 
-.panel {
+.panel-admin {
   margin: 2em 1em 2em 1em;
   padding: 20px;
   width: 90%;
@@ -32,7 +32,7 @@
 }
 
 @media (min-width: 1024px) {
-  .panel {
+  .panel-admin {
     margin-left: 15em;
     padding: 20px;
     width: 60%;

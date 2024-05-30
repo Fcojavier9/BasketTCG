@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 
 export const useToken = () => {
   const [token, setToken] = useState(null);
+  const [isLoadingToken, setIsLoadingToken] = useState(false);
   const [isValidToken, setIsValidToken] = useState(false);
   const location = useLocation();
 
@@ -12,6 +13,7 @@ export const useToken = () => {
   const validateToken = async (storedToken) => {
     // Verificar si hay un token almacenado
     if (storedToken) {
+      setIsLoadingToken(true);
       setToken(storedToken);
       try {
         const response = await fetch("http://localhost:8200/usuarios", {
@@ -32,18 +34,20 @@ export const useToken = () => {
         console.error("Error al validar el token:", error);
         // Manejar el error de manera adecuada, por ejemplo, configurando un estado de error
         setIsValidToken(false);
+      }finally{
+        setIsLoadingToken(false);
       }
     } else {
       // No hay token almacenado
       setIsValidToken(false);
+      setIsLoadingToken(false);
     }
   };
 
-  
   useEffect(() => {
     validateToken(storedToken);
   }, [location]);
 
-  return { isValidToken, validateToken };
+  return { isValidToken, validateToken, isLoadingToken };
 };
 
