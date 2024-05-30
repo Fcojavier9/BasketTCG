@@ -73,18 +73,20 @@
   border-radius: 8px;
 }
 
-h1 {
+.titulo-principal-noticias {
+  display: flex;
+  justify-content: center;
   margin-top: 1em;
   color: #ffffff;
 }
 
-h5 {
+.fecha-noticias {
   display: flex;
   justify-content: center;
   color: black;
 }
 
-a {
+.title-noticias {
   font-size: 2em;
   text-decoration: none;
   font-family: 'titleNew', sans-serif;
@@ -96,11 +98,11 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+.title-noticias:hover {
   text-decoration: underline;
 }
 
-p {
+.descripcion-noticias {
   margin: 5px 0 0;
   color: black;
 }

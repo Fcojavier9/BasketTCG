@@ -5,10 +5,11 @@ import { Modal } from "../components/Modal";
 import { fetchData } from "../helpers/fetchData";
 import { LoadingCircle } from "../components/LoadingCircle";
 import "../styles/perfil.css";
-
+import { Navigate } from "react-router-dom";
 
 // Componente principal del panel de usuario
 export const Perfil = () => {
+  const PRECIO_SOBRE = 250;
   const ENDPOINT_GET = `usuario/${localStorage.getItem("id")}`;
   const METODO_GET = "GET";
   const ENDPOINT_PUT = `updateUsuario/${localStorage.getItem("id")}`;
@@ -21,12 +22,16 @@ export const Perfil = () => {
   const [username, setUsername] = useState("Usuario");
   const [email, setEmail] = useState("Correo");
   const [password, setPassword] = useState("*********");
+  const [user, setUser] = useState("");
+  const [sobres, setSobres] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [saldo, setSaldo] = useState(0);
+  const [toInicio, setToInicio] = useState(false);
   const [activeField, setActiveField] = useState("");
+  const [count, setCount] = useState(1);
 
   const openModal = (field) => {
     setActiveField(field);
@@ -40,10 +45,12 @@ export const Perfil = () => {
       const { data } = await fetchData(endPoint, metodo, token);
       setName(data.name);
       setUsername(data.username);
+      setUser(data.username);
       setEmail(data.email);
       setSaldo(data.saldo);
       setIsAdmin(data.is_admin);
       setIsLoadingData(false);
+      setSobres(data.sobres);
     };
 
     fetchDataUser(ENDPOINT_GET, METODO_GET, TOKEN);
@@ -94,6 +101,27 @@ export const Perfil = () => {
     handleExit();
   };
 
+  const cantidad = (valor) => {
+      if(valor.target.textContent === "+" && count*PRECIO_SOBRE < saldo-PRECIO_SOBRE){
+        setCount(count + 1);
+      }
+      if(valor.target.textContent === "-" && count > 1){
+        setCount(count - 1);
+      }
+  }
+
+  const comprarSobres = async () => {
+    const saldoRestante = saldo - count*PRECIO_SOBRE;
+    const body = {sobres: sobres + count, saldo: saldoRestante};
+    const { data } = await fetchData(ENDPOINT_PUT, METODO_PUT, TOKEN, body);
+    setSaldo(saldoRestante);
+    setToInicio(true);
+  }
+
+  if (toInicio){
+    return <Navigate to="/" /> 
+  }  
+
   return isLoading || isLoadingData ? (
     <div className="loading">
       <LoadingCircle sizeLoading={200}/>
@@ -107,9 +135,22 @@ export const Perfil = () => {
   ) : (
     <div className="panel">
       <div className="user-title">
-        <p>{`Bienvenido, ${username} 🎉`}</p>
+        <p>{`Bienvenido, ${user} 🎉`}</p>
         <p>{`Su saldo es: ${saldo}BP`}</p>
       </div>
+      <div className="panel-sobres">
+          <p className="cantidad-sobres">Comprar sobres: </p>
+          <button className="boton-menos"
+            onClick={cantidad}>
+            -
+          </button>
+          <p className="cantidad-sobres">{saldo < 250 ? "0" : count}</p>
+          <button className="boton-mas"
+            onClick={cantidad}>
+            +
+          </button>
+          <button className="boton-comprar" disabled={saldo < 250} onClick={comprarSobres}>{saldo < 250 ? "BP insuficientes" : "Comprar"}</button>
+        </div>
       <div className="user-panel">
         <InfoCard
           title="Nombre"

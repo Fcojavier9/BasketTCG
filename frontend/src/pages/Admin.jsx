@@ -21,7 +21,7 @@ export const Admin = () => {
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeField, setActiveField] = useState("");
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1); // para controlar la pagina
 
   const openModal = (nombre) => {
     setActiveField(nombre);
@@ -71,12 +71,12 @@ export const Admin = () => {
     setId(id);
   };
 
-  const handleChange = (event, value) => {
+  const handleChange = (event, value) => { // para modificar la pagina
     setPage(value);
   };
 
   // controlo la paginacion
-  const currentItems = datos.length > 0 && datos?.slice((page - 1) * 10, page * 10);
+  const currentItems = datos.length > 0 && datos?.slice((page - 1) * 10, page * 10); // para seccionar el array
 
   return isLoading || isLoadingData ? (
     <div className="loading">
@@ -93,7 +93,7 @@ export const Admin = () => {
     //Aqui me quedo
     <div className="panel-admin">
       <div className="admin-panel">
-        {currentItems.map((dato) => (
+        {currentItems.map((dato) => ( // pinto array
           <InfoCard
             key={dato.id}
             title={dato.name}

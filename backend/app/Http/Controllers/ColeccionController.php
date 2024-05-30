@@ -42,6 +42,18 @@ class ColeccionController extends Controller
         return $data? $data : response()->json(['error' => 'No se han encontrado datos'], 404);;
     }
 
+    // devolver id coleccion por usuario y carta
+    public function GetColeccionCarta($usuario, $carta){        
+        if(!intval($usuario)){ //se comprobara si el usuario se ha introducido por id o por su nombre de usuario y en el segundo caso se buscara su id
+            $usuario = $this->checkIfExists('username',$usuario, '\Usuarios')->id;
+        }
+
+        $coleccion = Coleccion::where("id_usuario",$usuario)->where("id_carta",$carta)->first(); // con esto hago un select * from coleccion where id = $id
+
+        //si la variable contiene datos se mostraran, de lo contrario se devolvera el error
+        return $coleccion ? $coleccion : response()->json(['error' => 'No se han encontrado datos'], 404);;
+    }
+
     /** 
      *  FUNCION POST
      */

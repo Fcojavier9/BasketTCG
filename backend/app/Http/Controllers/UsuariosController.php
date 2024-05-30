@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuarios;
+use App\Models\Coleccion;
 use Illuminate\Http\Request; // para poder usar el request en cualquier inserccion/actualizacion de bbdd
 
 class UsuariosController extends Controller
@@ -56,7 +57,7 @@ class UsuariosController extends Controller
             return $resultadoCheckPassword;
         };
 
-        return Usuarios::create([ //arreglo asociativo
+        $usuarioCreado = Usuarios::create([ //arreglo asociativo
             'username' => $request->username,
             'email' => $request->email,
             'name' => $request->name ? $request->name : null, // si no se envia name, se pone null
@@ -64,6 +65,17 @@ class UsuariosController extends Controller
             'saldo'=> ($request->saldo) ? $request->saldo : 500, // si no se envia saldo, se pone 500
             'img_url' => $request->img_url ? $request->img_url : "sin imagen" // si no se envia img_url, se pone null
         ]); // con esto hago un insert into users (username, name, password, img_url) values ($request->username, $request->name, $request->password, $request->img_url)
+    
+        $arrayColeccion = [];
+        for($i = 1; $i < 49; $i++){
+            array_push($arrayColeccion, Coleccion::create([ //arreglo asociativo
+                'id_usuario' => $usuarioCreado->id,
+                'id_carta' => $i,
+                'cantidad' => 0
+            ])); // con esto hago un insert into mercado (id_coleccion, id_usuario, precio, vendida) values ($request->id_coleccion, $request->id_usuario, $request->precio, false)
+        }
+
+        return [$usuarioCreado, $arrayColeccion];
     }
 
     

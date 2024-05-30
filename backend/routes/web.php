@@ -137,10 +137,17 @@ $router->group(
          */
 
         /**
-         * Mortar la coleccion del usuario
+         * Mostrar la coleccion del usuario
          */
         $router->get('/{usuario}/coleccion', [
             'uses'=> 'ColeccionController@GetColeccion'
+        ]);
+
+        /**
+         * Mostrar la coleccion del usuario
+         */
+        $router->get('/{usuario}/{carta}/coleccion', [
+            'uses'=> 'ColeccionController@GetColeccionCarta'
         ]);
 
         /**

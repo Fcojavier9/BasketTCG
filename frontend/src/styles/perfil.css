@@ -73,3 +73,69 @@
   }
 }
 
+.panel-sobres{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+  font-size: 20px;
+}
+
+.boton-menos{
+  background-color: #C34A4A;
+  color: white;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.boton-mas{
+  background-color: #0B41CB;
+  color: white;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.boton-comprar{
+  background-color: #f35a0e;
+  color: white;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.boton-menos:hover{
+  background-image: linear-gradient(to right, #C34A4A 0%, #b13f3f  51%, #C34A4A  100%);
+
+}
+
+.boton-mas:hover{
+  background-image: linear-gradient(to right, #0B41CB 0%, #0035ba  51%, #0B41CB  100%);
+
+}
+
+.boton-comprar:hover{
+  background-image: linear-gradient(to right, #f35a0e 0%, #d04301  51%, #f35a0e  100%);
+}
+
+.cantidad-sobres{
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em 0;
+}
+

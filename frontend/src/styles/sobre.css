@@ -1,0 +1,107 @@
+.sobre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 5em auto;
+}
+
+.sobre_carta {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.sobre_carta img:first-child {
+    width: 100%;
+    height: auto;
+}
+
+.sobre_carta.animate img:first-child {
+    animation: rotate180 2s forwards;
+}
+
+@keyframes rotate180 {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1) rotateY(90deg);
+    }
+}
+
+.sobre_carta.animate2 img:first-child {
+    animation: rotate180 2s forwards;
+}
+
+.confetti-explosion {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;  /* Asegura que esté por encima de la imagen del sobre */
+    pointer-events: none;
+}
+
+.confetti-explosion2 {
+    position: absolute;
+    top: -1em;
+    left: 5em;
+    width: 70%;
+    height: 70%;
+    z-index: 110;  /* Asegura que esté por encima de la imagen del sobre */
+    pointer-events: none;
+}
+
+/* Animación de la pelota de baloncesto */
+@keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .boton-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+  }
+
+  @media (max-width: 768px){
+    .saldo {
+        width: 100%;
+    }
+  }
+
+  .saldo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+  }
+
+  .boton-sobre {
+    animation: bounce 1s infinite; /* La animación se repite infinitamente */
+  }
+
+  .boton-sobre {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-image: linear-gradient(to right, #f35a0e 0%, #df4b05  51%, #f35a0e  100%);
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* tiempo que tarda en cambiar de color */
+  }
+  
+  .boton-sobre:hover {
+    font-weight: bold;
+    background-image: linear-gradient(to right, #df4b05 0%, #f35a0e  51%, #df4b05  100%); /* Cambio de color al pasar el cursor */
+  }
