@@ -62,10 +62,10 @@ const Noticias = () => {
           >
             <div className="noticia-content">
                 <h5>{formatFecha(noticia.publishedAt)}</h5>
-              <a href={noticia.url} target="_blank" rel="noopener noreferrer">
+              <a className="a-class-noticias" href={noticia.url} target="_blank" rel="noopener noreferrer">
                 {noticia.title}
               </a>
-              <p>{noticia.description ? noticia.description.replace(/Leer/g, '') : ''}<a href={noticia.url} className="enlace-leer"> ...</a></p>
+              <p className="p-class-noticias">{noticia.description ? noticia.description.replace(/Leer/g, '') : ''}<a href={noticia.url} className="enlace-leer a-class-noticias"> ...</a></p>
             </div>
             {noticia.urlToImage && (
               <img

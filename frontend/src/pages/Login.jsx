@@ -63,7 +63,7 @@ export const Login = () => {
     <div className="login">
       <div className="form-container">
         <form onSubmit={handleLogin}>
-          <h1 className="letra-borde">Log-in</h1>
+          <h1 className="letra-borde h1-class-login">Log-in</h1>
           <div className="input-container">
             <label className="letra-borde">
               Correo electrónico:

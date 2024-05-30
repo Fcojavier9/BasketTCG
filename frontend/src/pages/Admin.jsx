@@ -92,7 +92,7 @@ export const Admin = () => {
     />
   ) : (
     //Aqui me quedo
-    <div className="panel">
+    <div className="panel-admin">
       <div className="admin-panel">
         {currentItems.map((dato) => (
           <InfoCard
