@@ -117,11 +117,7 @@ export const CartaModal = ({
   const venta = () => {
     return  (
       <Box className="informacion">
-      {  (isLoading) ? (
-      <LoadingCircle sizeLoading={100} />
-    ) :  (
-    <div>
-    <Box className="texto">
+        <Box className="texto">
           <div className="linea">
             <p>Cantidad:</p>
             <NumberImput
@@ -177,8 +173,6 @@ export const CartaModal = ({
             VENDER
           </button>
         </Box>
-    </div>
-        )}
       </Box>
     );
   };
