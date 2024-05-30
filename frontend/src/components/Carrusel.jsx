@@ -5,7 +5,7 @@ import { fetchData } from "../helpers/fetchData";
 import { useToken } from "../customHooks/useToken";
 import { LoadingCircle } from "./LoadingCircle";
 
-export const Carrusel = () => {
+export const Carrusel = (isValidToken) => {
   const [cartas, setCartas] = useState([]);
   const [foco, setFoco] = useState();
   const [suelo, setSuelo] = useState();
@@ -19,7 +19,6 @@ export const Carrusel = () => {
   const [underLeft, setUnderLeft] = useState();
   const [underRight, setUnderRight] = useState();
 
-  const { isValidToken } = useToken();
   const [isLoading, setIsLoading] = useState(false);
   let token = null;
 
