@@ -86,7 +86,7 @@ export const Inicio = () => {
   }, [isValidToken]);
 
   useEffect(() => {
-    if (cartas != undefined) {
+    if (cartas) {
       setICenter(cartas[index]);
       setIRight(cartas[(index + 1) % cartas.length]);
       setILeft(cartas[(index + cartas.length - 1) % cartas.length]);
@@ -114,7 +114,7 @@ export const Inicio = () => {
 
 
   const toLeft = () => {
-    if (cartas !== undefined) {
+    if (cartas) {
       setIndex(() =>
         cartas?.indexOf(iLeft) === 0 ? cartas?.length - 1 : cartas.indexOf(iLeft)
       );
@@ -122,7 +122,7 @@ export const Inicio = () => {
   };
 
   const toRight = () => {
-    if (cartas !== undefined) {
+    if (cartas) {
       setIndex(() =>
         cartas.indexOf(iRight) === cartas.length ? 0 : cartas?.indexOf(iRight)
       );
@@ -131,7 +131,7 @@ export const Inicio = () => {
 
   return (
     <>
-      {foco === undefined || cartas === undefined ? (
+      {!foco || !cartas ? (
         <LoadingCircle sizeLoading={200} />
       ) : (
         <div className="cont">

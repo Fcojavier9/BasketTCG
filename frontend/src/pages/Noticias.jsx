@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../styles/noticias.css"; // Asegúrate de importar el archivo CSS
+import "../styles/noticias.css"; 
 import { LoadingCircle } from "../components/LoadingCircle";
 import { Pagination } from "@mui/material";
 
@@ -13,7 +13,7 @@ const Noticias = () => {
     const fetchNoticias = async () => {
       try {
         const response = await fetch(
-          "https://newsapi.org/v2/everything?q=baloncesto&language=es&sortBy=publishedAt&apiKey=d199ec6908a1461abc06a66e7117179c"
+          "https://newsapi.org/v2/everything?q=nba&language=es&sortBy=publishedAt&apiKey=d199ec6908a1461abc06a66e7117179c"
         );
         if (!response.ok) {
           throw new Error("Error al obtener las noticias");
@@ -53,7 +53,7 @@ const Noticias = () => {
 
   return (
     <div>
-      <h1>Últimas Noticias de Baloncesto</h1>
+      <h1 className="titulo-principal-noticias">Últimas Noticias de Baloncesto</h1>
       <ul className="noticias-list">
         {currentItems.map((noticia, index) => (
           <li
@@ -61,11 +61,11 @@ const Noticias = () => {
             className={`noticia-item ${index % 2 === 0 ? "leftImage" : "rightImage"}`}
           >
             <div className="noticia-content">
-                <h5>{formatFecha(noticia.publishedAt)}</h5>
-              <a className="a-class-noticias" href={noticia.url} target="_blank" rel="noopener noreferrer">
+              <h5 className="fecha-noticias">{formatFecha(noticia.publishedAt)}</h5>
+              <a href={noticia.url} target="_blank" rel="noopener noreferrer" className="title-noticias">
                 {noticia.title}
               </a>
-              <p className="p-class-noticias">{noticia.description ? noticia.description.replace(/Leer/g, '') : ''}<a href={noticia.url} className="enlace-leer a-class-noticias"> ...</a></p>
+              <p className="descripcion-noticias">{noticia.description ? noticia.description.replace(/Leer/g, '') : ''}<a href={noticia.url} className="enlace-leer"> ...</a></p>
             </div>
             {noticia.urlToImage && (
               <img

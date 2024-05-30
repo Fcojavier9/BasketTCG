@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import { InicioPage } from "./pages/InicioPage";
 import { Inicio } from "./pages/Inicio";
 import { Perfil } from "./pages/Perfil";
 import { Admin } from "./pages/Admin";

@@ -62,7 +62,6 @@ export const Admin = () => {
     setIsLoadingData(true);
     const endpoint_delete = `${ENDPOINT_DELETE}${id}`;
     const { data } = await fetchData(endpoint_delete, METODO_DELETE, TOKEN);
-    console.log(data);
     setId();
     handleExit();
   };

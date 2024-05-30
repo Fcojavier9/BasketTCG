@@ -51,18 +51,18 @@
   border-radius: 8px;
 }
 
-.h1-class-noticias {
+h1 {
   margin-top: 1em;
   color: #ffffff;
 }
 
-.h5-class-noticias {
+h5 {
   display: flex;
   justify-content: center;
   color: black;
 }
 
-.a-class-noticias {
+a {
   font-size: 2em;
   text-decoration: none;
 }
@@ -72,11 +72,11 @@
   text-decoration: none;
 }
 
-.a-class-noticias:hover {
+a:hover {
   text-decoration: underline;
 }
 
-.p-class-noticias {
+p {
   margin: 5px 0 0;
   color: black;
 }
