@@ -14,14 +14,18 @@ class MercadoController extends Controller
      *  FUNCIONES GET
      */
     // Devolver todas las cartas en venta (todas las entradas en mercado con vendida = false)
-    public function GetMercado(){
-        $cartas = Mercado::where('vendida', false)->get(); // con esto hago un select * from mercado where vendida = false
-        
-        if($cartas){
-            return $cartas;
+    public function GetMercado() {
+        try {
+            $result = DB::table('mercado')
+                ->join('coleccion', 'mercado.id_coleccion', '=', 'coleccion.id')
+                ->join('cartas', 'coleccion.id_carta', '=', 'cartas.id')
+                ->select('mercado.id as mercado_id', 'mercado.precio as precio', 'cartas.nombre as nombre', 'cartas.position as position', 'cartas.rarity as rarity', 'cartas.puntuacion as puntuacion', 'cartas.img_url as img_url')
+                ->where('mercado.vendida', '=', false)
+                ->get();
+            return response()->json($result);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error occurred: ' . $e->getMessage()], 500);
         }
-        
-        return response()->json(['error' => 'No se ha encontrado ninguna carta en venta en el mercado'], 404); // con esto devuelvo un json con un mensaje de error y un codigo 404
     }
 
     // Devolver entrada en el mercado por id

@@ -3,12 +3,26 @@ import "../styles/listaCartasMercado.css";
 import cartaComun from "../assets/cartaComun.png";
 import { fetchData } from "../helpers/fetchData";
 
+/*
+    Este es el tipo de contenido que puedes encontrar en el json de respuesta de la API
+     {
+        "mercado_id": 68,
+        "precio": 98,
+        "nombre": "Michael Jordan",
+        "position": "sg",
+        "rarity": "heroe",
+        "puntuacion": 100,
+        "img_url": "assets/cartas/48.png"
+    }, 
+*/
+
 const ENDPOINT_MERCADO = "/mercado";
 const ITEMS_PER_PAGE = 12;
 
 export const ListaCartasMercado = () => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [pageData, setPageData] = useState([]);
 
     useEffect(() => {
         const fetchDataFromEndpoint = async () => {
@@ -27,18 +41,11 @@ export const ListaCartasMercado = () => {
     useEffect(() => {
         const start = (currentPage - 1) * ITEMS_PER_PAGE;
         const end = start + ITEMS_PER_PAGE;
-        const pageData = data.slice(start, end);
-        console.log(pageData);
+        setPageData(data.slice(start, end));
     }, [data, currentPage]);
 
     const handleNextPage = () => {
-        const nextPage = currentPage + 1;
-        const start = (nextPage - 1) * ITEMS_PER_PAGE;
-        const end = start + ITEMS_PER_PAGE;
-        const nextPageData = data.slice(start, end);
-        if (nextPageData.length > 0) {
-            setCurrentPage(nextPage);
-        }
+        setCurrentPage((prevPage) => prevPage + 1);
     };
 
     const handlePrevPage = () => {
@@ -47,14 +54,16 @@ export const ListaCartasMercado = () => {
 
     return (
         <div className="lista-entradas-mercado">
-            <div className="entrada-mercado">
-                <img src={cartaComun} alt="Carta" />
-                <div className="entrada-mercado-info">
-                    <p className="entrada-mercado-nombre">Carta</p>
-                    <p className="entrada-mercado-precio">Precio€</p>
-                    <p className="entrada-mercado-boton">Ver más</p>
+            {pageData.map((item, index) => (
+                <div key={index} className="entrada-mercado">
+                    <img src={`src/${item.img_url}`} alt="Carta" />
+                    <div className="entrada-mercado-info">
+                        <p className="entrada-mercado-nombre">{item.nombre}</p>
+                        <p className="entrada-mercado-precio">{item.precio}€</p>
+                        <p className="entrada-mercado-boton">Ver más</p>
+                    </div>
                 </div>
-            </div>
+            ))}
             <button onClick={handlePrevPage}>Previous Page</button>
             <button onClick={handleNextPage}>Next Page</button>
         </div>
