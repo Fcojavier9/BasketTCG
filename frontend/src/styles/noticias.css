@@ -1,7 +1,29 @@
+@font-face {
+  font-family: 'newBody';
+  src: url('../assets/fonts/reach/Reach-FillItalic.ttf') ;
+}
+@font-face {
+  font-family: 'titleNew';
+  src: url('../assets/fonts/reach/Reach-Fill&OutlineItalic.ttf') ;
+}
+
+@font-face {
+  font-family: 'title';
+  src: url('../assets/fonts/reach/Reach-OutlineStamp.ttf') ;
+}
+
 .noticias-list {
   list-style-type: none;
 }
+.titulo-principal-noticias {
+  font-family: 'title', sans-serif;
 
+}
+
+.descripcion-noticias, .fecha-noticias{
+  font-family: 'newBody', sans-serif;
+
+}
 .noticia-item {
   display: flex;
   align-items: center;
@@ -65,6 +87,8 @@ h5 {
 a {
   font-size: 2em;
   text-decoration: none;
+  font-family: 'titleNew', sans-serif;
+
 }
 
 .enlace-leer {

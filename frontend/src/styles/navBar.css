@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'reach';
+    src: url('../assets/fonts/reach/Reach-Fill&OutlineStampItalic.ttf') ; 
+}
+
+@font-face {
+    font-family: 'userName';
+    src: url('../assets/fonts/reach/Reach-Fill.ttf') ;
+}
 .margin-left-auto { /* Clase para mover un elemento a la derecha */
     margin-left: auto;
 }
@@ -14,6 +23,9 @@
     cursor: pointer; /* Cambia el cursor al pasar el mouse */
     position: relative; /* Posición relativa para el efecto de borde */
     overflow: hidden; /* Oculta el desbordamiento */
+    font-family: "reach";
+
+    
 } 
 
 .nav-link:hover {

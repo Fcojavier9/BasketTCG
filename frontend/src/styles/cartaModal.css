@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'reachA';
+  src: url('../assets/fonts/reach/Reach-FillItalic.ttf') ;
+}
+@font-face {
+  font-family: 'reachB';
+  src: url('../assets/fonts/reach/Reach-Fill.ttf') ;
+}
+
+@font-face {
+  font-family: 'title';
+  src: url('../assets/fonts/reach/Reach-Fill&OutlineStamp.ttf') ;
+}
 .modal {
   display: flex;
   justify-content: center;
@@ -36,13 +49,23 @@
     flex-direction: row;
     justify-content: space-between;
     padding-inline: 10%;
+    color: white;
+    font-family: 'reachB', sans-serif;
+    letter-spacing: 2px;
+}
+.datos{
+  font-family: 'reachA', sans-serif;
+}
+
+.infoVenta{
+  color: white;
 }
 .texto{
     margin-top: 10%;
     font-size: 1.3em;
     /* border: 3px solid red; */
     margin-right: 10%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 15%;
     padding-top: 3%;
 }
@@ -52,7 +75,6 @@
   width: 55%;
   margin-left: 10%;
   padding-top: 5%;
-
   
 }
 
@@ -66,7 +88,9 @@
 
 .nombre{
     margin-top: 5%;
-    padding-left: 15%;
+    padding-left: 10%;
+    
+  font-family: 'title', sans-serif;
 }
 
 .vender, .cerrar{
@@ -78,6 +102,7 @@
     border-radius: 35%;
     padding: 3%;
     margin-right: 15%;
+    font-family: 'reach', sans-serif;
 }
 
 .vender:hover{

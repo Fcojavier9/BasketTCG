@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
-import { useToken } from "../customHooks/useToken";
+import { useCallback, useEffect, useState } from "react";
 import { LoadingCircle } from "../components/LoadingCircle";
 
 import "../styles/coleccion.css";
-import { Filtro } from "../components/Filtro";
-import { Carta } from "../components/Carta";
 import { fetchData } from "../helpers/fetchData";
 import flechaR from "../assets/flechaR.png";
 import flechaL from "../assets/flechaL.png";
@@ -49,7 +46,7 @@ export const Coleccion = ({ endPoint }) => {
     setLast(newPage === 1 ? 12 : (12 * (newPage - 1)) + 12);
   };
 
-  const handleColeccion = async () => {
+  const handleColeccion = useCallback(async () => {
       setColeccion([])
       const token = localStorage.getItem("token");
       try {
@@ -59,9 +56,9 @@ export const Coleccion = ({ endPoint }) => {
       } catch (error) {
           console.error("Error fetching data:", error);
       }
-  }
+  }, [ENDPOINT_COLECCION])
 
-  const handleUnlogued = async () => {
+  const handleUnlogued = useCallback(async () => {
     setCartas([]);
 
     try {
@@ -72,15 +69,17 @@ export const Coleccion = ({ endPoint }) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, [])
 
   useEffect(() => {
     const getData = async () => {
+      setIsLoading(true)
       await handleColeccion();
       await handleUnlogued();
+      setIsLoading(false)
     };
     getData();
-  }, [open]);
+  }, [handleUnlogued,handleColeccion]);
 
   useEffect(() => {
     
@@ -101,16 +100,13 @@ export const Coleccion = ({ endPoint }) => {
       }
       m.push(l, r);
       setMostrar(m);
-
-      console.log("aaaa", first)
-      console.log("aaaa", last)
-      console.log("aaaa",page)
     }
   }, [first, cartas]);
 
+
   return (
     <>
-    { isLoading ||cartas === undefined ? (
+    { isLoading ||!cartas || !coleccion ? (
         <LoadingCircle sizeLoading={200} />
       ): (
         <div>
@@ -128,14 +124,17 @@ export const Coleccion = ({ endPoint }) => {
             <div className="album">
               {mostrar.map((pagina) => (
                 <div className="pagina">
-                  {pagina.map((fila) => (
+                  {console.log(pagina)}
+                  {
+                  pagina.map((fila) => (
                     <div className="fila">
                       {fila.map((card) => {
-                        let c = coleccion.find(entrada => entrada.carta === card?.id);
-                        return (coleccion.some(elemento => elemento.carta === card?.id)) ? (
+                        let c = coleccion.find(entrada => entrada?.carta === card?.id);
+                        return ( c && c?.cantidad > 0) ? (
                           <img src={`src/${card?.img_url}`} className={(c.cantidad>1)?"cartaColeccion repe":"cartaColeccion"} onClick={()=>handleOpen(card, c.cantidad, c.id)}/> 
-                        ):
-                        <img src={cartaDorso} className="cartaColeccion dorso" ></img>
+                        ): (
+                          <img src={cartaDorso} className="cartaColeccion dorso" ></img>
+                        )
                       })}
                     </div>
                   ))}

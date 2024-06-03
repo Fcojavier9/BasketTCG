@@ -88,16 +88,16 @@ export const CartaModal = ({
       <Box className="informacion">
         <Box className="texto">
           <p className="linea">
-            <b>POSICION:</b> <span>{carta?.position}</span>
+            <b>POSICION:</b> <span className="datos">{carta?.position}</span>
           </p>
           <p className="linea">
-            <b>PUNTUACION:</b> <span>{carta?.puntuacion}</span>
+            <b>PUNTUACION:</b> <span className="datos">{carta?.puntuacion}</span>
           </p>
           <p className="linea">
-            <b>RAREZA:</b> <span>{carta?.rarity}</span>
+            <b>RAREZA:</b> <span className="datos">{carta?.rarity}</span>
           </p>
           <p className="linea">
-            <b>CANTIDAD:</b> <span>{cantidad}</span>
+            <b>CANTIDAD:</b> <span className="datos">{cantidad}</span>
           </p>
         </Box>
         <Box className="botones">
@@ -119,7 +119,7 @@ export const CartaModal = ({
       <Box className="informacion">
         <Box className="texto">
           <div className="linea">
-            <p>Cantidad:</p>
+            <p className="infoVenta">Cantidad:</p>
             <NumberImput
               onChange={(event, newValue) => handleCantidad(newValue)}
               defaultValue={1}
@@ -143,7 +143,7 @@ export const CartaModal = ({
           </div>
 
           <div className="linea">
-            <p>Precio:</p>
+            <p className="infoVenta">Precio:</p>
             <NumberImput
               onChange={(event, newValue) => handlePrecio(newValue)}
               className="number"
@@ -183,8 +183,8 @@ export const CartaModal = ({
         <Box className="caja">
           <Box className="datos">
             <Box className="principal">
-              <img src={`src/${carta?.img_url}`} className="imgModal" />
               <h2 className="nombre">{carta?.nombre}</h2>
+              <img src={`src/${carta?.img_url}`} className="imgModal" />
             </Box>
             {onSale ? venta() : info()}
           </Box>
