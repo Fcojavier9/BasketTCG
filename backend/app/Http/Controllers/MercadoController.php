@@ -19,7 +19,7 @@ class MercadoController extends Controller
             $result = DB::table('mercado')
                 ->join('coleccion', 'mercado.id_coleccion', '=', 'coleccion.id')
                 ->join('cartas', 'coleccion.id_carta', '=', 'cartas.id')
-                ->select('mercado.id as mercado_id', 'mercado.precio as precio', 'cartas.nombre as nombre', 'cartas.position as position', 'cartas.rarity as rarity', 'cartas.puntuacion as puntuacion', 'cartas.img_url as img_url')
+                ->select('mercado.id as mercado_id', 'mercado.precio as precio', 'cartas.nombre as nombre', 'cartas.position as position', 'cartas.rarity as rarity', 'cartas.puntuacion as puntuacion', 'cartas.img_url as img_url', 'coleccion.id_usuario as id_usuario')
                 ->where('mercado.vendida', '=', false)
                 ->get();
             return response()->json($result);

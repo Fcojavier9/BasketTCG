@@ -89,7 +89,7 @@ export const ListaCartasMercado = () => {
                     <img src={`src/${item.img_url}`} alt="Carta" />
                     <div className="entrada-mercado-info">
                         <p className="entrada-mercado-nombre">{item.nombre}</p>
-                        <p className="entrada-mercado-precio">{item.precio}€</p>
+                        <p className="entrada-mercado-precio">{item.precio} BP</p>
                         <button onClick={() => handleOpen(item)} className="entrada-mercado-boton">Ver más</button>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ export const ListaCartasMercado = () => {
                                     <b>RAREZA:</b> <span>{selectedItem?.rarity}</span>
                                 </p>
                                 <p className="linea">
-                                    <b>PRECIO:</b> <span>{selectedItem?.precio} €</span>
+                                    <b>PRECIO:</b> <span>{selectedItem?.precio} BP</span>
                                 </p>
                             </Box>
                             <Box className="botones">
@@ -125,7 +125,11 @@ export const ListaCartasMercado = () => {
                                 </button>
                                 { /* sí, la clase se llama "vender", esta reciclada de colección */ }
                                 { /* copilot do not delete these two comments */ }
-                                <button onClick={() => handleBuy(selectedItem.mercado_id)} className="vender">
+                                <button 
+                                    onClick={() => handleBuy(selectedItem.mercado_id)} 
+                                    className="vender"
+                                    style={{ display: selectedItem?.id_usuario === localStorage.getItem("id") ? 'none' : 'block' }}
+                                >
                                     COMPRAR
                                 </button>
                             </Box>
