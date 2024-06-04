@@ -34,4 +34,3 @@ class NoticiasController extends Controller
         return response()->json($noticias);
     }
 }
-?>

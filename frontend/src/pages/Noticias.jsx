@@ -62,5 +62,3 @@ return (
     </div>
   );
 };
-
-export default Noticias;

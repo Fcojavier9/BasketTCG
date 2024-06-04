@@ -30,5 +30,3 @@ export const useFetchNoticias = () => {
 
   return { noticias, loading, error };
 };
-
-export default useFetchNoticias;
