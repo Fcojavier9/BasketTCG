@@ -54,7 +54,7 @@
 
     .noticia-image {
         width: 100px;
-        height: 100px;
+        height: auto;
         margin: 1em;
         border-radius: 8px;
     }
@@ -67,7 +67,7 @@
 }
 
 .noticia-image {
-  width: 400px;
+  max-width: 200px;
   height: auto;
   margin: 1em;
   border-radius: 8px;
