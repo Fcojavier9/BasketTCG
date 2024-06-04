@@ -2,33 +2,12 @@ import { useState, useEffect } from "react";
 import "../styles/noticias.css"; 
 import { LoadingCircle } from "../components/LoadingCircle";
 import { Pagination } from "@mui/material";
+import { useFetchNoticias } from "../customHooks/useFetchNoticias";
 
-const Noticias = () => {
-  const [noticias, setNoticias] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export const Noticias = () => {
+  const { noticias, loading, error } = useFetchNoticias();
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    const fetchNoticias = async () => {
-      try {
-        const response = await fetch(
-          "https://newsapi.org/v2/everything?q=nba&language=es&sortBy=publishedAt&apiKey=d199ec6908a1461abc06a66e7117179c"
-        );
-        if (!response.ok) {
-          throw new Error("Error al obtener las noticias");
-        }
-        const data = await response.json();
-        setNoticias(data.articles);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
-    };
-
-    fetchNoticias();
-  }, []);
 
   const formatFecha = (fechaStr) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
@@ -51,7 +30,7 @@ const Noticias = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  return (
+return (
     <div>
       <h1 className="titulo-principal-noticias">Últimas Noticias de Baloncesto</h1>
       <ul className="noticias-list">

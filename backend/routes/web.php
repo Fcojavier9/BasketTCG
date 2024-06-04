@@ -254,5 +254,13 @@ $router->group(
         $router->delete('/mercado/{id}', [
             'uses'=> 'MercadoController@DeleteMercado'
         ]);
+        
+        /**
+         *                                          NOTICIAS
+         */
+
+        $router->get('/noticias', [
+            'uses'=> 'NoticiasController@GetNoticias'
+        ]);
 
 });

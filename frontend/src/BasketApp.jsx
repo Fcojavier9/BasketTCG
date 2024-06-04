@@ -10,7 +10,7 @@ import './basketApp.css';
 import { Coleccion } from "./pages/Coleccion";
 import { Mercado } from "./pages/Mercado";
 import { FondoEstrellas } from "./components/FondoEstrellas";
-import Noticias from "./pages/Noticias";
+import { Noticias } from "./pages/Noticias";
 
 export const BasketApp = () => {
   return (
