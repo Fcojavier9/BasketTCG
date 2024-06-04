@@ -255,9 +255,4 @@ $router->group(
             'uses'=> 'MercadoController@DeleteMercado'
         ]);
 
-        /**
-         *                                          FETCH NOTICIAS
-         */
-
-        $router->get('/fetchNoticias', 'NoticiasController@fetchNoticias');
 });
