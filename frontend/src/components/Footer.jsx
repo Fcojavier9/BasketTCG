@@ -8,7 +8,7 @@ export const Footer = () => {
         <footer className="row py-2 align-items-center footer-class-footer">
             <div className="col-md-3 col-xs-12 footer-col-1">
                 <div className="d-flex align-items-end footer-brand">
-                    <NavLink to="/" className="navbar-brand" href="#">
+                    <NavLink to="/" className="navbar-brand">
                         <img src={logo} alt="logo" className="image-logo" />
                     </NavLink>
                     <h4>BasketTCG</h4>
@@ -23,24 +23,24 @@ export const Footer = () => {
                 <div className="row row-cols-3">
                     <div className="col footer-col">
                         <ul className="nav flex-column">
-                            <li className="nav-item custom-footer-item"><a href="#" className="footer-link">Colección</a></li>
-                            <li className="nav-item custom-footer-item"><a href="#" className="footer-link">Mercado</a></li>
-                            <li className="nav-item custom-footer-item"><a href="#" className="footer-link">Noticias</a></li>
+                            <li className="nav-item custom-footer-item"><a href="/coleccion" className="footer-link">Colección</a></li>
+                            <li className="nav-item custom-footer-item"><a href="/mercado" className="footer-link">Mercado</a></li>
+                            <li className="nav-item custom-footer-item"><a href="/noticias" className="footer-link">Noticias</a></li>
                         </ul>
                     </div>
 
                     <div className="col footer-col">
                         <ul className="nav flex-column">
-                            <li className="nav-item custom-footer-item"><a href="#" className="footer-link">Código fuente</a></li>
-                            <li className="nav-item custom-footer-item"><a href="#" className="footer-link">Documentación</a></li>
-                            <li className="nav-item custom-footer-item"><a href="#" className="footer-link">Licencia</a></li>
+                            <li className="nav-item custom-footer-item"><a href="/" className="footer-link">Código fuente</a></li>
+                            <li className="nav-item custom-footer-item"><a href="/" className="footer-link">Documentación</a></li>
+                            <li className="nav-item custom-footer-item"><a href="/" className="footer-link">Licencia</a></li>
                         </ul>
                     </div>
                     <div className="col footer-col">
                         <ul className="nav flex-column">
-                            <li className="nav-item custom-footer-item"><a href="#" className="footer-link">Perfil</a></li>
-                            <li className="nav-item custom-footer-item"><a href="#" className="footer-link">Inicio</a></li>
-                            <li className="nav-item custom-footer-item"><a href="#" className="footer-link">Legal</a></li>
+                            <li className="nav-item custom-footer-item"><a href="/perfil" className="footer-link">Perfil</a></li>
+                            <li className="nav-item custom-footer-item"><a href="/" className="footer-link">Inicio</a></li>
+                            <li className="nav-item custom-footer-item"><a href="/" className="footer-link">Legal</a></li>
                         </ul>
                     </div>
                 </div>

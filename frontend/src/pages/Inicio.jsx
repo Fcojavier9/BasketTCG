@@ -37,7 +37,7 @@ export const Inicio = () => {
   console.log(isValidToken)
   return (
     <>
-      {/* {isValidToken
+      {isValidToken
         ? ( numSobres > 0 
             ? (
             <div className="contenedor-sobres">
@@ -47,10 +47,10 @@ export const Inicio = () => {
             ) : (
               <Carrusel isValidToken={isValidToken}/>
             )
-        ) : ( */}
+        ) : (
           <Carrusel isValidToken={isValidToken}/>
-        {/* )
-      } */}
+        )
+      }
     </>
   )
 };

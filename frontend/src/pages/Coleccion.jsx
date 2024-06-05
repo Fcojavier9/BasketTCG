@@ -8,10 +8,11 @@ import flechaL from "../assets/flechaL.png";
 import { CartaModal } from "../components/CartaModal";
 import cartaDorso from "../assets/cartaDorso.png";
 
-const ENDPOINT_COLECCION = localStorage.getItem("id") + "/coleccion";
-const token = localStorage.getItem("token");
+
 
 export const Coleccion = () => {
+  const ENDPOINT_COLECCION = localStorage.getItem("id") + "/coleccion";
+  const token = localStorage.getItem("token");
   const [first, setFirst] = useState(1);
   const [last, setLast] = useState(12);
   const [page, setPage] = useState(1);
@@ -49,7 +50,6 @@ export const Coleccion = () => {
 
   const handleColeccion = useCallback(async () => {
     setColeccion([]);
-    const token = localStorage.getItem("token");
     try {
       const { data, isLoading } = await fetchData(
         ENDPOINT_COLECCION,
@@ -128,7 +128,7 @@ export const Coleccion = () => {
                   {pagina.map((fila) => (
                     <div key={fila[0]?.id} className="fila">
                       {fila.map((card) => {
-                        let c = coleccion.find(
+                        let c = coleccion?.find(
                           (entrada) => entrada?.carta === card?.id
                         );
                         return c && c?.cantidad > 0 ? (

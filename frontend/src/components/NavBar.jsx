@@ -55,7 +55,7 @@ export const NavBar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
             <li className="nav-item order-lg-last margin-left-auto">
-              <NavLink to={isLogin ? "/perfil" : "/login" } className="nav-link nav-perfil active">
+              <NavLink to={isLogin ? "/perfil" : "/login" } className={isLogin ? "nav-link nav-perfil active" : "nav-link nav-perfil active is-not-login"}>
                 {isLoading 
                     ? "Cargando..."
                     : isLogin 
