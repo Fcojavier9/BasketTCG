@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import { useEffect, useState } from "react";
 import { Carrusel } from "../components/Carrusel";
-import { LoadingCircle } from "../components/LoadingCircle";
-import Sobre from "../components/Sobre";
-import { useToken } from "../customHooks/useToken";
-import { fetchData } from "../helpers/fetchData";
-import "../styles/inicio.css";
 import { LoadingCircle } from "../components/LoadingCircle";
 import Sobre from "../components/Sobre";
 import { useToken } from "../customHooks/useToken";
