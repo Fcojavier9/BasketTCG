@@ -13,6 +13,7 @@ export const CartaModal = ({
   handleClose,
   cantidad,
   coleccionId,
+  vendida
 }) => {
   const token = localStorage.getItem("token");
   const [onSale, setOnSale] = useState(false);
@@ -27,6 +28,10 @@ export const CartaModal = ({
   const handleCancel = () => {
     setOnSale(false);
   };
+  const handleCloseModal = () => {
+    onSale && handleCancel();
+    handleClose();
+  };
 
   const handleCantidad = (e) => {
     setCantidaVenta(e);
@@ -37,6 +42,7 @@ export const CartaModal = ({
 
   const sale = async () => {
     setIsLoading(true)
+    vendida(true)
     let load
     const body = {
       id_coleccion: coleccionId,
@@ -160,6 +166,7 @@ export const CartaModal = ({
                   className: "decremento",
                 },
               }}
+              defaultValue={5}
               min={1}
               max={999999}
             />
@@ -179,7 +186,7 @@ export const CartaModal = ({
 
   return (
     <div>
-      <Modal open={open} onClose={handleClose} className="modal">
+      <Modal open={open} onClose={handleCloseModal} className="modal">
         <Box className="caja">
           <Box className="datos">
             <Box className="principal">

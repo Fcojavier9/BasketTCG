@@ -1,3 +1,8 @@
+
+@font-face {
+  font-family: 'title';
+  src: url('../assets/fonts/reach/Reach-OutlineStamp.ttf') ;
+}
 .coleccion {
   display: flex;
   flex-direction: row;
@@ -19,6 +24,7 @@
   background-image: url("../assets/album.png");
   background-repeat: no-repeat;
   background-size: 100%;
+  margin-top: 5%;
   background-position: center;
 }
 
@@ -29,6 +35,12 @@
   height: 90%;
   justify-content: space-around;
   /* align-items: space-around; */
+}
+
+.pagNum{
+  text-align: center;
+  font-family: 'title';
+  font-size: 2em;
 }
 
 .fila {
@@ -64,10 +76,10 @@
 .flechaR{
   right: 0vw;
 }
-.flechaR:hover, .flechaL:hover {
+.pulse:hover {
   animation: pulse 1s infinite alternate;
 }
-.flechaR:hover, .flechaL:hover  {
+.flechaR:active, .flechaL:active  {
     filter: brightness(0.7);
     transform: scale(0.9);
   }
@@ -157,7 +169,7 @@
   .album {
     height: 65vh;
     width: 100%;
-    margin-bottom: 7% ;
+    margin-bottom: 2% ;
   }
   
   .pagina {

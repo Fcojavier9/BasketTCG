@@ -26,15 +26,17 @@ class ColeccionController extends Controller
            
           //se asigna el controlador a una variable y se usa el metodo get por id para mostrar el nombre de usuario en lugar del id y lo mismo para el nombre de la carta
         foreach($colecciones as $coleccion){
-            array_push($data, [
-                'id'=> $coleccion->id,
-                'Usuario' => $coleccion->id_usuario,
-                'Nombre de usuario'=> $this->checkIfExists('id',$usuario, '\Usuarios')->username,
-                'carta' => $coleccion->id_carta,
-                'Jugador' => $this->checkIfExists('id', $coleccion->id_carta, '\Cartas')->nombre,
-                'Imagen' => $this->checkIfExists('id', $coleccion->id_carta, '\Cartas')->img_url,
-                'cantidad' => $coleccion->cantidad
-            ]);
+            if($coleccion->cantidad > 0){
+                array_push($data, [
+                    'id'=> $coleccion->id,
+                    'Usuario' => $coleccion->id_usuario,
+                    'Nombre de usuario'=> $this->checkIfExists('id',$usuario, '\Usuarios')->username,
+                    'carta' => $coleccion->id_carta,
+                    'Jugador' => $this->checkIfExists('id', $coleccion->id_carta, '\Cartas')->nombre,
+                    'Imagen' => $this->checkIfExists('id', $coleccion->id_carta, '\Cartas')->img_url,
+                    'cantidad' => $coleccion->cantidad
+                ]);
+            }
 
         }
 

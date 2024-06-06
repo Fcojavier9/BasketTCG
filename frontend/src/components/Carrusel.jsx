@@ -5,13 +5,13 @@ import { fetchData } from "../helpers/fetchData";
 import { useToken } from "../customHooks/useToken";
 import { LoadingCircle } from "./LoadingCircle";
 
-export const Carrusel = (isValidToken) => {
+export const Carrusel = ({isValidToken}) => {
   const [cartas, setCartas] = useState([]);
   const [foco, setFoco] = useState();
   const [suelo, setSuelo] = useState();
   const [animatingR, setAnimatingR] = useState(false);
   const [animatingL, setAnimatingL] = useState(false);
-
+  const [all ,setAll] = useState([])
   const [index, setIndex] = useState(0);
   const [iCenter, setICenter] = useState();
   const [iLeft, setILeft] = useState();
@@ -24,12 +24,12 @@ export const Carrusel = (isValidToken) => {
 
   const ENDPOINT_COLECCION = `${localStorage.getItem("id")}/coleccion`;
 
-  const handleUnlogued = async () => {
+  const handleAllCartas = async () => {
     setCartas([]);
 
     try {
       const { data, isLoading } = await fetchData("cartas", "GET", token);
-      data ? setCartas(data.sort(() => Math.random() - 0.5)) : setCartas([]);
+      data && data ? setAll(data.sort(() => Math.random() - 0.5)) : setAll([]);
       setIsLoading(isLoading);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -37,24 +37,25 @@ export const Carrusel = (isValidToken) => {
   };
 
   const handleColeccion = async () => {
-    setCartas([]);
     const token = localStorage.getItem("token");
+    setCartas([]);
 
     try {
       let listado = [];
+
       const { data, isLoading } = await fetchData(
         ENDPOINT_COLECCION,
         "GET",
         token
       );
 
-      data.map(async (item) => {
-        const { data } = await fetchData(`carta/${item.carta}`, "GET", token);
+      data? data.map((item) => {
+        let c = all.find(card =>  card.id === item.carta)
 
-        listado.push(data);
-      });
-
+        c  && listado.push(c);
       listado && setCartas(listado);
+      }) : setCartas(all)
+
       setIsLoading(isLoading);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -67,11 +68,13 @@ export const Carrusel = (isValidToken) => {
   };
 
   useEffect(() => {
-    const fetchDataCartas = async () => {
-      isValidToken ? await handleColeccion() : await handleUnlogued();
-    };
-    fetchDataCartas();
-  }, [isValidToken]);
+   return async () => await handleAllCartas()
+  },[])
+
+  useEffect(() => {
+    const fetchDataCartas = async () => { await handleColeccion() };
+    isValidToken? fetchDataCartas() : setCartas(all)
+  }, [ENDPOINT_COLECCION,all, isValidToken]);
 
   useEffect(() => {
     if (cartas != undefined) {
@@ -82,7 +85,6 @@ export const Carrusel = (isValidToken) => {
       setUnderLeft(cartas[(index + cartas.length - 2) % cartas.length]);
     }
   }, [index, cartas]);
-
   useEffect(() => {
     switch (iCenter?.rarity) {
       case "heroe":

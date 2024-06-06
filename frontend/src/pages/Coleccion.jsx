@@ -6,26 +6,26 @@ import { fetchData } from "../helpers/fetchData";
 import flechaR from "../assets/flechaR.png";
 import flechaL from "../assets/flechaL.png";
 import { CartaModal } from "../components/CartaModal";
-import cartaDorso from "../assets/cartaDorso.png"
-// import {Modal} from
+import cartaDorso from "../assets/cartaDorso.png";
 
-const ENDPOINT_COLECCION = localStorage.getItem('id')+"/coleccion";
-const token = localStorage.getItem('token');
+const ENDPOINT_COLECCION = localStorage.getItem("id") + "/coleccion";
+const token = localStorage.getItem("token");
 
-export const Coleccion = ({ endPoint }) => {
+export const Coleccion = () => {
   const [first, setFirst] = useState(1);
   const [last, setLast] = useState(12);
   const [page, setPage] = useState(1);
   const [mostrar, setMostrar] = useState([[]]);
   const [cartas, setCartas] = useState();
+  const [vendida, setVendida] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
 
   const [open, setOpen] = useState(false);
   const [selectedCarard, setSelecCard] = useState();
-  const [cantidad, setCantidad] = useState()
-  const [coleccionId, setColeccionId] = useState()
-  const [coleccion, setColeccion]= useState();
+  const [cantidad, setCantidad] = useState();
+  const [coleccionId, setColeccionId] = useState();
+  const [coleccion, setColeccion] = useState();
 
   const handleOpen = (selected, repes = 0, id) => {
     setSelecCard(selected);
@@ -35,28 +35,33 @@ export const Coleccion = ({ endPoint }) => {
   };
 
   const handleClose = () => {
-    setSelecCard('');
+    setSelecCard("");
+    setVendida(false)
     setOpen(false);
   };
 
   const handlePage = (direction) => {
-     const newPage = page + direction;
+    const newPage = page + direction;
     setPage(newPage);
-    setFirst(newPage === 1 ? 1 : (12 * (newPage - 1)) + 1);
-    setLast(newPage === 1 ? 12 : (12 * (newPage - 1)) + 12);
+    setFirst(newPage === 1 ? 1 : 12 * (newPage - 1) + 1);
+    setLast(newPage === 1 ? 12 : 12 * (newPage - 1) + 12);
   };
 
   const handleColeccion = useCallback(async () => {
-      setColeccion([])
-      const token = localStorage.getItem("token");
-      try {
-          const { data, isLoading } = await fetchData(ENDPOINT_COLECCION, 'GET', token);
-          data && setColeccion(data)
-          setIsLoading(isLoading);
-      } catch (error) {
-          console.error("Error fetching data:", error);
-      }
-  }, [ENDPOINT_COLECCION])
+    setColeccion([]);
+    const token = localStorage.getItem("token");
+    try {
+      const { data, isLoading } = await fetchData(
+        ENDPOINT_COLECCION,
+        "GET",
+        token
+      );
+      data && setColeccion(data);
+      setIsLoading(isLoading);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }, [ENDPOINT_COLECCION, vendida]);
 
   const handleUnlogued = useCallback(async () => {
     setCartas([]);
@@ -64,27 +69,25 @@ export const Coleccion = ({ endPoint }) => {
     try {
       const { data, isLoading } = await fetchData("cartas", "GET", null);
       data ? setCartas(data) : setCartas([]);
-      
+
       setIsLoading(isLoading);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
       await handleColeccion();
       await handleUnlogued();
-      setIsLoading(false)
+      setIsLoading(false);
     };
     getData();
-  }, [handleUnlogued,handleColeccion]);
+  }, [handleUnlogued, handleColeccion]);
 
   useEffect(() => {
-    
     if (cartas != undefined) {
-     
       let m = [];
       let l = [];
       let r = [];
@@ -103,51 +106,65 @@ export const Coleccion = ({ endPoint }) => {
     }
   }, [first, cartas]);
 
-
   return (
     <>
-    { isLoading ||!cartas || !coleccion ? (
+      {isLoading || Math.ceil(cartas?.length / 12) == 0 || !coleccion ? (
         <LoadingCircle sizeLoading={200} />
-      ): (
+      ) : (
         <div>
           <div className="coleccion">
             {page > 0 && (
-                <img
-                  style={{ marginRight: "50%" }}
-                  src={flechaL}
-                  alt="anterior"
-                  className="flechaL"
-                  onClick={() =>page!=1 && handlePage(-1)}
-                />
+              <img
+                src={flechaL}
+                alt="anterior"
+                className={`flechaL ${page != 1 && "pulse"}`}
+                onClick={() => page != 1 && handlePage(-1)}
+              />
             )}
 
             <div className="album">
               {mostrar.map((pagina) => (
                 <div className="pagina">
-                  {console.log(pagina)}
-                  {
-                  pagina.map((fila) => (
-                    <div className="fila">
+                  {pagina.map((fila) => (
+                    <div key={fila[0]?.id} className="fila">
                       {fila.map((card) => {
-                        let c = coleccion.find(entrada => entrada?.carta === card?.id);
-                        return ( c && c?.cantidad > 0) ? (
-                          <img src={`src/${card?.img_url}`} className={(c.cantidad>1)?"cartaColeccion repe":"cartaColeccion"} onClick={()=>handleOpen(card, c.cantidad, c.id)}/> 
-                        ): (
-                          <img src={cartaDorso} className="cartaColeccion dorso" ></img>
-                        )
+                        let c = coleccion.find(
+                          (entrada) => entrada?.carta === card?.id
+                        );
+                        return c && c?.cantidad > 0 ? (
+                          <img
+                            key={card?.name}
+                            src={`src/${card?.img_url}`}
+                            className={
+                              c.cantidad > 1
+                                ? "cartaColeccion repe"
+                                : "cartaColeccion"
+                            }
+                            onClick={() => handleOpen(card, c.cantidad, c.id)}
+                          />
+                        ) : (
+                          <img
+                            key={card?.name}
+                            src={cartaDorso}
+                            className="cartaColeccion dorso"
+                          ></img>
+                        );
                       })}
                     </div>
                   ))}
                 </div>
               ))}
             </div>
-                <img
-                 className="flechaR"
-                  src={flechaR}
-                  alt="siguiente"
-                  onClick={() => page < Math.ceil(cartas?.length / 12) && handlePage(1)}
-                />
-
+            <img
+              className={`flechaR ${
+                page < Math.ceil(cartas?.length / 12) && "pulse"
+              }`}
+              src={flechaR}
+              alt="siguiente"
+              onClick={() =>
+                page < Math.ceil(cartas?.length / 12) && handlePage(1)
+              }
+            />
           </div>
           <CartaModal
             carta={selectedCarard}
@@ -155,11 +172,13 @@ export const Coleccion = ({ endPoint }) => {
             coleccionId={coleccionId}
             open={open}
             handleClose={handleClose}
+            vendida={setVendida}
           />
+          <div className="pagNum">
+            Pagina: {page}/{Math.ceil(cartas.length / 12)}
+          </div>
         </div>
       )}
-        
     </>
   );
 };
-

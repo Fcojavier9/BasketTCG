@@ -34,10 +34,10 @@ export const Inicio = () => {
   if(isValidToken && !numSobres && numSobres !== 0){
     return <LoadingCircle sizeLoading={200}/>
   }
-
+  console.log(isValidToken)
   return (
     <>
-      {isValidToken
+      {/* {isValidToken
         ? ( numSobres > 0 
             ? (
             <div className="contenedor-sobres">
@@ -47,10 +47,10 @@ export const Inicio = () => {
             ) : (
               <Carrusel isValidToken={isValidToken}/>
             )
-        ) : (
+        ) : ( */}
           <Carrusel isValidToken={isValidToken}/>
-        )
-      }
+        {/* )
+      } */}
     </>
   )
 };
