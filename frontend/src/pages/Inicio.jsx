@@ -34,7 +34,7 @@ export const Inicio = () => {
   if(isValidToken && !numSobres && numSobres !== 0){
     return <LoadingCircle sizeLoading={200}/>
   }
-  console.log(isValidToken)
+
   return (
     <>
       {isValidToken
