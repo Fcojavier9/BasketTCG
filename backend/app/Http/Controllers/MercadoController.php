@@ -243,8 +243,8 @@ class MercadoController extends Controller
             // 4. Modificar en comprador cantidad en su coleccion (sumar 1)
             $coleccionComprador = Coleccion::select('cantidad')->where('id_usuario', $request->id_comprador)->where('id_carta',$coleccionVendedor->id_carta)->first();
             if($coleccionComprador){
-                $coleccionComprador->cantidad + 1;
-                Coleccion::where('id', $mercado->id_coleccion)->update(['cantidad' => $cantidadComprador]);
+                $cantidadComprador = $coleccionComprador->cantidad + 1;
+                Coleccion::where('id_usuario', $request->id_comprador)->where('id_carta',$coleccionVendedor->id_carta)->update(['cantidad' => $cantidadComprador]);
             } else{
                 $resultado = $this->createRequest($request->id_comprador,$coleccionVendedor->id_carta, 1);
                 if($resultado === "Error, coleccion no actualizada"){

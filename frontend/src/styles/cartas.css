@@ -202,19 +202,19 @@
   @media (max-width: 720px) and (max-height: 1280px) {
     .center {
       left: 27vw;
-      bottom: 50vh;
+      bottom: 40vh;
       width: 45vw;
       height: auto;
     }
     .left {
       left: 7vw;
-      bottom: 45vh;
+      bottom: 35vh;
       width: 25vw;
       height: auto;
     }
     .right {
       right: 7vw;
-      bottom: 45vh;
+      bottom: 35vh;
       width: 25vw;
       height: auto;
     }
@@ -224,12 +224,67 @@
       height: auto;
       margin-bottom: 10%;
     }
+
     @keyframes levitate {
       from {
-        bottom: 52vh;
+        bottom: 42vh;
       }
       to {
-        bottom: 48vh;
+        bottom: 38vh;
+      }
+    }
+    @keyframes slideLeft {
+      from {
+        transform: translateX(0);
+        transform: matrix(0.75, 0.5, -0.01, 1, 0, 0);
+        filter: brightness(25%);
+      }
+      to {
+        transform: translateX(45%);
+        filter: brightness(100%);
+        bottom: 40vh;
+        width: 45vw;
+        height: auto;
+      }
+    }
+    
+    @keyframes slideRight {
+      from {
+        transform: translateX(0);
+        transform: matrix(0.75, -0.5, -0.01, 1, 0, 0);
+        filter: brightness(25%);
+      }
+      to {
+        transform: translateX(-50%);
+        filter: brightness(100%);
+        bottom: 40vh;
+        width: 45vw;
+        height: auto;
+      }
+    }
+    @keyframes slideCLeft {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(165%) matrix(0.75, -0.5, -0.01, 1, 0, 0);
+        filter: brightness(25%);
+        bottom: 35vh;
+        width: 25vw;
+        height: auto;
+      }
+    }
+    
+    @keyframes slideCRight {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-80%) matrix(0.75, 0.5, -0.01, 1, 0, 0);
+        filter: brightness(25%);
+        bottom: 35vh;
+        width: 25vw;
+        height: auto;
       }
     }
   }

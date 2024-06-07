@@ -117,10 +117,10 @@
     height: 60vh;
   }
   .ground {
-    left: 27vw;
+    left: 28vw;
     height: 70px;
     width: 45vw;
-    bottom: 28vh;
+    bottom: 15vh;
   }
 }
 @media screen and ((min-width: 720px ) and (max-width: 1080px)) and ((min-height: 1280px) and (max-height: 1920px)) {
