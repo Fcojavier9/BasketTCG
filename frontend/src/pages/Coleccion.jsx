@@ -8,8 +8,6 @@ import flechaL from "../assets/flechaL.png";
 import { CartaModal } from "../components/CartaModal";
 import cartaDorso from "../assets/cartaDorso.png";
 
-
-
 export const Coleccion = () => {
   const ENDPOINT_COLECCION = localStorage.getItem("id") + "/coleccion";
   const token = localStorage.getItem("token");
