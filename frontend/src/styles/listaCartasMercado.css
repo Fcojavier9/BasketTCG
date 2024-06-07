@@ -11,7 +11,10 @@
 .entrada-mercado {
     display: flex;
     flex-direction: row;
-    padding: 1em;
+    padding-left: 0em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     margin: 1em;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 4px;
@@ -45,7 +48,7 @@
 
 .entrada-mercado-info {
     width: 12em;
-    padding: 0.5em;
+    margin: 0.5em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -63,9 +66,8 @@
 }
 
 .entrada-mercado-nombre {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
-    
     display: flex;
     text-align: right;
 }
@@ -85,4 +87,73 @@
     
     display: flex;
     justify-content: center;
+}
+
+.pagination-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 3em 0; /* Increase the vertical margin */
+    padding: 0 1em;
+    position: relative;
+}
+
+.pagination-button {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.pagination-button:hover {
+    animation: pulse 1s infinite alternate;
+}
+
+.pagination-button:active {
+    filter: brightness(0.7);
+    transform: scale(0.9);
+}
+
+.pagination-button:first-child {
+    left: 10%;
+}
+
+.pagination-button:last-child {
+    right: 10%;
+}
+
+.page-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'title';
+    font-size: 2em;
+}
+
+
+@keyframes pulse {
+    from {
+        border-color: #c34a4a; 
+        box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); 
+        background-color: #c34a4a; 
+    }
+    to {
+        border-color: #0B41CB; 
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+        background-color: #0B41CB;
+    }
 }

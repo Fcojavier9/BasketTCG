@@ -15,13 +15,25 @@ export const ListaCartasMercado = () => {
     const [open, setOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
         const fetchDataFromEndpoint = async () => {
             const token = localStorage.getItem("token");
+            const id = Number(localStorage.getItem("id")); // Convert the id to a number
+            console.log("Stored id:", id); // Log the stored id
             try {
-                const fetchedData = await fetchData(ENDPOINT_MERCADO, "GET", token);
-                setData(fetchedData.data);
+                let fetchedData = await fetchData(ENDPOINT_MERCADO, "GET", token);
+                console.log("Fetched data:", fetchedData); // Log the fetched data
+                // Filter out entries where id_usuario is the same as id
+                fetchedData = fetchedData.data.filter(item => {
+                    if (item.id_usuario === id) {
+                        console.log("Found entry with same id_usuario as stored id:", item); // Log the found entry
+                    }
+                    return item.id_usuario !== id;
+                });
+                console.log("Filtered data:", fetchedData); // Log the filtered data
+                setData(fetchedData);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -33,11 +45,13 @@ export const ListaCartasMercado = () => {
     useEffect(() => {
         const start = (currentPage - 1) * ITEMS_PER_PAGE;
         const end = start + ITEMS_PER_PAGE;
+        // Calculate total pages and store it in state
+        setTotalPages(Math.ceil(data.length / ITEMS_PER_PAGE));
         setPageData(data.slice(start, end));
     }, [data, currentPage]);
 
     const handleNextPage = () => {
-        setCurrentPage((prevPage) => prevPage + 1);
+        setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
 
     const handlePrevPage = () => {
@@ -75,6 +89,10 @@ export const ListaCartasMercado = () => {
             }
 
             load = isLoading;
+
+            // Después de comprar, recargamos la lista de cartas
+            const { data: newCards } = await fetchData(ENDPOINT_MERCADO, "GET", token);
+            setData(newCards);
         } catch (error) {
             console.error("Error al comprar:", error);
         }
@@ -83,6 +101,7 @@ export const ListaCartasMercado = () => {
     };
 
     return (
+        <>
         <div className="lista-entradas-mercado">
             {pageData.map((item, index) => (
                 <div key={index} className="entrada-mercado">
@@ -94,9 +113,6 @@ export const ListaCartasMercado = () => {
                     </div>
                 </div>
             ))}
-            <button onClick={handlePrevPage}>Previous Page</button>
-            <button onClick={handleNextPage}>Next Page</button>
-
             <Modal open={open} onClose={handleClose} className="modal">
                 <Box className="caja">
                     <Box className="datos">
@@ -138,5 +154,15 @@ export const ListaCartasMercado = () => {
                 </Box>
             </Modal>
         </div>
+        <div className="pagination-buttons">
+            <button onClick={handlePrevPage} className="pagination-button">
+                <img src="/src/assets/flechaL.png" alt="Previous" />
+            </button>
+            <div className="page-info">Pagina: {currentPage} / {totalPages}</div>
+            <button onClick={handleNextPage} className="pagination-button">
+                <img src="/src/assets/flechaR.png" alt="Next" />
+            </button>
+        </div>
+</>
     );
 };

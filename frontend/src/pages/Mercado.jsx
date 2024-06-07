@@ -8,7 +8,6 @@ import cartasHeroe from "../assets/cartasHeroe.png";
 import { useToken } from "../customHooks/useToken";
 import { useFetchData } from "../customHooks/useFetchData";
 
-import { Paginacion } from "../components/Paginacion";
 import { BusquedaMercado } from "../components/BusquedaMercado";
 import { ListaCartasMercado } from "../components/ListaCartasMercado";
 
@@ -42,7 +41,6 @@ export const Mercado = ({ endPoint }) => {
             <div className="mercadoContainer">
                 <BusquedaMercado />
                 <ListaCartasMercado />
-                <Paginacion />
             </div>
         )}
         </>
