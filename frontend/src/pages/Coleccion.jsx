@@ -121,17 +121,15 @@ export const Coleccion = () => {
             )}
 
             <div className="album">
-              {mostrar.map((pagina) => (
-                <div className="pagina">
-                  {pagina.map((fila) => (
-                    <div key={fila[0]?.id} className="fila">
-                      {fila.map((card) => {
-                        let c = coleccion?.find(
-                          (entrada) => entrada?.carta === card?.id
-                        );
+              {mostrar.map((pagina, paginaIndice) => (
+                <div key={paginaIndice} className="pagina">
+                  {pagina.map((fila, filaIndice) => (
+                    <div key={filaIndice} className="fila">
+                      {fila.map((card, cardIndice) => {
+                        let c = coleccion?.find( item => item?.carta === card?.id);
                         return c && c?.cantidad > 0 ? (
                           <img
-                            key={card?.name}
+                            key={cardIndice}
                             src={`src/${card?.img_url}`}
                             className={
                               c.cantidad > 1
@@ -142,7 +140,7 @@ export const Coleccion = () => {
                           />
                         ) : (
                           <img
-                            key={card?.name}
+                            key={cardIndice}
                             src={cartaDorso}
                             className="cartaColeccion dorso"
                           ></img>
