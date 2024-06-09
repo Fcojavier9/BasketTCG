@@ -1,26 +1,13 @@
-import { useState, useEffect } from "react";
-import "../styles/noticias.css"; 
-import { LoadingCircle } from "../components/LoadingCircle";
 import { Pagination } from "@mui/material";
+import { LoadingCircle } from "../components/LoadingCircle";
 import { useFetchNoticias } from "../customHooks/useFetchNoticias";
+import { usePagination } from "../customHooks/usePagination";
+import { getFormatFecha } from "../helpers/getFormatFecha";
+import "../styles/noticias.css"; 
 
 export const Noticias = () => {
   const { noticias, loading, error } = useFetchNoticias();
-  const [page, setPage] = useState(1);
-
-
-  const formatFecha = (fechaStr) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-    const fecha = new Date(fechaStr);
-    return fecha.toLocaleDateString('es-ES', options);
-  };
-
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
-
-  // controlo la paginacion
-  const currentItems = noticias.length > 0 && noticias?.slice((page - 1) * 10, page * 10);
+  const { currentItems, page, handleChange } = usePagination({datos: noticias});
 
   if (loading) {
     return <LoadingCircle sizeLoading={200}/>
@@ -40,7 +27,7 @@ return (
             className={`noticia-item ${index % 2 === 0 ? "leftImage" : "rightImage"}`}
           >
             <div className="noticia-content">
-              <h5 className="fecha-noticias">{formatFecha(noticia.publishedAt)}</h5>
+              <h5 className="fecha-noticias">{getFormatFecha(noticia.publishedAt)}</h5>
               <a href={noticia.url} target="_blank" rel="noopener noreferrer" className="title-noticias">
                 {noticia.title}
               </a>

@@ -1,22 +1,27 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import "../styles/register.css";
-import { fetchData } from "../helpers/fetchData";
-import { fetchAuth } from "../helpers/fetchAuth";
+import { useRegister } from "../customHooks/useRegister";
 import { useToken } from "../customHooks/useToken";
-
-const ENDPOINT = "insertUsuario";
-const METODO = "POST";
+import "../styles/register.css";
 
 export const Register = () => {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [repassword, setRepassword] = useState("");
-  const [diferente, setDiferente] = useState(false);
-  const [register, setRegister] = useState(false);
-  const [isLoading, setIsLoading] = useState();
   const { isValidToken, validateToken } = useToken();
+
+  const {
+    email,
+    diferente,
+    isLoading,
+    password,
+    register,
+    repassword,
+    username,
+    handleLogin,
+    setEmail,
+    setIsLoading,
+    setPassword,
+    setRepassword,
+    setUsername,
+  } = useRegister();
 
   useEffect(() => {
     validateToken(localStorage.getItem("token"));
@@ -27,53 +32,6 @@ export const Register = () => {
       setIsLoading(false);
     }
   }, [isValidToken]);
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    if (!email || !username|| !password || !repassword) return;
-    if (password !== repassword) {
-      setDiferente(true);
-      return;
-    }else{
-      setDiferente(false)
-    }
-
-    setIsLoading(true);
-
-    const body = {
-      email: email,
-      username: username,
-      password: password,
-    };
-
-    try {
-      const { data, isLoading, error } = await fetchData(ENDPOINT, METODO, null, body);
-      if(error === 400) {
-        alert(data);
-        setIsLoading(false);
-        return
-      }
-
-      const body2 = {
-        email: email,
-        password: password,
-      };
-
-      try{
-        setIsLoading(true);
-        const { token, id } = await fetchAuth(body2);
-        localStorage.setItem("token", token);
-        localStorage.setItem("id", id); 
-      } catch (error) {
-        console.error("Error al loguearse tras registrar:", error);
-      }
-      
-      setRegister(!register);
-    } catch (error) {
-      console.error("Error al registrar:", error);
-    }
-
-  };
 
   // Mientras se verifica la validez del token, mostramos un mensaje de carga
   if (isLoading) {

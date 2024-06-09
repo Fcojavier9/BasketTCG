@@ -7,10 +7,10 @@ import { fetchData } from "../helpers/fetchData";
 import "../styles/inicio.css";
 
 export const Inicio = () => {
+  const [ isLoadingSobres, setIsLoadingSobres ] = useState(false);
   const { isValidToken, isLoadingToken } = useToken();
   const [numSobres, setNumSobres] = useState();
   const [saldo , setSaldo] = useState();
-  const [ isLoadingSobres, setIsLoadingSobres ] = useState(false);
 
   useEffect(() => {
     const fetchCartas = async () => {
@@ -42,7 +42,7 @@ export const Inicio = () => {
             ? (
             <div className="contenedor-sobres">
               <h1 className="titulo-sobres-inicio">Sobres disponibles: {numSobres}</h1>
-              <Sobre saldo={saldo} sobres={numSobres} setNumSobres={setNumSobres}/>
+              <Sobre saldo={saldo} sobres={numSobres}/>
             </div>
             ) : (
               <Carrusel isValidToken={isValidToken}/>

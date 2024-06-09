@@ -1,10 +1,9 @@
 // importamos el customHooks a utilizar
-import "../styles/cartas.css";
-import cartaComun from "../assets/cartaComun.png";
-import cartaRara from "../assets/cartaRara.png";
-import cartasHeroe from "../assets/cartasHeroe.png";
 import { useEffect, useState } from "react";
-import { fetchData } from "../helpers/fetchData";
+import cartaComun from "../assets/cartaComun.png";
+import cartasHeroe from "../assets/cartasHeroe.png";
+import cartaRara from "../assets/cartaRara.png";
+import "../styles/cartas.css";
 
 // creamos el componente Usuarios, como no pongo default, puedo importarlo con llaves en la clase que lo llame
 export const Carta = ({carta, estilo, accion}) => {

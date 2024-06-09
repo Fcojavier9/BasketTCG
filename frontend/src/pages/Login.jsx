@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { fetchAuth } from "../helpers/fetchAuth";
-import { useToken } from "../customHooks/useToken";
 import { Navigate } from "react-router-dom";
+import { useToken } from "../customHooks/useToken";
+import { fetchAuth } from "../helpers/fetchAuth";
 import "../styles/login.css";
 
 export const Login = () => {
+  const { isValidToken } = useToken();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
   const [isLoading, setIsLoading] = useState();
-  const { isValidToken } = useToken();
+  const [password, setPassword] = useState("");
 
   // Cuando isValidToken cambia, actualiza el estado de carga
   useEffect(() => {

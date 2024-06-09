@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom"; // importamos NavLink de react-router-dom, que nos permite navegar entre rutas sin recargar la página
-import { useToken } from "../customHooks/useToken";
 import logo from "../assets/logo.png";
+import { useToken } from "../customHooks/useToken";
 import "../styles/navBar.css"; // importamos css personalizado
 
 export const NavBar = () => {
   const [isActive, setIsActive] = useState(false);
-  const {isValidToken} = useToken();
+  const [isLoading, setIsLoading] = useState(true);
   const [isLogin, setIsLogin] = useState();
-  const [isLoading, setIsLoading] = useState(true)
+  const { isValidToken } = useToken();
 
   useEffect(() => {
     setIsLogin(isValidToken);
@@ -17,19 +17,21 @@ export const NavBar = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); 
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
-
 
   const toggleMenu = () => {
     setIsActive(!isActive);
   };
 
   return (
-    <nav className="navbar bg-dark navbar-expand-lg backgroundNavBar" data-bs-theme="dark">
-      <div className="container-fluid" style={{height: "7em"}}>
+    <nav
+      className="navbar bg-dark navbar-expand-lg backgroundNavBar"
+      data-bs-theme="dark"
+    >
+      <div className="container-fluid" style={{ height: "7em" }}>
         <NavLink to="/usuarios" className="navbar-brand" href="#">
           <img src={logo} alt="logo" className="image-logo" />
         </NavLink>
@@ -47,21 +49,31 @@ export const NavBar = () => {
             backgroundColor: "transparent", // Cambiar el color de fondo a transparente
             border: "none", // Eliminar bordes
             outline: "none", // Eliminar el contorno
-            color: "white" // Cambiar el color del icono
+            color: "white", // Cambiar el color del icono
           }}
         >
-          <span className={`navbar-toggler-icon text-light${isActive ? " open-menu" : ""}`}></span>
+          <span
+            className={`navbar-toggler-icon text-light${
+              isActive ? " open-menu" : ""
+            }`}
+          ></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
             <li className="nav-item order-lg-last margin-left-auto">
-              <NavLink to={isLogin ? "/perfil" : "/login" } className={isLogin ? "nav-link nav-perfil active" : "nav-link nav-perfil active is-not-login"}>
-                {isLoading 
-                    ? "Cargando..."
-                    : isLogin 
-                      ? "Perfil" 
-                      : "Iniciar Sesión"
+              <NavLink
+                to={isLogin ? "/perfil" : "/login"}
+                className={
+                  isLogin
+                    ? "nav-link nav-perfil active"
+                    : "nav-link nav-perfil active is-not-login"
                 }
+              >
+                {isLoading
+                  ? "Cargando..."
+                  : isLogin
+                  ? "Perfil"
+                  : "Iniciar Sesión"}
               </NavLink>
             </li>
             <li className="nav-item margin-left-auto">
@@ -70,17 +82,26 @@ export const NavBar = () => {
               </NavLink>
             </li>
             <li className="nav-item ">
-              <NavLink to={isLogin ? "/coleccion" : "/login" } className="nav-link active">
+              <NavLink
+                to={isLogin ? "/coleccion" : "/login"}
+                className="nav-link active"
+              >
                 Colección
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to={isLogin ? "/mercado" : "/login" } className="nav-link active">
+              <NavLink
+                to={isLogin ? "/mercado" : "/login"}
+                className="nav-link active"
+              >
                 Mercado
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to={isLogin ? "/noticias" : "/login" } className="nav-link active">
+              <NavLink
+                to={isLogin ? "/noticias" : "/login"}
+                className="nav-link active"
+              >
                 Noticias
               </NavLink>
             </li>

@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 
 export const useFetchNoticias = () => {
   const token = localStorage.getItem('token');
-  const [noticias, setNoticias] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [noticias, setNoticias] = useState([]);
 
   useEffect(() => {
     const fetchNoticias = async () => {
