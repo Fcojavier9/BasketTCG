@@ -1,37 +1,35 @@
-import { useEffect, useState } from "react";
+import { Pagination } from "@mui/material";
+import { useEffect } from "react";
 import { InfoCard } from "../components/InfoCard";
 import { Modal } from "../components/Modal";
 import { fetchData } from "../helpers/fetchData";
 import { LoadingCircle } from "../components/LoadingCircle";
+import { useAdmin } from "../customHooks/useAdmin";
+import { usePagination } from "../customHooks/usePagination";
 import "../styles/admin.css";
-import { Pagination } from "@mui/material";
 
-const ENDPOINT_DELETE = `deleteUsuario/`;
-const METODO_DELETE = "DELETE";
 const ENDPOINT_GET = `usuarios`;
 const METODO_GET = "GET";
-
 
 // Componente principal del panel de usuario
 export const Admin = () => {
   const TOKEN = localStorage.getItem("token");
-  const [datos, setDatos] = useState({});
-  const [id, setId] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingData, setIsLoadingData] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeField, setActiveField] = useState("");
-  const [page, setPage] = useState(1); // para controlar la pagina
 
-  const openModal = (nombre) => {
-    setActiveField(nombre);
-    setIsModalOpen(true);
-  };
+  const {
+    activeField,
+    datos,
+    isLoading,
+    isLoadingData,
+    isModalOpen,
+    acceptModal,
+    closeModal,
+    handleDelete,
+    setDatos,
+    setIsLoading,
+    setIsLoadingData
+  } = useAdmin({ TOKEN });
 
-  const closeModal = () => {
-    setId();
-    setIsModalOpen(false);
-  };
+  const { currentItems, page, handleChange } = usePagination({datos});
 
   useEffect(() => {
     const fetchDataUser = async (endPoint, metodo, token) => {
@@ -53,31 +51,6 @@ export const Admin = () => {
   }, [isLoadingData]);
 
 
-  const handleExit = () => {
-    window.location.href = "/admin";
-  };
-
-  const acceptModal = async () => {
-    setIsLoading(true);
-    setIsLoadingData(true);
-    const endpoint_delete = `${ENDPOINT_DELETE}${id}`;
-    const { data } = await fetchData(endpoint_delete, METODO_DELETE, TOKEN);
-    setId();
-    handleExit();
-  };
-
-  const handleDelete = async (id, nombre) => {
-    openModal(nombre);
-    setId(id);
-  };
-
-  const handleChange = (event, value) => { // para modificar la pagina
-    setPage(value);
-  };
-
-  // controlo la paginacion
-  const currentItems = datos.length > 0 && datos?.slice((page - 1) * 10, page * 10); // para seccionar el array
-
   return isLoading || isLoadingData ? (
     <div className="loading">
       <LoadingCircle sizeLoading={200}/>
@@ -96,12 +69,12 @@ export const Admin = () => {
         {currentItems.map((dato) => ( // pinto array
           <InfoCard
             key={dato.id}
-            title={dato.name}
+            title={dato.name ? dato.name : dato.username}
             value={dato.email}
-            onChange={null}
             onClick={() => handleDelete(dato.id, dato.name)}
             type={"text"}
             textButton={"Eliminar"}
+            readOnly={true}
           />
         ))}
       </div>

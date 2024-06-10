@@ -1,30 +1,27 @@
 import { useCallback, useEffect, useState } from "react";
-import { LoadingCircle } from "../components/LoadingCircle";
-
-import "../styles/coleccion.css";
-import { fetchData } from "../helpers/fetchData";
-import flechaR from "../assets/flechaR.png";
-import flechaL from "../assets/flechaL.png";
-import { CartaModal } from "../components/CartaModal";
 import cartaDorso from "../assets/cartaDorso.png";
+import flechaL from "../assets/flechaL.png";
+import flechaR from "../assets/flechaR.png";
+import { CartaModal } from "../components/CartaModal";
+import { LoadingCircle } from "../components/LoadingCircle";
+import { fetchData } from "../helpers/fetchData";
+import "../styles/coleccion.css";
 
 export const Coleccion = () => {
   const ENDPOINT_COLECCION = localStorage.getItem("id") + "/coleccion";
   const token = localStorage.getItem("token");
+  const [cartas, setCartas] = useState();
+  const [cantidad, setCantidad] = useState();
+  const [coleccion, setColeccion] = useState();
+  const [coleccionId, setColeccionId] = useState();
   const [first, setFirst] = useState(1);
   const [last, setLast] = useState(12);
-  const [page, setPage] = useState(1);
-  const [mostrar, setMostrar] = useState([[]]);
-  const [cartas, setCartas] = useState();
-  const [vendida, setVendida] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
-
+  const [mostrar, setMostrar] = useState([[]]);
   const [open, setOpen] = useState(false);
+  const [page, setPage] = useState(1);
   const [selectedCarard, setSelecCard] = useState();
-  const [cantidad, setCantidad] = useState();
-  const [coleccionId, setColeccionId] = useState();
-  const [coleccion, setColeccion] = useState();
+  const [vendida, setVendida] = useState(false);
 
   const handleOpen = (selected, repes = 0, id) => {
     setSelecCard(selected);
@@ -121,17 +118,15 @@ export const Coleccion = () => {
             )}
 
             <div className="album">
-              {mostrar.map((pagina) => (
-                <div className="pagina">
-                  {pagina.map((fila) => (
-                    <div key={fila[0]?.id} className="fila">
-                      {fila.map((card) => {
-                        let c = coleccion?.find(
-                          (entrada) => entrada?.carta === card?.id
-                        );
+              {mostrar.map((pagina, paginaIndice) => (
+                <div key={paginaIndice} className="pagina">
+                  {pagina.map((fila, filaIndice) => (
+                    <div key={filaIndice} className="fila">
+                      {fila.map((card, cardIndice) => {
+                        let c = coleccion?.find( item => item?.carta === card?.id);
                         return c && c?.cantidad > 0 ? (
                           <img
-                            key={card?.name}
+                            key={cardIndice}
                             src={`src/${card?.img_url}`}
                             className={
                               c.cantidad > 1
@@ -142,7 +137,7 @@ export const Coleccion = () => {
                           />
                         ) : (
                           <img
-                            key={card?.name}
+                            key={cardIndice}
                             src={cartaDorso}
                             className="cartaColeccion dorso"
                           ></img>

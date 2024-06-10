@@ -58,7 +58,13 @@
         margin: 1em;
         border-radius: 8px;
     }
-    
+}
+
+@media screen and (min-width: 769px) {
+  .titulo-principal-noticias {
+    font-size: 4em;
+  }
+  
 }
 
 .noticia-content {
@@ -67,7 +73,7 @@
 }
 
 .noticia-image {
-  width: 400px;
+  width: 250px;
   height: auto;
   margin: 1em;
   border-radius: 8px;

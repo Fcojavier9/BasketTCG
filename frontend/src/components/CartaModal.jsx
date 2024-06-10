@@ -1,11 +1,8 @@
-import { Box, Modal, Button, Input } from "@mui/material";
-import { Unstable_NumberInput as NumberImput } from "@mui/base/Unstable_NumberInput";
-import "../styles/cartaModal.css";
-import { Carta } from "./Carta";
+import { Unstable_NumberInput as NumberInput } from "@mui/base/Unstable_NumberInput";
+import { Box, Modal } from "@mui/material";
 import { useState } from "react";
 import { fetchData } from "../helpers/fetchData";
-import { LoadingCircle } from "../components/LoadingCircle";
-
+import "../styles/cartaModal.css";
 
 export const CartaModal = ({
   carta,
@@ -16,10 +13,10 @@ export const CartaModal = ({
   vendida
 }) => {
   const token = localStorage.getItem("token");
-  const [onSale, setOnSale] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [precioVenta, setPrecioVenta] = useState();
   const [cantidadVenta, setCantidaVenta] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [precioVenta, setPrecioVenta] = useState(5);
+  const [onSale, setOnSale] = useState(false);
 
   const handleVenta = () => {
     setOnSale(true);
@@ -35,9 +32,11 @@ export const CartaModal = ({
 
   const handleCantidad = (e) => {
     setCantidaVenta(e);
+    console.log(cantidadVenta)
   };
   const handlePrecio = (e) => {
     setPrecioVenta(e);
+    console.log(precioVenta)
   };
 
   const sale = async () => {
@@ -58,10 +57,10 @@ export const CartaModal = ({
         body
       );
       if (error === 400) {
-        alert(data);
+        console.error(data)
+        alert("ha ocurrido un error al poner a la venta la carta");
         return;
-      }
-
+        }
       load = isLoading;
       const body2 = {
         cantidad: cantidad - cantidadVenta,
@@ -75,7 +74,8 @@ export const CartaModal = ({
           body2
         );
         if (error === 400) {
-          alert(data);
+          console.error(data)
+          console.error("Error al modificar la coleccion: ", error);
           return;
         }
       } catch (error) {
@@ -126,13 +126,14 @@ export const CartaModal = ({
         <Box className="texto">
           <div className="linea">
             <p className="infoVenta">Cantidad:</p>
-            <NumberImput
+            <NumberInput
               onChange={(event, newValue) => handleCantidad(newValue)}
               defaultValue={1}
               className="number"
               slotProps={{
                 input: {
                   className: "inputCantidad",
+                  onChange: (e) => handleCantidad(e.target.value),
                 },
                 incrementButton: {
                   children: <p className="iconoIncremento">+</p>,
@@ -150,12 +151,13 @@ export const CartaModal = ({
 
           <div className="linea">
             <p className="infoVenta">Precio:</p>
-            <NumberImput
+            <NumberInput
               onChange={(event, newValue) => handlePrecio(newValue)}
               className="number"
               slotProps={{
                 input: {
                   className: "inputPrecio",
+                  onChange: (e) => handlePrecio(e.target.value),
                 },
                 incrementButton: {
                   children: <p className="iconoIncremento">+</p>,

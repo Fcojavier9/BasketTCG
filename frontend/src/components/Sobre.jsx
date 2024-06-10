@@ -1,48 +1,22 @@
-import "../styles/sobre.css";
-import { useEffect, useState } from "react";
-import { getRandomCard } from "../helpers/getRandomCard";
+import { useEffect } from "react";
+import { useSobre } from "../customHooks/useSobre";
 import { fetchData } from "../helpers/fetchData";
-import { getRandomNumber } from "../helpers/getRandomNumber";
+import "../styles/sobre.css";
 
-const Sobre = ({saldo, sobres, setNumSobres}) => {
-    const [source, setSource] = useState(`/src/assets/sobre.png`);
-    const [clicked, setClicked] = useState(false);
-    const [confetti, setConffeti] = useState(false);
-    const [animationClass, setAnimationClass] = useState('');
-    const [body, setBody] = useState({});
-    const [isLoadingFetch, setIsLoadingFetch] = useState();
-    const id_usuario = localStorage.getItem('id');
-    const [calculoSaldo, setCalculoSaldo] = useState(0);
-    const [carta, setCarta] = useState(0);
-
-    const changeImagen = async () => {
-        if (!clicked) {
-            setClicked(true);
-            const calculo = getRandomCard();
-            setCarta(calculo);
-            setAnimationClass('animate');
-            setTimeout(() => {
-                setSource(`/src/assets/cartas/${calculo}.png`);
-                setAnimationClass('animate2');
-            }, 1000);
-
-            const endpoint = calculo > 0 ? `${id_usuario}/${calculo}/coleccion` : `updateUsuario/${id_usuario}`
-            if(calculo > 0){
-                const {data, isLoading} = await fetchData(endpoint, 'GET', localStorage.getItem('token'))
-                setIsLoadingFetch(isLoading);
-                data && setBody(data);
-            }else{
-                const saldoAleatorio = getRandomNumber();
-                setCalculoSaldo(saldoAleatorio);
-                const nuevosSobres = sobres - 1;
-                const saldoActualizado = saldo + saldoAleatorio;
-                const bodyUser = {sobres: nuevosSobres, saldo: saldoActualizado};
-                const {data, isLoading} = await fetchData(endpoint, 'PUT', localStorage.getItem('token'), bodyUser);
-                setIsLoadingFetch(isLoading);
-            }
-
-        }
-    }
+const Sobre = ({saldo, sobres}) => {
+    const {
+        animationClass,
+        body,
+        calculoSaldo,
+        carta,
+        clicked,
+        confetti,
+        id_usuario,
+        isLoadingFetch,
+        source,
+        changeImagen,
+        setConffeti,
+    } = useSobre({ sobres, saldo});
 
     useEffect(() => {
         const actualizar = async () => {

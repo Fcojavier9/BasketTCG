@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export const useToken = () => {
-  const [token, setToken] = useState(null);
+  const location = useLocation();
   const [isLoadingToken, setIsLoadingToken] = useState(false);
   const [isValidToken, setIsValidToken] = useState(false);
-  const location = useLocation();
+  const [token, setToken] = useState(null);
 
   // Recuperar el token del localStorage
   const storedToken = localStorage.getItem("token");
