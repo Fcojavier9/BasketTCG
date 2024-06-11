@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export const useToken = () => {
   const location = useLocation();
   const [isLoadingToken, setIsLoadingToken] = useState(false);
@@ -9,7 +11,6 @@ export const useToken = () => {
 
   // Recuperar el token del localStorage
   const storedToken = localStorage.getItem("token");
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   const validateToken = async (storedToken) => {
     // Verificar si hay un token almacenado
