@@ -76,9 +76,29 @@
 .panel-sobres{
   display: flex;
   justify-content: center;
+  flex-direction: row;
   align-items: center;
   margin-bottom: 2em;
   font-size: 20px;
+}
+
+.bloque-botones{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+@media (max-width: 767px) {
+  .panel-sobres{
+    flex-direction: column;
+  }
+
+  .panel-sobres > div{
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 .boton-menos{
@@ -137,5 +157,10 @@
   justify-content: center;
   align-items: center;
   margin: 0.5em 0;
+}
+
+.span-saldo{
+  color: #f35a0e;
+  font-weight: bold;
 }
 
