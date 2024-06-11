@@ -1,3 +1,6 @@
+
+const apiUrl = import.meta.env.VITE_API_URL;
+
 // creamos una función asincrona para hacer la petición a la API
 export const fetchAuth = async (body) => {
 
@@ -14,8 +17,9 @@ export const fetchAuth = async (body) => {
 
   // intentamos hacer la petición
   try {
+    console.log(apiUrl)
     const response = await fetch(
-      `http://localhost:8200/auth/login`,
+      `apiUrlauth/login`,
       requestOptions
     );
 
