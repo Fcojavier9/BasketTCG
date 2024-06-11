@@ -123,7 +123,7 @@ export const Coleccion = () => {
                   {pagina.map((fila, filaIndice) => (
                     <div key={filaIndice} className="fila">
                       {fila.map((card, cardIndice) => {
-                        let c = coleccion?.find( item => item?.carta === card?.id);
+                       let c = coleccion.length > 0 && coleccion?.find( item => item?.carta === card?.id);
                         return c && c?.cantidad > 0 ? (
                           <img
                             key={cardIndice}
