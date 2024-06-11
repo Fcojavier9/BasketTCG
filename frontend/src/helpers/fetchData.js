@@ -1,3 +1,5 @@
+const apiUrl = import.meta.env.VITE_API_URL;
+
 // creamos una función asincrona para hacer la petición a la API
 export const fetchData = async (endPoint, metodo, token = null, body = null) => {
 
@@ -28,7 +30,7 @@ export const fetchData = async (endPoint, metodo, token = null, body = null) => 
   // intentamos hacer la petición
   try {
     const response = await fetch(
-      `http://localhost:8200/${endPoint}`,
+      `${apiUrl}${endPoint}`,
       requestOptions
     );
 
