@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export const useFetchNoticias = () => {
   const token = localStorage.getItem('token');
   const [error, setError] = useState(null);
@@ -9,7 +11,7 @@ export const useFetchNoticias = () => {
   useEffect(() => {
     const fetchNoticias = async () => {
       try {
-        const res = await fetch('http://localhost:8200/noticias', {
+        const res = await fetch(`${apiUrl}noticias`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
