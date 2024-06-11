@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export const useToken = () => {
   const location = useLocation();
   const [isLoadingToken, setIsLoadingToken] = useState(false);
@@ -16,7 +18,7 @@ export const useToken = () => {
       setIsLoadingToken(true);
       setToken(storedToken);
       try {
-        const response = await fetch("http://localhost:8200/usuarios", {
+        const response = await fetch(`${apiUrl}usuarios`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${storedToken}`, // Usar storedToken aquí en lugar de token
