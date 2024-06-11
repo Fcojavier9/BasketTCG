@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = "http://localhost:8200/";
 
 export const useFetchNoticias = () => {
   const token = localStorage.getItem('token');

@@ -1,5 +1,5 @@
 
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = "http://localhost:8200/";
 
 // creamos una función asincrona para hacer la petición a la API
 export const fetchAuth = async (body) => {
