@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BasketApp } from './BasketApp'
 import { BrowserRouter } from 'react-router-dom'
+import setupWebSocket from './websocket';
+
+setupWebSocket();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
