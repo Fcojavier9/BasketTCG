@@ -48,7 +48,7 @@ export const Perfil = () => {
     setUser,
     setUsername,
     setSaldo,
-  } = usePerfil({TOKEN});
+  } = usePerfil({ TOKEN });
 
   useEffect(() => {
     const fetchDataUser = async (endPoint, metodo, token) => {
@@ -64,20 +64,19 @@ export const Perfil = () => {
     };
 
     fetchDataUser(ENDPOINT_GET, METODO_GET, TOKEN);
-    
   }, [isModalOpen]);
 
   useEffect(() => {
     setIsLoading(false);
   }, [isLoadingData]);
 
-  if (toInicio){
-    return <Navigate to="/" /> 
-  }  
+  if (toInicio) {
+    return <Navigate to="/" />;
+  }
 
   return isLoading || isLoadingData ? (
     <div className="loading">
-      <LoadingCircle sizeLoading={200}/>
+      <LoadingCircle sizeLoading={200} />
     </div>
   ) : isModalOpen ? (
     <Modal
@@ -89,21 +88,27 @@ export const Perfil = () => {
     <div className="panel">
       <div className="user-title">
         <p>{`Bienvenido, ${user} 🎉`}</p>
-        <p>{`Su saldo es: ${saldo}BP`}</p>
+        <p>{`Su saldo es: `}<span className="span-saldo">{saldo} BP</span></p>
       </div>
       <div className="panel-sobres">
-          <p className="cantidad-sobres">Comprar sobres: </p>
-          <button className="boton-menos"
-            onClick={cantidad}>
+        <p className="cantidad-sobres">Comprar sobres: </p>
+        <div className="bloque-botones">
+          <button className="boton-menos" onClick={cantidad}>
             -
           </button>
           <p className="cantidad-sobres">{saldo < 250 ? "0" : count}</p>
-          <button className="boton-mas"
-            onClick={cantidad}>
+          <button className="boton-mas" onClick={cantidad}>
             +
           </button>
-          <button className="boton-comprar" disabled={saldo < 250} onClick={comprarSobres}>{saldo < 250 ? "BP insuficientes" : "Comprar"}</button>
+          <button
+            className="boton-comprar"
+            disabled={saldo < 250}
+            onClick={comprarSobres}
+          >
+            {saldo < 250 ? "BP insuficientes" : "Comprar"}
+          </button>
         </div>
+      </div>
       <div className="user-panel">
         <InfoCard
           title="Nombre"
@@ -146,15 +151,16 @@ export const Perfil = () => {
           className={"button-delete"}
         />
       </div>
-      {isAdmin && 
-      <div className="admin-panel">
-        <ButtonCard
-          title="Administrar Usuarios"
-          value={"Administrar"}
-          onClick={() => (window.location.href = "/admin")}
-          className={"button-orange"}
-        />
-      </div>}
+      {isAdmin && (
+        <div className="admin-panel">
+          <ButtonCard
+            title="Administrar Usuarios"
+            value={"Administrar"}
+            onClick={() => (window.location.href = "/admin")}
+            className={"button-orange"}
+          />
+        </div>
+      )}
     </div>
   );
 };
