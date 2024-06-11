@@ -33,14 +33,13 @@ export const Footer = () => {
                         <ul className="nav flex-column">
                             <li className="nav-item custom-footer-item"><a href="https://github.com/Fcojavier9/BasketTCG" className="footer-link">Código fuente</a></li>
                             <li className="nav-item custom-footer-item"><a href="https://rafa-sh.github.io/BasketTCG-docs/Tutoriales/empezar-a-desarrollar/" className="footer-link">Documentación</a></li>
-                            <li className="nav-item custom-footer-item"><a href="/" className="footer-link">Licencia</a></li>
+                            <li className="nav-item custom-footer-item"><a href="/legal" className="footer-link">Legal</a></li>
                         </ul>
                     </div>
                     <div className="col footer-col">
                         <ul className="nav flex-column">
                             <li className="nav-item custom-footer-item"><a href="/perfil" className="footer-link">Perfil</a></li>
                             <li className="nav-item custom-footer-item"><a href="/" className="footer-link">Inicio</a></li>
-                            <li className="nav-item custom-footer-item"><a href="/" className="footer-link">Legal</a></li>
                         </ul>
                     </div>
                 </div>

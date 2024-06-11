@@ -11,6 +11,7 @@ import { Coleccion } from "./pages/Coleccion";
 import { Mercado } from "./pages/Mercado";
 import { FondoEstrellas } from "./components/FondoEstrellas";
 import { Noticias } from "./pages/Noticias";
+import { Legal } from "./pages/Legal";
 
 export const BasketApp = () => {
   return (
@@ -28,6 +29,7 @@ export const BasketApp = () => {
           <Route path="/coleccion" element={<Coleccion endPoint="fran/coleccion" metodo="GET"/>}/>
           <Route path="/noticias" element={<Noticias/>}/>
           <Route path="/*" element={<Navigate to="/" />}/>
+          <Route path="/legal" element={<Legal/>}/>
         </Routes>
       </div>
       <Footer/>
