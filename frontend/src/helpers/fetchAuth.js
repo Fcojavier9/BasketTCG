@@ -17,9 +17,9 @@ export const fetchAuth = async (body) => {
 
   // intentamos hacer la petición
   try {
-    console.log(apiUrl)
+
     const response = await fetch(
-      `apiUrlauth/login`,
+      `${apiUrl}auth/login`,
       requestOptions
     );
 
