@@ -18,7 +18,7 @@
 }
 
 .sobre_carta.animate img:first-child {
-    animation: rotate180 2s forwards;
+    animation: rotate180 3s forwards;
 }
 
 @keyframes rotate180 {
