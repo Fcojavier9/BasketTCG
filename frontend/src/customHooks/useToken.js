@@ -11,7 +11,6 @@ export const useToken = () => {
 
   // Recuperar el token del localStorage
   const storedToken = localStorage.getItem("token");
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   const validateToken = async (storedToken) => {
     // Verificar si hay un token almacenado

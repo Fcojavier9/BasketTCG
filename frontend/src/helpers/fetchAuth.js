@@ -13,7 +13,6 @@ export const fetchAuth = async (body) => {
   };
 
   requestOptions.body = JSON.stringify(body);
-  
 
   // intentamos hacer la petición
   try {
