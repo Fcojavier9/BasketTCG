@@ -19,8 +19,7 @@ class NoticiasController extends Controller
         $noticias = [];
         foreach ($rss->channel->item as $item) {
             $mediaContent = $item->children('http://search.yahoo.com/mrss/')->content;
-            $thumbnail = $mediaContent ? $mediaContent->thumbnail : null;
-            $imageUrl = $thumbnail ? (string) $thumbnail->attributes()->url : null;
+            $imageUrl = $mediaContent ? (string) $mediaContent->attributes()->url : null;
 
             $noticias[] = [
                 'title' => (string) $item->title,

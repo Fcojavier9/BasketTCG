@@ -1,0 +1,13 @@
+.container-legal {
+    width: 80%;
+    margin: 5em auto;
+    padding: 2em;
+    background-color: rgba(192, 192, 192, 1);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgb(0, 0, 0);
+    text-align: justify;
+    color: black;
+}
