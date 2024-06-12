@@ -218,7 +218,7 @@ BEGIN
             (2, 45, 1),
             (2, 46, 0),
             (2, 47, 0),
-            (2, 48, 0),
+            (2, 48, 0);
 
         INSERT INTO mercado (id_coleccion, precio, vendida) VALUES 
             (28, 225, false),
@@ -228,7 +228,7 @@ BEGIN
             (49, 50, false),
             (49, 55, false),
             (50, 70, false),
-            (59, 190, false),
+            (59, 190, false);
         RAISE NOTICE 'Tablas creadas exitosamente';
     END IF;
 END $$;
