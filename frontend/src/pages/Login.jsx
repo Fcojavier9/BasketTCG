@@ -92,6 +92,7 @@ export const Login = () => {
             <button type="submit" className="basketball">Iniciar sesión</button>
           </div>
           <a className="enlace-registro letra-borde" href="/register">¿No tienes cuenta? Regístrate aquí</a>
+          <a className="enlace-registro letra-borde" href="mailto:basket@aetherdocks.xyz">¿Has olvidado tu contraseña?</a>
         </form>
       </div>
     </div>

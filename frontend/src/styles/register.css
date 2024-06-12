@@ -20,11 +20,6 @@
   box-shadow: 0 0 30px rgb(0, 0, 0);
 }
 
-.letra-borde{
-  color: white;
-  text-shadow: 2px 2px 2px rgb(0, 0, 0);
-}
-
 .input-container-register {
   margin-bottom: 20px;
 }
@@ -77,14 +72,6 @@
 
 .basketball-register {
   animation: bounce 1s infinite; /* La animación se repite infinitamente */
-}
-
-.enlace-password {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  justify-content: center;
-  margin-top: 1em;
 }
 
 .password-diferentes{

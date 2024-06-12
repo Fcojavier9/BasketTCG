@@ -104,7 +104,6 @@ export const Register = () => {
           <div className="button-container-register">
             <button type="submit" className="basketball-register">Registrarse</button>
           </div>
-          <a className="enlace-password letra-borde" href="mailto:basket@aetherdocks.xyz">¿Has olvidado tu contraseña?</a>
         </form>
       </div>
     </div>
