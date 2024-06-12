@@ -105,7 +105,7 @@ export const Perfil = () => {
             disabled={saldo < 250}
             onClick={comprarSobres}
           >
-            {saldo < 250 ? "BP insuficientes" : "Comprar"}
+            {saldo < 250 ? "BP insuficientes" : `Comprar por ${count*250} BP`}
           </button>
         </div>
       </div>
