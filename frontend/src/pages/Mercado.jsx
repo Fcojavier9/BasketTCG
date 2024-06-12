@@ -140,11 +140,11 @@ export const Mercado = () => {
           <Box className="caja">
             <Box className="datos">
               <Box className="principal">
+                <h2 className="nombre">{selectedItem?.nombre}</h2>
                 <img
                   src={`src/${selectedItem?.img_url}`}
                   className="imgModal"
                 />
-                <h2 className="nombre">{selectedItem?.nombre}</h2>
               </Box>
               <Box className="informacion">
                 <Box className="texto">
