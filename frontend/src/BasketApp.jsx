@@ -1,17 +1,17 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { NavBar } from "./components/NavBar";
-import { Login } from "./pages/Login";
-import { Register } from "./pages/Register";
-import { Inicio } from "./pages/Inicio";
-import { Perfil } from "./pages/Perfil";
-import { Admin } from "./pages/Admin";
-import { Footer } from "./components/Footer";
-import './basketApp.css';
-import { Coleccion } from "./pages/Coleccion";
-import { Mercado } from "./pages/Mercado";
 import { FondoEstrellas } from "./components/FondoEstrellas";
-import { Noticias } from "./pages/Noticias";
+import { Footer } from "./components/Footer";
+import { NavBar } from "./components/NavBar";
+import { Admin } from "./pages/Admin";
+import { Coleccion } from "./pages/Coleccion";
 import { Legal } from "./pages/Legal";
+import { Login } from "./pages/Login";
+import { Inicio } from "./pages/Inicio";
+import { Mercado } from "./pages/Mercado";
+import { Noticias } from "./pages/Noticias";
+import { Perfil } from "./pages/Perfil";
+import { Register } from "./pages/Register";
+import './basketApp.css';
 
 export const BasketApp = () => {
   return (

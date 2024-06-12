@@ -40,6 +40,10 @@ export const useSobre = ({ sobres, saldo }) => {
                 setIsLoadingFetch(isLoading);
             }
         }
+
+        if(clicked && confetti){
+            window.location.href = "/"
+        }
     }
 
     return{
