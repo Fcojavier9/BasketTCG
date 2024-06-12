@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom"; // importamos NavLink de react-router-dom, que nos permite navegar entre rutas sin recargar la página
 import logo from '../assets/logo.png';
+import { useToken } from "../customHooks/useToken";
 import "../styles/footer.css"; // importamos css personalizado
 
 export const Footer = () => {
+    const { isValidToken } = useToken();
+
     return (
     <div className="container-fluid footer-container">
         <footer className="row py-2 align-items-center footer-class-footer">
@@ -23,9 +26,9 @@ export const Footer = () => {
                 <div className="row row-cols-3">
                     <div className="col footer-col">
                         <ul className="nav flex-column">
-                            <li className="nav-item custom-footer-item"><a href="/coleccion" className="footer-link">Colección</a></li>
-                            <li className="nav-item custom-footer-item"><a href="/mercado" className="footer-link">Mercado</a></li>
-                            <li className="nav-item custom-footer-item"><a href="/noticias" className="footer-link">Noticias</a></li>
+                            <li className="nav-item custom-footer-item"><a href={isValidToken ? "/coleccion" : "/login"} className="footer-link">Colección</a></li>
+                            <li className="nav-item custom-footer-item"><a href={isValidToken ? "/mercado" : "/login"} className="footer-link">Mercado</a></li>
+                            <li className="nav-item custom-footer-item"><a href={isValidToken ? "/noticias" : "/login"} className="footer-link">Noticias</a></li>
                         </ul>
                     </div>
 
@@ -38,7 +41,7 @@ export const Footer = () => {
                     </div>
                     <div className="col footer-col">
                         <ul className="nav flex-column">
-                            <li className="nav-item custom-footer-item"><a href="/perfil" className="footer-link">Perfil</a></li>
+                            <li className="nav-item custom-footer-item"><a href={isValidToken ? "/perfil" : "/login"} className="footer-link">Perfil</a></li>
                             <li className="nav-item custom-footer-item"><a href="/" className="footer-link">Inicio</a></li>
                         </ul>
                     </div>
