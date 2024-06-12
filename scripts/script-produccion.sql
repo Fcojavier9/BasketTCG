@@ -70,7 +70,7 @@ BEGIN
         -- Add example data
         INSERT INTO usuarios (username, email, name, password, saldo, img_url, sobres, is_admin) VALUES
             ('admin', 'admin@basket.aetherdocks.xyz', 'Admin', '8ec98ed17b2fba4b6065111ab34427993f210e878414df557b31b443aacaa327', 8000, 'url1/usuarios/1.png', 10, true),
-            ('test', 'test@basket.aetherdocks.xyz', 'Test', '8ec98ed17b2fba4b6065111ab34427993f210e878414df557b31b443aacaa327', 3000, 'img/usuarios/2.png', 10, false),
+            ('test', 'test@basket.aetherdocks.xyz', 'Test', '8ec98ed17b2fba4b6065111ab34427993f210e878414df557b31b443aacaa327', 3000, 'img/usuarios/2.png', 10, false);
 
         INSERT INTO cartas (nombre, position, rarity, puntuacion, img_url) VALUES
             ('Darius Garland', 'pg', 'comun', 62, 'assets/cartas/1.png'),
